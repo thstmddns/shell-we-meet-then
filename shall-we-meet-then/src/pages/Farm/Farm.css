@@ -1,0 +1,43 @@
+.farmBody{
+    display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: -1;
+    
+}
+
+
+
+
+
+
+
+.tree0 {
+    position: absolute;
+    top: 10vh;
+    right: 50vw;
+    z-index: 1;
+}
+
+.tree1 {
+    position: absolute;
+    top: 10vh;
+    right: 40vw;
+    z-index: 1;
+}
+
+.tree2 {
+    position: absolute;
+    top: 10vh;
+    right: 30vw;
+    z-index: 1;
+}
+
+.tree3 {
+    position: absolute;
+    top: 10vh;
+    right: 20v;
+    z-index: 1;
+}
