@@ -1,0 +1,189 @@
+.farmBody{
+    display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: -1;
+    
+}
+
+
+
+.field {
+    width: 50vw;
+}
+
+
+.tree0 {
+    position: absolute;
+    top: 25vh;
+    right: 65vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree0:hover{
+    z-index: 3;
+}
+
+.tree1 {
+    position: absolute;
+    top: 25vh;
+    right: 55vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree1:hover{
+    z-index: 3;
+}
+
+.tree2 {
+    position: absolute;
+    top: 25vh;
+    right: 45vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree2:hover{
+    z-index: 3;
+}
+
+.tree3 {
+    position: absolute;
+    top: 25vh;
+    right: 35vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree4 {
+    position: absolute;
+    top: 25vh;
+    right: 25vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree5 {
+    position: absolute;
+    top: 20vh;
+    right: 55vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree6 {
+    position: absolute;
+    top: 20vh;
+    right: 45vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree7 {
+    position: absolute;
+    top: 20vh;
+    right: 35vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree8 {
+    position: absolute;
+    top: 20vh;
+    right: 25vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree9 {
+    position: absolute;
+    top: 20vh;
+    right: 15vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree10 {
+    position: absolute;
+    top: 35vh;
+    right: 55vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree11 {
+    position: absolute;
+    top: 35vh;
+    right: 45vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree12 {
+    position: absolute;
+    top: 35vh;
+    right: 35vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree13 {
+    position: absolute;
+    top: 35vh;
+    right: 25vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree14 {
+    position: absolute;
+    top: 35vh;
+    right: 15vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree15 {
+    position: absolute;
+    top: 50vh;
+    right: 55vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree16 {
+    position: absolute;
+    top: 50vh;
+    right: 45vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree17 {
+    position: absolute;
+    top: 50vh;
+    right: 35vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree18 {
+    position: absolute;
+    top: 50vh;
+    right: 25vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
+.tree19 {
+    position: absolute;
+    top: 50vh;
+    right: 15vw;
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+}
