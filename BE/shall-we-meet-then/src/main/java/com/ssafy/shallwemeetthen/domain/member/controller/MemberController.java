@@ -1,4 +1,33 @@
 package com.ssafy.shallwemeetthen.domain.member.controller;
 
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
+import com.ssafy.shallwemeetthen.domain.member.service.MemberAddService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
+
+@Controller
+@RequestMapping("/members")
+@Slf4j
+@RequiredArgsConstructor
 public class MemberController {
+
+    private final MemberAddService memberAddService;
+    @PostMapping("/join")
+    public ResponseEntity<?> join(@RequestBody @Valid MemberJoinRequestDto dto, BindingResult errors){
+        if(errors.hasErrors()){
+            return  new ResponseEntity<>(errors.getFieldError().getDefaultMessage(), HttpStatus.OK);
+        }
+            return new ResponseEntity<>(memberAddService.join(dto), HttpStatus.OK);
+
+    }
+
 }
