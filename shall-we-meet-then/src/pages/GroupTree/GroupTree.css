@@ -1,0 +1,25 @@
+.group-tree-img-wrapper {
+    display: flex;
+    /* border: 1px solid black; */
+}
+
+.group-tree-ground-img {
+    width: 99vw;
+    /* border: 1px solid black; */
+    margin-top: 55vh;
+    z-index: 1;
+}
+
+.group-tree-tree-img {
+    position: absolute;
+
+    margin-top: 3vh;
+    margin-left: -62vw;
+    /* border: 1px solid black; */
+
+    width: 31vw;
+    height: auto;
+
+    z-index: 0;
+
+}

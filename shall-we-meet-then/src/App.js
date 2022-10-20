@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import  Home  from './pages/Home/Home.js';
-import  Farm  from './pages/Farm/Farm.js';
-import  CreateGroup  from './pages/CreateGroup.js';
-import  GroupTree  from './pages/GroupTree.js';
-import  Quiz  from './pages/Quiz.js';
-import  MemoryList  from './pages/MemoryList.js';
-import  Memory  from './pages/Memory.js';
 
+import {
+  Home, 
+  Farm,
+  CreateGroup,
+  GroupTree,
+  Quiz,
+  MemoryList,
+  Memory
+} from './pages/index'
 
 
 function App() {
@@ -21,8 +23,6 @@ function App() {
           <Route path='/group/quiz/:groupSeq' element={<Quiz />} />
           <Route path='/group/memory/:groupSeq' element={<MemoryList />} />
           <Route path='/group/memory/:groupSeq/:articleSeq' element={<Memory />} />
-            
-          
         </Routes>
       </Router>
     </div>
