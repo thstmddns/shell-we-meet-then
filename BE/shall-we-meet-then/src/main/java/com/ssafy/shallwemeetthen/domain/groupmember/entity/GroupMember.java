@@ -1,8 +1,10 @@
 package com.ssafy.shallwemeetthen.domain.groupmember.entity;
 
-import com.ssafy.shallwemeetthen.domain.group.entity.Group;
+import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
+import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.*;
 
@@ -19,7 +21,7 @@ public class GroupMember {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gr_seq", nullable = false)
-    private Group group;
+    private Groups group;
 
     @Column(name = "gm_nickname", nullable = false, length = 20)
     private String nickname;
@@ -29,4 +31,14 @@ public class GroupMember {
 
     @Column(name = "gm_score", nullable = false)
     private String score;
+
+    @Builder
+    public GroupMember(Long seq, Member member, Groups group, String nickname, AgreeState agree, String score) {
+        this.seq = seq;
+        this.member = member;
+        this.group = group;
+        this.nickname = nickname;
+        this.agree = agree;
+        this.score = score;
+    }
 }
