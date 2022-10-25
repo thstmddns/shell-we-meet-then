@@ -75,6 +75,10 @@ function Home() {
     $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
   }
 
+  const stopEvent = () => {
+    return false;
+  }
+
 
 
 
@@ -83,7 +87,7 @@ function Home() {
       {/* 회원가입 */}
       <div className="login-page">
         <div className="form">
-          <form className="register-form">
+          <form className="register-form" onSubmit={stopEvent}>
             <input type="text" placeholder="email address" value={signUpEmail}
               onChange={(e) => { setSignUpEmail(e.target.value) }} />
             <input type="password" placeholder="password" value={signUpPassword}
@@ -97,8 +101,8 @@ function Home() {
 
 
 
-
-          <form className="login-form">
+        {/* 로그인 */}
+          <form className="login-form" onSubmit={stopEvent}>
             <input type="text" placeholder="username" value={signInEmail}
               onChange={(e) => { setSignInEmail(e.target.value) }} />
             <input type="password" placeholder="password" value={signInPassword}
