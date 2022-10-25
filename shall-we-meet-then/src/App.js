@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import NavBar from "./Components/NavBar/NavBar";
+
 import {
   Home, 
   Farm,
@@ -11,9 +13,11 @@ import {
 } from './pages/index'
 
 
+
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />

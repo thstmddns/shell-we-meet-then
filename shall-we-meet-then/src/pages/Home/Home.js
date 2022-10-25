@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import './Home.css';
 import axios from 'axios';
+import Button from "../../Components/Button";
 
 function Home() {
 
@@ -79,8 +80,6 @@ function Home() {
 
   return (
     <div >
-
-
       {/* 회원가입 */}
       <div className="login-page">
         <div className="form">
@@ -92,7 +91,7 @@ function Home() {
             <input type="password" placeholder="password check" value={signUpPasswordCheck}
               onChange={(e) => { setSignUpPasswordCheck(e.target.value) }} />
             <button onClick={signup}>create</button>
-            <p className="message">아이디가 있으신가요? <a onClick={changeForm} href="#">로그인</a></p>
+            <p className="message">아이디가 있으신가요? &nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">로그인</a></p>
           </form>
 
 
@@ -105,7 +104,7 @@ function Home() {
             <input type="password" placeholder="password" value={signInPassword}
               onChange={(e) => { setSignInPassword(e.target.value) }} />
             <button onClick={signIn}>login</button>
-            <p className="message">아이디가 없으신가요?<a onClick={changeForm} href="#">회원가입</a></p>
+            <p className="message">아이디가 없으신가요?&nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">회원가입</a></p>
           </form>
 
 
