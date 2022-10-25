@@ -15,6 +15,7 @@ public class MemberAddService {
 
     private final MemberRepository memberRepository;
 
+
     public boolean join(MemberJoinRequestDto dto){
         //이메일 중복 처리
         //TODO : existBy~ 에서 발생할 수 있는 에러가 있을까? 그리고 중복 이메일이라고 프론트에 알릴 방법이 없을까?
@@ -31,12 +32,14 @@ public class MemberAddService {
         return true;
     }
 
+
     public boolean login(MemberLoginRequestDto dto) {
         //아이디 체크
         if(!memberRepository.existsByEmail(dto.getEmail())) return false;
-        //비밀번호 체크
-        System.out.println(BCrypt.hashpw(dto.getPassword(),BCrypt.gensalt()));
-        if(!memberRepository.existsByPassword(BCrypt.hashpw(dto.getPassword(),BCrypt.gensalt()))) return false;
+
+        //비밀번호가 같은지 체크
+        String pw = memberRepository.findByEmail(dto.getEmail()).get().getPassword();
+        if(!BCrypt.checkpw(dto.getPassword(),pw)) return false;
 
         return true;
     }
