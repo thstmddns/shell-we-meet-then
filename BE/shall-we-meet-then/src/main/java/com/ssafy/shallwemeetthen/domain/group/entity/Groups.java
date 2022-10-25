@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Group {
+public class Groups {
 
     @Id @GeneratedValue
     @Column(name = "gr_seq", nullable = false)
@@ -41,7 +41,7 @@ public class Group {
     private AgreeState agree;
 
     @Builder
-    public Group(Long seq, String name, String invitationCode, String bgmOriginName, String bgmUuidName, LocalDateTime openDateTime, int headcount, AgreeState agree) {
+    public Groups(Long seq, String name, String invitationCode, String bgmOriginName, String bgmUuidName, LocalDateTime openDateTime, int headcount, AgreeState agree) {
         this.seq = seq;
         this.name = name;
         this.invitationCode = invitationCode;

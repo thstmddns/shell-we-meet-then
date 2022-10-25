@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.groupmember.entity;
 
-import com.ssafy.shallwemeetthen.domain.group.entity.Group;
+
+import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 
@@ -19,7 +20,7 @@ public class GroupMember {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gr_seq", nullable = false)
-    private Group group;
+    private Groups group;
 
     @Column(name = "gm_nickname", nullable = false, length = 20)
     private String nickname;
