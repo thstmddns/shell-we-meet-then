@@ -1,6 +1,4 @@
 export { default as CreateGroup } from './CreateGroup/CreateGroup'
-export { default as Farm } from './Farm/Farm'
-export { default as GroupTree} from './GroupTree/GroupTree'
 export { default as Home } from './Home/Home'
 export { default as Memory} from './Memory/Memory'
 export { default as MemoryList } from './MemoryList/MemoryList'
