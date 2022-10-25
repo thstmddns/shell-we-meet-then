@@ -39,13 +39,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid MemberLoginRequestDto dto, BindingResult errors){
-
-        try {
+    public ResponseEntity<?> login(@RequestBody @Valid MemberLoginRequestDto dto){
             return new ResponseEntity<>(memberAddService.login(dto), HttpStatus.OK);
-        } catch (IllegalStateException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
-
 }
