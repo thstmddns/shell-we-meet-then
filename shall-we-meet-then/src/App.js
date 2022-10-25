@@ -6,7 +6,7 @@ import  GroupTree  from './pages/GroupTree.js';
 import  Quiz  from './pages/Quiz.js';
 import  MemoryList  from './pages/MemoryList.js';
 import  Memory  from './pages/Memory.js';
-
+import Statistics from './pages/Statistics.js'
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route path='/group/quiz/:groupSeq' element={<Quiz />} />
           <Route path='/group/memory/:groupSeq' element={<MemoryList />} />
           <Route path='/group/memory/:groupSeq/:articleSeq' element={<Memory />} />
+          <Route path='/group/statistics/:groupSeq' element={<Statistics />} />
             
           
         </Routes>
