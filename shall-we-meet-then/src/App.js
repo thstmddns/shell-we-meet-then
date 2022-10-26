@@ -9,7 +9,8 @@ import {
   FindPassword,
   Quiz,
   MemoryList,
-  Memory
+  Memory,
+  Statistics
 } from './pages/index'
 
 
@@ -27,6 +28,9 @@ function App() {
           <Route path='/group/quiz/:groupSeq' element={<Quiz />} />
           <Route path='/group/memory/:groupSeq' element={<MemoryList />} />
           <Route path='/group/memory/:groupSeq/:articleSeq' element={<Memory />} />
+          <Route path='/group/statistics/:groupSeq' element={<Statistics />} />
+            
+          
         </Routes>
       </Router>
     </div>
