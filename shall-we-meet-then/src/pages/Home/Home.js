@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import './Home.css';
 import axios from 'axios';
+import Button from "../../Components/Button";
 
 function Home() {
 
@@ -74,17 +75,19 @@ function Home() {
     $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
   }
 
+  const stopEvent = () => {
+    return false;
+  }
+
 
 
 
   return (
     <div >
-
-
       {/* 회원가입 */}
       <div className="login-page">
         <div className="form">
-          <form className="register-form">
+          <form className="register-form" onSubmit={stopEvent}>
             <input type="text" placeholder="email address" value={signUpEmail}
               onChange={(e) => { setSignUpEmail(e.target.value) }} />
             <input type="password" placeholder="password" value={signUpPassword}
@@ -92,20 +95,20 @@ function Home() {
             <input type="password" placeholder="password check" value={signUpPasswordCheck}
               onChange={(e) => { setSignUpPasswordCheck(e.target.value) }} />
             <button onClick={signup}>create</button>
-            <p className="message">아이디가 있으신가요? <a onClick={changeForm} href="#">로그인</a></p>
+            <p className="message">아이디가 있으신가요? &nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">로그인</a></p>
           </form>
 
 
 
 
-
-          <form className="login-form">
+        {/* 로그인 */}
+          <form className="login-form" onSubmit={stopEvent}>
             <input type="text" placeholder="username" value={signInEmail}
               onChange={(e) => { setSignInEmail(e.target.value) }} />
             <input type="password" placeholder="password" value={signInPassword}
               onChange={(e) => { setSignInPassword(e.target.value) }} />
             <button onClick={signIn}>login</button>
-            <p className="message">아이디가 없으신가요?<a onClick={changeForm} href="#">회원가입</a></p>
+            <p className="message">아이디가 없으신가요?&nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">회원가입</a></p>
           </form>
 
 
