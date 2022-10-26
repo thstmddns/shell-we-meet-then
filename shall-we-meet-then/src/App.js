@@ -10,7 +10,9 @@ import {
   Quiz,
   MemoryList,
   Memory,
+  Main,
   Statistics
+
 } from './pages/index'
 
 
@@ -25,6 +27,7 @@ function App() {
           <Route path='/group/create' element={<CreateGroup />} />
           <Route path='/find-password' element={<FindPassword />} />
           <Route path='/new-password/:landomId'  element={<NewPassword />} />
+          <Route path='/main'  element={<Main />} />
           <Route path='/group/quiz/:groupSeq' element={<Quiz />} />
           <Route path='/group/memory/:groupSeq' element={<MemoryList />} />
           <Route path='/group/memory/:groupSeq/:articleSeq' element={<Memory />} />

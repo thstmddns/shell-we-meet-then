@@ -1,5 +1,6 @@
 export { default as CreateGroup } from './CreateGroup/CreateGroup'
 export { default as Home } from './Home/Home'
+export { default as Main } from './Main/Main'
 export { default as NewPassword } from './NewPassword/NewPassword'
 export { default as FindPassword } from './FindPassword/FindPassword'
 export { default as Memory} from './Memory/Memory'
