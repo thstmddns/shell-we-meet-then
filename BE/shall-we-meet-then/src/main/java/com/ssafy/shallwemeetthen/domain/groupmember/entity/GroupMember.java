@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.groupmember.entity;
 
+
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
