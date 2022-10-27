@@ -56,4 +56,8 @@ public class MemberGetService {
         return true;
     }
 
+    public boolean checkDuplicatedEmail(MemberEmailRequestDto dto){
+        return memberRepository.existsByEmail(dto.getEmail());
+    }
+
 }
