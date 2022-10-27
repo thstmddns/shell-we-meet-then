@@ -1,31 +1,35 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import './FindPassword.css'
-import { findPasswordApi } from "../../api/FindPasswordApi";
+import axios from "axios";
 
 
 
 function FindPassword() {
-    const [Email, setEmail] = useState('');
+  const [Email, setEmail] = useState('');
 
 
+  const sendEmail = () => {
 
-    const sendEmail = () => {
-
-        const context = {
-            email:Email
+    axios({
+      method: 'get',
+      url: '/members/password',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: {
+        email: Email
+      }
+    })
+      .then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          alert('비밀번호 수정 이메일이 전송되었습니다.')
         }
-        
-        findPasswordApi(context)
-        .then(res => {
-            console.log(res)
-            if(res.status === 200){
-                alert('비밀번호 수정 이메일이 전송되었습니다.')
-            }
-            else{
-                alert('없는 아이디입니다')
-            }
-        })
-    }
+        else {
+          alert('없는 아이디입니다')
+        }
+      })
+  }
 
 
 
@@ -36,7 +40,7 @@ function FindPassword() {
         <div className="form">
           <div className="login-form">
             <input type="text" placeholder="E-mail" value={Email}
-            onChange={(e) => { setEmail(e.target.value)}}/>
+              onChange={(e) => { setEmail(e.target.value) }} />
             <button onClick={sendEmail}>비밀번호 찾기</button>
           </div>
         </div>
