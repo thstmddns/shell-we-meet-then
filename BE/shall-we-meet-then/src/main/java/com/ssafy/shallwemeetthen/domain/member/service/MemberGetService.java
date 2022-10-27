@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.member.service;
 
 import com.ssafy.shallwemeetthen.domain.member.RedisUtil;
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailCheckRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberLoginRequestDto;
@@ -30,18 +31,15 @@ public class MemberGetService {
 
     private final JavaMailSender emailSender;
 
-    //thstmddns@naver.com
-
-    private static final int EXPIRYDATE = 3;
+    private static final int EXPIRYMINUTE = 5;
 
     public boolean authenticateEmail(MemberEmailRequestDto dto){
 
         //랜덤 UUID 생성
         String uuid = UUID.randomUUID().toString();
         //레디스에 랜덤 UUID 저장 (키 : 랜덤값 / 밸류 : 이메일 / 만료일자)
-        //TODO : 여기서 레디스에 저장이 안 되었다면 어떻게 체크하는가
-        redisUtil.setDataExpire(uuid, dto.getEmail(),3);
-
+        redisUtil.setDataExpire(uuid, dto.getEmail(),EXPIRYMINUTE);
+        if(redisUtil.getData(uuid)== null) throw new IllegalStateException("인증을 다시 시도해 주세요");
         //메일 보내기
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ssafy7d105@gmail.com"); // 보내는 사람의 이메일
@@ -53,5 +51,9 @@ public class MemberGetService {
         return true;
     }
 
+    public boolean checkAuthenticatedEmail(MemberEmailCheckRequestDto dto){
+        if(redisUtil.getData(dto.getCode())== null) throw new IllegalStateException("잘못된 코드이거나 유효 기간이 지났습니다");
+        return true;
+    }
 
 }

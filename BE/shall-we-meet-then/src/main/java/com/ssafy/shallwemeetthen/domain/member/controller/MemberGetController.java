@@ -2,6 +2,7 @@ package com.ssafy.shallwemeetthen.domain.member.controller;
 
 
 import com.ssafy.shallwemeetthen.domain.member.RedisUtil;
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailCheckRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberLoginRequestDto;
@@ -31,7 +32,21 @@ public class MemberGetController {
 
     @GetMapping("/auth/email")
     public ResponseEntity<?> authenticateEmail(@RequestBody @Validated MemberEmailRequestDto dto){
-        return new ResponseEntity<>(memberGetService.authenticateEmail(dto),HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(memberGetService.authenticateEmail(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @GetMapping("/auth/check-email")
+    public ResponseEntity<?> checkAuthenticatedEmail(@RequestBody MemberEmailCheckRequestDto dto){
+        try {
+            return new ResponseEntity<>(memberGetService.checkAuthenticatedEmail(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
 
     }
 
