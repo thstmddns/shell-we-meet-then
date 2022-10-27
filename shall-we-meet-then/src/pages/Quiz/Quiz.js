@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react'
 // import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
+// quiz api
+import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
 
 export default function Quiz() {
   // dumy
@@ -19,7 +21,14 @@ export default function Quiz() {
   }, [quizIdx, quizScore])
   // nav-function
   const skip = () => {
-    navigate(`/group/memory/${groupSeq}`);
+    quizAddScoreApi(0)
+      .then((res)=>{
+        console.log(res.data)
+        navigate(`/group/memory/${groupSeq}`);
+      })
+      .catch((err)=>{
+        console.error(err.data);
+      })
   };
   const memoryListPage = () => {
     navigate(`/group/memory/${groupSeq}`);
@@ -30,12 +39,17 @@ export default function Quiz() {
     if (problemItem === quizContent[quizIdx].people) {
       qs++; setQuizSocre(qs);
     }
-    console.log('증가가 되야하는데 안됩니다', qs);
     if (quizIdx < quizContent.length - 1) {
       setQuizIdx((quizIdx) => quizIdx+1)
     } else {
-      console.log('End quizScore', qs);
-      navigate(`/group/memory/${groupSeq}`);
+      quizAddScoreApi(qs)
+        .then((res)=>{
+          console.log(res.data)
+          navigate(`/group/memory/${groupSeq}`);
+        })
+        .catch((err)=>{
+          console.error(err.data);
+        })
     }
   };
   function shuffle(array) {
