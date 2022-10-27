@@ -1,9 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.member.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -22,5 +19,9 @@ public class MemberJoinRequestDto {
     @Size(min=4,max=12,message = "비밀번호 형식에 맞지 않습니다.")
     private String password;
 
-
+    @Builder
+    public MemberJoinRequestDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }
