@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { newPasswordApi } from '../../api/NewPasswordApi'
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
-
+ 
 
 
 function NewPassword() {
@@ -12,14 +12,20 @@ function NewPassword() {
   const [passwordCheck, setPasswordCheck] = useState('');
   const navigate = useNavigate();
 
+
   const passwordUpdate = () => {
 
     if (password === passwordCheck) {
-      let context = {
-        nextPassword: password,
-      };
-      newPasswordApi(context)
-        .then(navigate('/'))
+      axios({
+        method: 'put',
+        url: '/members/password',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: {
+          nextPassword: password,
+        },
+      }).then(navigate('/'))
     }
     else {
       alert('비밀번호가 다릅니다.')
@@ -29,7 +35,7 @@ function NewPassword() {
 
 
   return (
-    <div >
+    <div className="landing__bg" >
       <div className="login-page">
         <div className="form">
           <div className="login-form">

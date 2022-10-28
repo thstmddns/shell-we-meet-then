@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react'
 // import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
+// quiz api
+import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
 
 export default function Quiz() {
   // dumy
-  const [quizContent] = useState([{img:'img1', people:'people1'}, {img:'img2', people:'people2'}, {img:'img3', people:'people3'}]);
+  const [quizContent, setQuizContent] = useState([{img:'img1', people:'people1'}, {img:'img2', people:'people2'}, {img:'img3', people:'people3'}]);
   const [members] = useState(['people1', 'people2', 'people3', 'people4', 'people5', 'people6'])
   // variable
   const navigate = useNavigate();
@@ -14,28 +16,47 @@ export default function Quiz() {
   const [quizList, setQuizList] = useState([]);
   // useEffect
   useEffect(() => {
+    quizApi(groupSeq)
+      .then((res)=>{
+        console.log(res.data)
+        setQuizContent(res.data)
+      })
+      .catch((err)=>{
+        console.error(err.data);
+      })
+  }, [])
+  useEffect(() => {
     quizMember(quizIdx)
     console.log('next quizScore', quizScore);
   }, [quizIdx, quizScore])
   // nav-function
   const skip = () => {
-    navigate(`/group/memory/${groupSeq}`);
+    quizAddScoreApi(0)
+      .then((res)=>{
+        console.log(res.data)
+        navigate(`/group/memory/${groupSeq}`);
+      })
+      .catch((err)=>{
+        console.error(err.data);
+      })
   };
-  const memoryListPage = () => {
-    navigate(`/group/memory/${groupSeq}`);
-  }; 
   // function
   const nextQuiz = (problemItem) => {
     let qs = quizScore;
     if (problemItem === quizContent[quizIdx].people) {
       qs++; setQuizSocre(qs);
     }
-    console.log('증가가 되야하는데 안됩니다', qs);
     if (quizIdx < quizContent.length - 1) {
       setQuizIdx((quizIdx) => quizIdx+1)
     } else {
-      console.log('End quizScore', qs);
-      navigate(`/group/memory/${groupSeq}`);
+      quizAddScoreApi(qs)
+        .then((res)=>{
+          console.log(res.data)
+          navigate(`/group/memory/${groupSeq}`);
+        })
+        .catch((err)=>{
+          console.error(err.data);
+        })
     }
   };
   function shuffle(array) {

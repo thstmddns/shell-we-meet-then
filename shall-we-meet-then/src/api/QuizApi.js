@@ -16,20 +16,20 @@ import api from './api'
 // })
 
 // 퀴즈 불러오기
-const quizApi = async(quizInfo, groupSeq, success, fail) => {
-    return await api.get(`/group-members/quiz/${groupSeq}`, quizInfo)
+const quizApi = async(groupSeq) => {
+    return await api.get(`/group-members/quiz/${groupSeq}`)
 }
 // 퀴즈 맞춘 갯수 조회
-const quizScoreApi = async(quizInfo, groupSeq, success, fail) => {
-  return await api.get(`/group-members/score`, quizInfo)
+const quizGetScoreApi = async(quizInfo, groupMemberSeq) => {
+  return await api.get(`/group-members/${groupMemberSeq}/score`, quizInfo)
 }
 // 퀴즈 맞춘 갯수 저장
-const quizCheckScoreApi = async(quizInfo, groupSeq, success, fail) => {
-  return await api.put(`/group-members/check-nickname`, quizInfo)
+const quizAddScoreApi = async(quizInfo) => {
+  return await api.put(`/group-members/score`, quizInfo)
 }
 
 export {
   quizApi,
-  quizScoreApi,
-  quizCheckScoreApi,
+  quizGetScoreApi,
+  quizAddScoreApi,
 }
