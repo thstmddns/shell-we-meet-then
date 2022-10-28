@@ -1,9 +1,8 @@
 package com.ssafy.shallwemeetthen.domain.group.controller;
 
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
-import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupResponseDto;
+import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupService;
-import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +38,14 @@ class GroupControllerTest {
     @Test
     void addGroup() throws Exception {
 
-
         AddGroupRequestDto addGroupRequestDto = AddGroupRequestDto.builder()
+                .seq()
                 .name("럽스타그램")
                 .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
                 .build();
 
         //TODO : AddGroupResponseDto 를 리턴하는게 맞을까용?
-        given(groupService.addGroup(any(AddGroupRequestDto.class))).willReturn(new AddGroupResponseDto("UUID"));
+        given(groupService.addGroup(any(AddGroupRequestDto.class))).willReturn(new GroupResponseDto("UUID"));
 
         ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.post("/")
                 .content(convertToJson(addGroupRequestDto))

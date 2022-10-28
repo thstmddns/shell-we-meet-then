@@ -11,11 +11,13 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class AddGroupRequestDto {
+    private Long seq;
     private String name;
     private LocalDateTime openDateTime;
 
     @Builder
-    public AddGroupRequestDto(String name, LocalDateTime openDateTime) {
+    public AddGroupRequestDto(Long seq, String name, LocalDateTime openDateTime) {
+        this.seq = seq;
         this.name = name;
         this.openDateTime = openDateTime;
     }

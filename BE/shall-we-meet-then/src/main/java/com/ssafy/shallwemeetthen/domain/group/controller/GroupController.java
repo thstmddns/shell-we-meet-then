@@ -20,10 +20,6 @@ public class GroupController {
 
     private final GroupService groupService;
 
-    //    @PostMapping("/")
-//    public ResponseEntity<?> addGroup(@RequestBody AddGroupRequestDto requestDto) {
-//        return new ResponseEntity<>(groupService.addGroup(requestDto), HttpStatus.OK);
-//    }
     @PostMapping
     public ResponseEntity<?> addGroup(@RequestBody AddGroupRequestDto addGroupRequestDto) {
         return new ResponseEntity<>(groupService.addGroup(addGroupRequestDto), HttpStatus.OK);
