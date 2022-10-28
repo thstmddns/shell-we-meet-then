@@ -16,8 +16,8 @@ import api from './api'
 // })
 
 // 퀴즈 불러오기
-const quizApi = async(quizInfo, groupSeq) => {
-    return await api.get(`/group-members/quiz/${groupSeq}`, quizInfo)
+const quizApi = async(groupSeq) => {
+    return await api.get(`/group-members/quiz/${groupSeq}`)
 }
 // 퀴즈 맞춘 갯수 조회
 const quizGetScoreApi = async(quizInfo, groupMemberSeq) => {

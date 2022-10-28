@@ -6,7 +6,7 @@ import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
 
 export default function Quiz() {
   // dumy
-  const [quizContent] = useState([{img:'img1', people:'people1'}, {img:'img2', people:'people2'}, {img:'img3', people:'people3'}]);
+  const [quizContent, setQuizContent] = useState([{img:'img1', people:'people1'}, {img:'img2', people:'people2'}, {img:'img3', people:'people3'}]);
   const [members] = useState(['people1', 'people2', 'people3', 'people4', 'people5', 'people6'])
   // variable
   const navigate = useNavigate();
@@ -15,6 +15,16 @@ export default function Quiz() {
   const [quizScore, setQuizSocre] = useState(0);
   const [quizList, setQuizList] = useState([]);
   // useEffect
+  useEffect(() => {
+    quizApi(groupSeq)
+      .then((res)=>{
+        console.log(res.data)
+        setQuizContent(res.data)
+      })
+      .catch((err)=>{
+        console.error(err.data);
+      })
+  }, [])
   useEffect(() => {
     quizMember(quizIdx)
     console.log('next quizScore', quizScore);
@@ -30,9 +40,6 @@ export default function Quiz() {
         console.error(err.data);
       })
   };
-  const memoryListPage = () => {
-    navigate(`/group/memory/${groupSeq}`);
-  }; 
   // function
   const nextQuiz = (problemItem) => {
     let qs = quizScore;
