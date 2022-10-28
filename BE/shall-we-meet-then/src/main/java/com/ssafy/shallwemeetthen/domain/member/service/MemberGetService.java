@@ -35,9 +35,8 @@ public class MemberGetService {
         //랜덤 UUID 생성
         String uuid = UUID.randomUUID().toString();
         //레디스에 랜덤 UUID 저장 (키 : 랜덤값 / 밸류 : 이메일 / 만료일자)
-        redisUtil.setDataExpire(uuid, dto.getEmail(),EXPIRYMINUTE);
         try {
-            redisUtil.setData(dto.getEmail(),uuid);
+            redisUtil.setDataExpire(uuid, dto.getEmail(),EXPIRYMINUTE);
         } catch (IllegalStateException e) {
             throw new IllegalStateException("캐시 데이터 저장소에 저장되지 않았습니다. Email 전송부터 다시 진행해 주세요.");
         }
