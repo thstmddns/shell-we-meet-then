@@ -21,7 +21,7 @@ public class GroupMemberService {
     private final MemberRepository memberRepository;
 
     private final GroupRepository groupRepository;
-    private final Groups groups;
+
 
     //Todo 로그인 멤버로 변경요망
     public boolean addGroupMember(AddGroupMemberRequestDto addGroupMemberRequestDto) {
