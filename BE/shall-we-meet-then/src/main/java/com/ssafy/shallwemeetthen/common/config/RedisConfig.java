@@ -1,4 +1,4 @@
-package com.ssafy.shallwemeetthen.domain.config;
+package com.ssafy.shallwemeetthen.common.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
