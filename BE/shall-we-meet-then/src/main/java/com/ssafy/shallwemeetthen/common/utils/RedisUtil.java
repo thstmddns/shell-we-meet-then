@@ -1,4 +1,4 @@
-package com.ssafy.shallwemeetthen.domain.member;
+package com.ssafy.shallwemeetthen.common.utils;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.ListOperations;
