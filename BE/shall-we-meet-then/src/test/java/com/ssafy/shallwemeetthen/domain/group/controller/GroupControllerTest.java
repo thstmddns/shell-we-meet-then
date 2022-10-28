@@ -39,7 +39,6 @@ class GroupControllerTest {
     void addGroup() throws Exception {
 
         AddGroupRequestDto addGroupRequestDto = AddGroupRequestDto.builder()
-                .seq()
                 .name("럽스타그램")
                 .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
                 .build();
