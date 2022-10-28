@@ -8,6 +8,6 @@ class ShallWeMeetThenApplicationTests {
 
 	@Test
 	void contextLoads() {
-	}
 
+	}
 }
