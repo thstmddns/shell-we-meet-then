@@ -32,7 +32,6 @@ public class MemberController {
         try {
             return new ResponseEntity<>(memberAddService.join(dto), HttpStatus.OK);
         } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
