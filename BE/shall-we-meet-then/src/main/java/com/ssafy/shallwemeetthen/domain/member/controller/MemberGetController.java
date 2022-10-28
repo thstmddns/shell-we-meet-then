@@ -41,12 +41,20 @@ public class MemberGetController {
 
     @GetMapping("/check-email")
     public ResponseEntity<?> checkDuplicatedEmail(@RequestBody MemberEmailRequestDto dto){
+        try {
             return new ResponseEntity<>(memberGetService.checkDuplicatedEmail(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/password")
     public ResponseEntity<?> findPassword(@RequestBody MemberFindPasswordRequestDto dto){
-        return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.member.entity;
 
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberModifyPasswordRequestDto;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
@@ -27,6 +27,10 @@ public class Member {
     public Member(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public void update(MemberModifyPasswordRequestDto dto){
+        this.password = dto.getNextPassword();
     }
 
 }
