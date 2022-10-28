@@ -19,7 +19,7 @@ public class RedisUtil {
         return valueOperations.get(key);
     }
 
-    public void setData(String key, String value) { // key를 통해 value(데이터)를 얻는다.
+    public void setData(String key, String value) { // key와 value(데이터)를 넣는거.
         ValueOperations<String, String> ValueOperations = redisTemplate.opsForValue();
         ValueOperations.set(key, value);
     }
@@ -30,6 +30,9 @@ public class RedisUtil {
         Duration expireDuration = Duration.ofMinutes(duration);
         valueOperations.set(key, value, expireDuration);
     }
+
+
+
 
     public void deleteData(String key) {
         // 데이터 삭제
