@@ -2,10 +2,7 @@ package com.ssafy.shallwemeetthen.domain.member.controller;
 
 
 import com.ssafy.shallwemeetthen.domain.member.RedisUtil;
-import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailCheckRequestDto;
-import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailRequestDto;
-import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
-import com.ssafy.shallwemeetthen.domain.member.dto.MemberLoginRequestDto;
+import com.ssafy.shallwemeetthen.domain.member.dto.*;
 import com.ssafy.shallwemeetthen.domain.member.service.MemberAddService;
 import com.ssafy.shallwemeetthen.domain.member.service.MemberGetService;
 import lombok.RequiredArgsConstructor;
@@ -50,4 +47,11 @@ public class MemberGetController {
     public ResponseEntity<?> checkDuplicatedEmail(@RequestBody MemberEmailRequestDto dto){
             return new ResponseEntity<>(memberGetService.checkDuplicatedEmail(dto),HttpStatus.OK);
     }
+
+    @GetMapping("/password")
+    public ResponseEntity<?> findPassword(@RequestBody MemberFindPasswordRequestDto dto){
+        return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
+    }
+
+
 }
