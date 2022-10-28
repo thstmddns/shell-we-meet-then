@@ -11,19 +11,13 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
-public class MemberLoginRequestDto {
+public class MemberFindPasswordRequestDto {
 
     @NotBlank
     @Email(message = "이메일 형식에 맞지 않습니다.")
     private String email;
 
-    @NotBlank
-    @Size(min=4,max=12,message = "비밀번호 형식에 맞지 않습니다.")
-    private String password;
-
-    @Builder
-    public MemberLoginRequestDto(String email, String password) {
+    public MemberFindPasswordRequestDto(String email) {
         this.email = email;
-        this.password = password;
     }
 }
