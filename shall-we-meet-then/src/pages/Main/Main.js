@@ -39,7 +39,7 @@ function Main() {
 
 
     const checkButton = () => {
-      console.log(testTime)
+      console.log(temp)
     }
 
 
@@ -94,7 +94,9 @@ function Main() {
     const goCreateGroup = () => {
       navigate("/group/create");
     }
-    // const go
+    const goWriteBoard = () => {
+      navigate(`/group/article/create/${groups[temp].groupSeq}`)
+    }
 
 
     
@@ -110,7 +112,7 @@ function Main() {
         <button onClick={minusTemp}> down </button>
         <button onClick={plusTemp}> up </button>
         <br />
-        <button>글 쓰러가기</button>
+        <button onClick={goWriteBoard}>글 쓰러가기</button>
         <button onClick={goCreateGroup}>그룹만들기 및 창여하기</button>
 
       </div>
