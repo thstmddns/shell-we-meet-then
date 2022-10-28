@@ -173,7 +173,7 @@ function Home() {
 
 
   return (
-    <div >
+    <div className="landing__bg">
       {/* 회원가입 */}
       <div className="login-page">
         <div className="form">

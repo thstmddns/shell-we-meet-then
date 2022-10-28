@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
  
@@ -34,7 +35,7 @@ function NewPassword() {
 
 
   return (
-    <div >
+    <div className="landing__bg" >
       <div className="login-page">
         <div className="form">
           <div className="login-form">
