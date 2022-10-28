@@ -1,7 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.group.controller;
 
 
-import com.ssafy.shallwemeetthen.domain.common.service.CommonGroupService;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupService;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-
 @Slf4j
 @RequestMapping("/groups")
 @RestController
@@ -22,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 public class GroupController {
 
     private final GroupService groupService;
-    private final CommonGroupService commonGroupService;
 
     //    @PostMapping("/")
 //    public ResponseEntity<?> addGroup(@RequestBody AddGroupRequestDto requestDto) {
@@ -30,7 +26,7 @@ public class GroupController {
 //    }
     @PostMapping
     public ResponseEntity<?> addGroup(@RequestBody AddGroupRequestDto addGroupRequestDto) {
-        return new ResponseEntity<>(commonGroupService.addGroup(addGroupRequestDto), HttpStatus.OK);
+        return new ResponseEntity<>(groupService.addGroup(addGroupRequestDto), HttpStatus.OK);
     }
 }
 

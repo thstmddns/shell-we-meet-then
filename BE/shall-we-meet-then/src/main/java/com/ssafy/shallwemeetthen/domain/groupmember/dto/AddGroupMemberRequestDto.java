@@ -8,9 +8,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AddGroupMemberRequestDto {
+
+    private Long groupSeq;
     private String nickname;
 
-    public AddGroupMemberRequestDto(String nickname) {
+    private String invitationCode;
+
+    public AddGroupMemberRequestDto(Long groupSeq, String nickname, String invitationCode) {
+        this.groupSeq = groupSeq;
         this.nickname = nickname;
+        this.invitationCode = invitationCode;
     }
 }

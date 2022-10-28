@@ -13,12 +13,10 @@ import java.time.LocalDateTime;
 public class AddGroupRequestDto {
     private String name;
     private LocalDateTime openDateTime;
-    private String nickname;
+
     @Builder
-    public AddGroupRequestDto(String name, LocalDateTime openDateTime, String nickname) {
+    public AddGroupRequestDto(String name, LocalDateTime openDateTime) {
         this.name = name;
         this.openDateTime = openDateTime;
-        this.nickname = nickname;
     }
-
 }

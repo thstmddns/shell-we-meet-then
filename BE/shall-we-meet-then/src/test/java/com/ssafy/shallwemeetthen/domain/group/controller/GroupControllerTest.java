@@ -3,6 +3,7 @@ package com.ssafy.shallwemeetthen.domain.group.controller;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupService;
+import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,10 @@ class GroupControllerTest {
 
     @Test
     void addGroup() throws Exception {
+
+
         AddGroupRequestDto addGroupRequestDto = AddGroupRequestDto.builder()
                 .name("럽스타그램")
-                .nickname("야")
                 .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
                 .build();
 
