@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react'
+import { useNavigate } from  "react-router-dom";
 import './Main.css'
 import { getGroupsApi } from '../../api/Main';
 
@@ -75,12 +76,25 @@ function Main() {
     // },[])
 
     const plusTemp = () => {
+      if (temp + 1 === groups.length){
+        return
+      }
       setTemp(temp+1);
     }
 
     const minusTemp = () => {
+      if (temp === 0 ){
+        return
+      }
       setTemp(temp-1)
     }
+
+
+    const navigate = useNavigate();
+    const goCreateGroup = () => {
+      navigate("/group/create");
+    }
+    // const go
 
 
     
@@ -95,6 +109,10 @@ function Main() {
             {dDay === 0 ? 'day' : Math.abs(dDay)}</h1>
         <button onClick={minusTemp}> down </button>
         <button onClick={plusTemp}> up </button>
+        <br />
+        <button>글 쓰러가기</button>
+        <button onClick={goCreateGroup}>그룹만들기 및 창여하기</button>
+
       </div>
 
 
