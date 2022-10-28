@@ -1,4 +1,4 @@
-package com.shallwemeetthen.utils;
+package com.ssafy.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
