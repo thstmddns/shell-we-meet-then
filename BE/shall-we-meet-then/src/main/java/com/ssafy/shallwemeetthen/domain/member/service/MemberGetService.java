@@ -1,18 +1,15 @@
 package com.ssafy.shallwemeetthen.domain.member.service;
 
-import com.ssafy.shallwemeetthen.domain.member.RedisUtil;
+import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
 import com.ssafy.shallwemeetthen.domain.member.dto.*;
-import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 import com.ssafy.shallwemeetthen.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.mail.internet.MimeMessage;
 import java.util.UUID;
 
 
