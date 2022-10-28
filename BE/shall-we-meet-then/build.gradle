@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.mindrot:jbcrypt:0.4'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	implementation 'com.google.code.gson:gson:2.10'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {
