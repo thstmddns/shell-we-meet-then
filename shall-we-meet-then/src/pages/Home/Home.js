@@ -4,6 +4,23 @@ import './Home.css';
 import axios from 'axios';
 import Button from "../../Components/Button";
 
+
+
+
+function InfoMsg(props) {
+  return(
+    <div>
+      {props.check ? <p className="message" style={{color:'red', margin:'0 0 0 0', textAlign:'left'}}> 이미 사용중인 이메일입니다.</p>
+       : <p className="message" style={{color:'green', margin:'0 0 0 0',  textAlign:'left'}}>사용가능한 이메일입니다.</p>}
+    </div>
+  )
+}
+
+
+
+
+
+
 function Home() {
 
   // 회원가입용 state
@@ -13,13 +30,9 @@ function Home() {
   // 로그인용 state
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
-  // 이메일 인증용 state
   // 중복검사용
-  const [isDuplicated, setIsDuplicated] = useState(true);
-  // 인증메일 코드
-  const [code, setCode] = useState('');
-  // 인증메일 코드로 인증했는가
-  const [checkCode, setCheckCode] = useState(false);
+  const [isDuplicated, setIsDuplicated] = useState(null);
+
 
 
 
@@ -28,11 +41,6 @@ function Home() {
   const signup = () => {
     if (isDuplicated) {
       alert('이메일 중복검사를 해주세요');
-      return
-    }
-
-    if (!checkCode) {
-      alert('이메일 인증을 진행해주세요');
       return
     }
     else {
@@ -96,6 +104,10 @@ function Home() {
 
   //이메일 중복 체크
   const checkDuplicatedEmail = () => {
+    if (signUpEmail === '') {
+      alert('이메일을 입력해주세요');
+      return
+    }
     axios({
       method: 'get',
       url: '/members/check-email',
@@ -108,6 +120,7 @@ function Home() {
     })
       .then(r => {
         if (r.data === true) {
+          setIsDuplicated(true);
           alert('이미 존재하는 이메일입니다');
         }
         else {
@@ -119,46 +132,6 @@ function Home() {
       })
 
   }
-
-  //이메일 인증메일 보내기
-  const authenticateEmail = () => {
-    axios({
-      method: 'get',
-      url: '/members/auth/email',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: {
-        email: signUpEmail,
-      },
-    })
-      .then(() => {
-        alert('인증메일이 전송되었습니다')
-      })
-  }
-
-
-  // 이메일 인증메일 코드검사
-  const checkAuthenticatedEmail = () => {
-    axios({
-      method: 'get',
-      url: '/members/check-email',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: {
-        code: code,
-      },
-    })
-      .then(() => {
-        setCheckCode(true);
-      })
-      .catch(err => {
-
-      })
-  }
-
-
 
   // form 체인지를 위한 코드
   const changeForm = () => {
@@ -179,20 +152,14 @@ function Home() {
         <div className="form">
           <form className="register-form" onSubmit={stopEvent}>
 
-            <div>
-              <input type="text" placeholder="email address" value={signUpEmail}
-                onChange={(e) => { setSignUpEmail(e.target.value) }} />
-              <button onClick={checkDuplicatedEmail}>E-mail 중복검사</button>
-              <button onClick={authenticateEmail}>E-mail인증 메일 받기</button>
-            </div>
 
-            <input type="text" placeholder="email address" value={code}
-              onChange={(e) => { setCode(e.target.value) }} />
-            <button onClick={checkAuthenticatedEmail}>E-mail인증코드 입력</button>
+            <input type="text" style={{margin:'0 0 0 0'}} placeholder="email address" value={signUpEmail}
+              onChange={(e) => { setSignUpEmail(e.target.value) }} onBlur={checkDuplicatedEmail} />
+            {isDuplicated === null ? <></> : <InfoMsg check={isDuplicated} />}
 
 
 
-            <input type="password" placeholder="password" value={signUpPassword}
+            <input type="password" style={{margin:'15px 0 15px 0'}} placeholder="password" value={signUpPassword}
               onChange={(e) => { setSignUpPassword(e.target.value) }} />
             <input type="password" placeholder="password check" value={signUpPasswordCheck}
               onChange={(e) => { setSignUpPasswordCheck(e.target.value) }} />
