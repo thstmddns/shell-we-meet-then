@@ -6,6 +6,7 @@ import com.ssafy.shallwemeetthen.domain.groupboard.service.GroupBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,15 @@ public class GroupBoardController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping(value = "/{boardSeq}/video-download", produces = "application/octet-stream")
+    public ResponseEntity<?> getVideoFile(@PathVariable Long boardSeq) {
+        return new ResponseEntity<>(groupBoardService.getVideoFile(boardSeq), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{boardSeq}/image-download", produces = "application/octet-stream")
+    public ResponseEntity<?> getImageFile(@PathVariable Long boardSeq) {
+        return new ResponseEntity<>(groupBoardService.getImageFile(boardSeq), HttpStatus.OK);
     }
 }

@@ -14,6 +14,7 @@ import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.codec.binary.StringUtils;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -103,6 +104,24 @@ public class GroupBoardService {
         GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
 
         return new ArticleDto.Response(groupBoard);
+    }
+
+    @Transactional(readOnly = true)
+    public Resource getVideoFile(Long boardSeq) {
+        GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
+
+        String videoUuidName = groupBoard.getVideoUuidName();
+
+        return s3Utils.download("video", videoUuidName);
+    }
+
+    @Transactional(readOnly = true)
+    public Resource getImageFile(Long boardSeq) {
+        GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
+
+        String thumbnailImageUuidName = groupBoard.getThumbnailImageUuidName();
+
+        return s3Utils.download("image", thumbnailImageUuidName);
     }
 
     private String uploadFile(MultipartFile multipartFile) throws IOException {
