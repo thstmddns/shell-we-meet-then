@@ -2,12 +2,7 @@
     box-sizing: border-box;
   }
   
-  body {
-    margin: 0px;
-    font-family: 'segoe ui';
-    
-    /* font-family: "Roboto", sans-serif; */
-  }
+
   
   .nav {
     height: 50px;
