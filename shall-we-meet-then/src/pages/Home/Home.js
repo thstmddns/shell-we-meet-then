@@ -47,7 +47,7 @@ function Home() {
       if (signUpPassword === signUpPasswordCheck) {
         axios({
           method: 'post',
-          url: '/members/join',
+          url: 'http://k7d105.p.ssafy.io:8080/members/join',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -110,7 +110,7 @@ function Home() {
     }
     axios({
       method: 'get',
-      url: '/members/check-email',
+      url: 'http://k7d105.p.ssafy.io:8080/members/check-email',
       headers: {
         'Content-Type': 'application/json',
       },

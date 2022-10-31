@@ -24,6 +24,7 @@
 
 .groupName {
     position: absolute;
+    
 	top: 85%;
 	left: 47%;
 }
@@ -37,3 +38,102 @@
 	top: 55%;
 	left: 68%;
 }
+
+
+
+
+
+/* nav css */
+
+* {
+    box-sizing: border-box;
+  }
+  
+
+  
+  .nav {
+    height: 50px;
+    width: 100%;
+    background-color: rgba( 255, 255, 255, 0 );
+    position: relative;
+    /* opacity: 0.5; */
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline;
+    float: left;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-header > .nav-title > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .nav > .nav-header > .nav-title > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+  }
+  .nav > .nav-links > div {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown:hover{
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    height: 20vh;
+    overflow: auto
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+  .dropdown-content > a:hover{
+    cursor: pointer;
+  }

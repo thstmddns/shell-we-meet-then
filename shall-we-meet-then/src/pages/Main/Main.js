@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './Main.css'
+import NavBar from "../../Components/NavBar/NavBar";
 import { getGroupsApi } from '../../api/Main';
 
 
@@ -10,12 +11,69 @@ function Main() {
     "groupSeq": 1,
     "name": '크리스마스',
     "invitationCode": 'fsdjk23fm',
-    "openDateTime": '2022-10-28 00:00:00',
+    "openDateTime": '2022-11-28 00:00:00',
     "headcount": 8,
     "agree": true
   },
   {
     "groupSeq": 2,
+    "name": '크리스마스2',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 3,
+    "name": '크리스마스3',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 4,
+    "name": '크리스마스4',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 5,
+    "name": '크리스마스5',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 6,
+    "name": '크리스마스6',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 7,
+    "name": '크리스마스7',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+  {
+    "groupSeq": 8,
+    "name": '크리스마스8',
+    "invitationCode": 'fsdjk23fm',
+    "openDateTime": '2022-11-28 00:00:00',
+    "headcount": 8,
+    "agree": true
+  },
+
+  {
+    "groupSeq": 9,
     "name": '설날',
     "invitationCode": 'fsdjk23fm',
     "openDateTime": '2022-10-20 00:00:00',
@@ -50,7 +108,6 @@ function Main() {
   useEffect(() => {
     const check1 = []
     const check2 = []
-    // console.log(groups.length)
     for (let i = 0; i < groups.length; i++) {
       const checkTime = new Date(groups[i].openDateTime);
       const nowTime = new Date();
@@ -71,9 +128,15 @@ function Main() {
 
 
 
+
+
+
   // useEffect(()=>{
   //   getGroupsApi().then(r => setGroups(r.data))
   // },[])
+
+
+
 
   const plusTemp = () => {
     if (temp + 1 === groups.length) {
@@ -90,6 +153,25 @@ function Main() {
   }
 
 
+
+  // 지나간, 흘러간 시간 클릭시
+  const selectGroup = (findSeq) => {
+    for (let i = 0; i < groups.length; i++) {
+      if (groups[i].groupSeq === findSeq) {
+        setTemp(i)
+        break
+      }
+    }
+  }
+
+  //  길이 넘으면 ...으로 보이게
+  const checkSize = (name) => {
+    if(name.length > 6){
+      return `${name.substr(0,5)}...`
+    }
+    return name
+  }
+
   const navigate = useNavigate();
   const goCreateGroup = () => {
     navigate("/group/create");
@@ -104,21 +186,60 @@ function Main() {
 
   return (
     <div>
+      <div className="nav">
+        <div className="nav-header">
+          <div className="nav-title">
+            <a>Home</a>
+          </div>
+        </div>
+
+
+        <div className="nav-links">
+          <div className="dropdown">
+            <a>흐르는 시간</a>
+            <div className="dropdown-content">
+              {flowingList.map((flowing, i) => (
+                <div key={i}>
+                  <a  onClick={() => selectGroup(flowing.groupSeq)}>{flowing.name}</a>
+                  <br></br>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="dropdown">
+            <a>흘러간 시간</a>
+            <div className="dropdown-content">
+              {flowedList.map((flowed, i) => (
+                <div key={i}>
+                  <a onClick={() => selectGroup(flowed.groupSeq)}>{checkSize(flowed.name)}</a>
+                  <br ></br>
+                </div>
+              ))}
+            </div>
+          </div>
+          <a>로그아웃</a>
+        </div>
+      </div>
       <div>
+
+
+
         {/* <button onClick={checkButton}>테스트트트트</button> */}
         {/* <h1>D-day</h1> */}
 
         <button className='downBtn' onClick={minusTemp}> down </button>
         <button className='upBtn' onClick={plusTemp}> up </button>
 
-        {/* <button onClick={goWriteBoard}>글 쓰러가기</button>
-        <button onClick={goCreateGroup}>그룹만들기 및 창여하기</button> */}
+        <button onClick={goWriteBoard}>글 쓰러가기</button>
+        <button onClick={goCreateGroup}>그룹만들기 및 창여하기</button>
         <div className='imgDiv'>
           <h1 className='dDay'>D{dDay >= 0 ? '-' : '+'}
             {dDay === 0 ? 'day' : Math.abs(dDay)}</h1>
           <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
         </div>
-        <h1 className='groupName'>{groups[temp].name}</h1>
+        <div className='groupName'>
+          <h1 >{groups[temp].name}</h1>
+        </div>
 
       </div>
 

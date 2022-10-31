@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { addGroup, addGroupMember } from '../../api/CreateGroupApi'
+import NavBar from "../../Components/NavBar/NavBar";
 
 export default function CreateGroup() {
 
@@ -68,6 +69,7 @@ export default function CreateGroup() {
 
   return (
     <div>
+      <NavBar />
       <input type='text' placeholder='그룹이름' value={groupName}
         onChange={(e) => { setGroupName(e.target.value) }} />
       <input type='text' placeholder='닉네임' value={nickName}

@@ -15,8 +15,7 @@ function NavBar() {
 
 
             <div className="nav-links">
-                <a>흐르는시간</a>
-                <a>지나간시간</a>
+
                 <a>로그아웃</a>
             </div>
         </div>
