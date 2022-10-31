@@ -43,12 +43,12 @@ public class GroupBoardController {
         }
     }
 
-    @GetMapping(value = "/{boardSeq}/video-download", produces = "application/octet-stream")
+    @GetMapping(value = "/{boardSeq}/video-download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> getVideoFile(@PathVariable Long boardSeq) {
         return new ResponseEntity<>(groupBoardService.getVideoFile(boardSeq), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{boardSeq}/image-download", produces = "application/octet-stream")
+    @GetMapping(value = "/{boardSeq}/image-download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> getImageFile(@PathVariable Long boardSeq) {
         return new ResponseEntity<>(groupBoardService.getImageFile(boardSeq), HttpStatus.OK);
     }
