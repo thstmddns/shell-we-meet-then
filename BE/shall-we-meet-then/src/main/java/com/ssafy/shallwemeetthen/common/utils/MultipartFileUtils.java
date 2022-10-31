@@ -2,6 +2,7 @@ package com.ssafy.shallwemeetthen.common.utils;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -42,19 +43,21 @@ public class MultipartFileUtils {
         return Optional.empty();
     }
 
+    public String getFileType() {
+
+        String contentType = multipartFile.getContentType();
+
+        int index = contentType.indexOf("/");
+
+        return contentType.substring(0, index);
+    }
+
     private static String makeUuidFileName(MultipartFile file) {
-        // 클라이언트가 업로드하고자 하는 파일의 실제 이름이다.
-        String originFilename = file.getOriginalFilename();
-
-        // 확장자가 무엇인지 확인하기 위해 위치를 확인한다.
-        int originExtensionIndex = originFilename.lastIndexOf(".");
-
         // 랜덤 UUID값을 서버에 저장한다.
         String uuid = String.valueOf(UUID.randomUUID());
 
-        // 실제 확장자 부분을 붙여 저장한다.
-        String extension = originFilename.substring(originExtensionIndex);
+        String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
 
-        return uuid + extension;
+        return uuid + "." + extension;
     }
 }
