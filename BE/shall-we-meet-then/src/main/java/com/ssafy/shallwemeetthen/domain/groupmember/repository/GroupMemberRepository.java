@@ -16,5 +16,5 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long> 
     @Query("select gm from GroupMember gm where gm.group.seq=:groupSeq and gm.member.seq=:memberSeq")
     Optional<GroupMember> findByGroupAndMember(@Param("groupSeq") Long groupSeq, @Param("memberSeq") Long memberSeq);
 
-
+    boolean existsByGroupAndMember(Groups groups, Member member);
 }

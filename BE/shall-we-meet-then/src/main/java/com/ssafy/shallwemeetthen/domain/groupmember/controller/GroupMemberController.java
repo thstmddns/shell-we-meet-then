@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RequestMapping(("//group-members"))
+@RequestMapping(("/group-members"))
 @RestController
 @RequiredArgsConstructor
 public class GroupMemberController {
@@ -21,7 +21,11 @@ public class GroupMemberController {
 
     @PostMapping
     public ResponseEntity<?> addGroupMember(@RequestBody AddGroupMemberRequestDto addGroupMemberRequestDto) {
-        return new ResponseEntity<>(groupMemberService.addGroupMember(addGroupMemberRequestDto), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(groupMemberService.addGroupMember(addGroupMemberRequestDto), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 

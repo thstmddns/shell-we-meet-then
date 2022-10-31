@@ -31,6 +31,7 @@ public class GroupMember {
     @Column(name = "gm_nickname", nullable = false, length = 20)
     private String nickname;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gm_agree", nullable = false, length = 1)
     private AgreeState agree;
 
