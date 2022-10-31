@@ -1,10 +1,16 @@
 package com.ssafy.shallwemeetthen.domain.groupboardimage.entity;
 
 import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupBoardImage {
 
     @Id @GeneratedValue
@@ -20,4 +26,11 @@ public class GroupBoardImage {
 
     @Column(name = "gbi_image_uuid_name", nullable = false, length = 50)
     private String imageUuidName;
+
+    @Builder
+    public GroupBoardImage(GroupBoard groupBoard, String imageOriginName, String imageUuidName) {
+        this.groupBoard = groupBoard;
+        this.imageOriginName = imageOriginName;
+        this.imageUuidName = imageUuidName;
+    }
 }
