@@ -3,7 +3,10 @@ package com.ssafy.shallwemeetthen.domain.groupboard.service;
 import com.ssafy.shallwemeetthen.common.utils.MultipartFileUtils;
 import com.ssafy.shallwemeetthen.common.utils.S3Utils;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.AddArticleDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleSearchCondition;
 import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
+import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardQueryRepository;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import com.ssafy.shallwemeetthen.domain.groupboardimage.entity.GroupBoardImage;
 import com.ssafy.shallwemeetthen.domain.groupboardimage.repository.GroupBoardImageRepository;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +31,8 @@ public class GroupBoardService {
     private final GroupMemberRepository groupMemberRepository;
 
     private final GroupBoardRepository groupBoardRepository;
+
+    private final GroupBoardQueryRepository groupBoardQueryRepository;
 
     private final GroupBoardImageRepository groupBoardImageRepository;
 
@@ -77,6 +83,26 @@ public class GroupBoardService {
         }
 
         return true;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ArticleDto.Response> getArticles(ArticleSearchCondition condition) {
+        List<GroupBoard> groupBoards = groupBoardQueryRepository.findAll(condition);
+
+        List<ArticleDto.Response> dtos = new ArrayList<>();
+
+        for (GroupBoard groupBoard : groupBoards) {
+            dtos.add(new ArticleDto.Response(groupBoard));
+        }
+
+        return dtos;
+    }
+
+    @Transactional(readOnly = true)
+    public ArticleDto.Response getArticle(Long boardSeq) {
+        GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
+
+        return new ArticleDto.Response(groupBoard);
     }
 
     private String uploadFile(MultipartFile multipartFile) throws IOException {
