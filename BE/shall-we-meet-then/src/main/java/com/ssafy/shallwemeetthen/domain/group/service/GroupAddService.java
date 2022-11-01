@@ -5,6 +5,8 @@ import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
+import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,9 @@ import static com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState
 public class
 
 
-GroupService {
+GroupAddService {
     private final GroupRepository groupRepository;
+//    private final GroupMemberRepository groupMemberRepository;
 
     public GroupResponseDto addGroup(AddGroupRequestDto addgrouprequestDto) {
 
@@ -38,5 +41,6 @@ GroupService {
 
         return new GroupResponseDto(groups);
     }
+
 
 }
