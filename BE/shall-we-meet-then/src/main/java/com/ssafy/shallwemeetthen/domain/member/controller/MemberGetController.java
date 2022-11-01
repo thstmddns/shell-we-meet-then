@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/members")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class MemberGetController {
 
     private final MemberGetService memberGetService;
