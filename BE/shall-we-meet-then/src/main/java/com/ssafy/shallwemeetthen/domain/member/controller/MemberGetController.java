@@ -50,7 +50,7 @@ public class MemberGetController {
     }
 
     @GetMapping("/password")
-    public ResponseEntity<?> findPassword(@RequestBody MemberFindPasswordRequestDto dto){
+    public ResponseEntity<?> findPassword(@ModelAttribute MemberFindPasswordRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
