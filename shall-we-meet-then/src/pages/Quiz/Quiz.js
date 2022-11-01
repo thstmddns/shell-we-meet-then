@@ -1,96 +1,78 @@
 import React, { useEffect, useState, useCallback } from 'react'
 // import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from "react-router-dom";
-// quiz api
-import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
+// import { useNavigate, useParams } from "react-router-dom";
+// // quiz api
+// import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
+import './Quiz.css'
+import '../../Common.css'
 
 export default function Quiz() {
-  // dumy
-  const [quizContent, setQuizContent] = useState([{img:'img1', people:'people1'}, {img:'img2', people:'people2'}, {img:'img3', people:'people3'}]);
-  const [members] = useState(['people1', 'people2', 'people3', 'people4', 'people5', 'people6'])
-  // variable
-  const navigate = useNavigate();
-  const { groupSeq } = useParams()
-  const [quizIdx, setQuizIdx] = useState(0);
-  const [quizScore, setQuizSocre] = useState(0);
-  const [quizList, setQuizList] = useState([]);
-  // useEffect
+  const [pTime, setPTime] = useState(0);
   useEffect(() => {
-    quizApi(groupSeq)
-      .then((res)=>{
-        console.log(res.data)
-        setQuizContent(res.data)
-      })
-      .catch((err)=>{
-        console.error(err.data);
-      })
-  }, [])
-  useEffect(() => {
-    quizMember(quizIdx)
-    console.log('next quizScore', quizScore);
-  }, [quizIdx, quizScore])
-  // nav-function
-  const skip = () => {
-    quizAddScoreApi(0)
-      .then((res)=>{
-        console.log(res.data)
-        navigate(`/group/memory/${groupSeq}`);
-      })
-      .catch((err)=>{
-        console.error(err.data);
-      })
-  };
-  // function
-  const nextQuiz = (problemItem) => {
-    let qs = quizScore;
-    if (problemItem === quizContent[quizIdx].people) {
-      qs++; setQuizSocre(qs);
-    }
-    if (quizIdx < quizContent.length - 1) {
-      setQuizIdx((quizIdx) => quizIdx+1)
-    } else {
-      quizAddScoreApi(qs)
-        .then((res)=>{
-          console.log(res.data)
-          navigate(`/group/memory/${groupSeq}`);
-        })
-        .catch((err)=>{
-          console.error(err.data);
-        })
-    }
-  };
-  function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-    return array
-  }
-  const quizMember = (idx) => {
-    const qMember = new Set();
-    qMember.add(quizContent[idx].people)
-    while (qMember.size < 5 && qMember.size < members.length) {
-      let memberIdx = Math.floor(Math.random()*members.length)
-      qMember.add(members[memberIdx])
-    }
-    setQuizList(() => shuffle(Array.from(qMember)))
-  }
-  
+    const timeout = setTimeout(() => setPTime(pTime => pTime+0.1), 100)
+    if (pTime >= 15) clearTimeout(timeout);
+  }, [pTime])
   return (
     <>
-      <div>Quiz</div>
-      <button
-        onClick={skip}
-      >skip</button>
-      <div>
-        <div style={{ width:'180px', height:'240px', backgroundColor: 'gray' }}>{ quizContent[quizIdx].img }</div>
-        <div>정답 : { quizContent[quizIdx].people } Score : { quizScore }</div>
-        {
-          quizList.map((problemItem, i) => 
-            <span
-              key={i}
-              onClick={ () => { nextQuiz(problemItem) } }
-            >{ problemItem }<br/></span>
-          )
-        }
+    <div className='quiz-header'>
+      <div className='score quiz-user'></div>
+      <div className='fmon ptop'>
+        <div className='q_number'>점수</div>
+        <div className='progressBar'>
+          1/5 
+          <div className='progressBar-warp-body'>
+            <div className='progressBar-warp'>
+              <div className='quizProgressBar'>
+              <progress id="progress" value={pTime} min="0" max="15"></progress>
+              </div>
+            </div>
+          </div>
+          <div className='time'>{15 - Math.floor(pTime)}</div>
+        </div>
       </div>
+    </div>
+    <div className='text-right skip-btn-loc'>
+      <button className='skip-btn btn-effect'><span>skip</span></button>
+    </div>
+    <div className='quiz-container'>
+      <div className='user_quiz_content'>
+        <div className='quiz_q_content'>
+          <ul className='d-flex justify-center quiz_q_content_zone'>
+            <li className='overflow-y-auto quiz-question-size'>
+              <p className='quiz-question'>Q2. 이 글의 작성자는 누구일까요? 마하반야바라밀다심경 절에 들어가는 이유는 절을 그리워서가 아니고 속세에서 벗어나기 위함이다</p>
+            </li>
+            <li className='float-right'>
+              <div className='quiz-img-content'>
+                <div className='quiz-img'><img className='quiz-img' alt="#" src={process.env.PUBLIC_URL + '/assets/img/bp.jpg'}/></div>
+              </div>
+            </li>
+          </ul>
+
+          <div className='quiz-answer'>
+            <ul className='d-flex justify-center answer-only'>
+              <li className='d-flex select-box'>
+                <span className="box-order">1</span>
+                <p>Quiz-A-1</p>
+              </li>
+              <li className='select-box'>
+                <span className="box-order">2</span>
+                <p>Quiz-A-2</p>
+              </li>
+              <li className='select-box'>
+                <span className="box-order">3</span>
+                <p>Quiz-A-3</p>
+              </li>
+              <li className='select-box'>
+                <span className="box-order">4</span>
+                <p>Quiz-A-4</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
     </>
   )
 }

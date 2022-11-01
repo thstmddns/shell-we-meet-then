@@ -1,0 +1,29 @@
+.d-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+.column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
