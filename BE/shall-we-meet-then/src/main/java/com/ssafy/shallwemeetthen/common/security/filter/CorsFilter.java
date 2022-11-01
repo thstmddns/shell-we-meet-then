@@ -30,6 +30,8 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers",
                 "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//        header 프론트에서 접근하기 위한 세팅값
+        response.setHeader("Access-Control-Expose-Headers", "AccessToken");
 
         //TODO : 나중에 삭제해야함
         response.setHeader("AccessToken","Hello FrontEnd Friends Im Yesol~~^O^");

@@ -24,7 +24,6 @@ import javax.validation.Valid;
 @RequestMapping("/members")
 @Slf4j
 @RequiredArgsConstructor
-@CrossOrigin
 public class MemberController {
 
     private final MemberAddService memberAddService;
