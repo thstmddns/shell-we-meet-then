@@ -1,4 +1,4 @@
-package com.ssafy.shallwemeetthen.domain.member;
+package com.ssafy.shallwemeetthen.common.utils;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.ListOperations;
@@ -13,6 +13,7 @@ import java.time.Duration;
 public class RedisUtil {
 
     private final StringRedisTemplate redisTemplate;
+
 
     public String getData(String key) { // key를 통해 value(데이터)를 얻는다.
         ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
@@ -31,7 +32,12 @@ public class RedisUtil {
         valueOperations.set(key, value, expireDuration);
     }
 
-
+    public void setDataExpireToDay(String key, String value, long duration) {
+        //  duration 동안 (key, value)를 저장한다.
+        ValueOperations<String, String> valueOperations = redisTemplate.opsForValue();
+        Duration expireDuration = Duration.ofDays(duration);
+        valueOperations.set(key, value, expireDuration);
+    }
 
 
     public void deleteData(String key) {

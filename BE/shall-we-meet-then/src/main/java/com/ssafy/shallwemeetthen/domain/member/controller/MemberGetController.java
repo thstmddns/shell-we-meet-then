@@ -1,9 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.member.controller;
 
 
-import com.ssafy.shallwemeetthen.domain.member.RedisUtil;
 import com.ssafy.shallwemeetthen.domain.member.dto.*;
-import com.ssafy.shallwemeetthen.domain.member.service.MemberAddService;
 import com.ssafy.shallwemeetthen.domain.member.service.MemberGetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,19 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @Controller
 @RequestMapping("/members")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class MemberGetController {
 
     private final MemberGetService memberGetService;
 
 
     @GetMapping("/auth/email")
-    public ResponseEntity<?> authenticateEmail(@RequestBody @Validated MemberEmailRequestDto dto){
+    public ResponseEntity<?> authenticateEmail(@ModelAttribute @Validated MemberEmailRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.authenticateEmail(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
@@ -35,7 +32,7 @@ public class MemberGetController {
     }
 
     @GetMapping("/auth/check-email")
-    public ResponseEntity<?> checkAuthenticatedEmail(@RequestBody MemberEmailCheckRequestDto dto){
+    public ResponseEntity<?> checkAuthenticatedEmail(@ModelAttribute MemberEmailCheckRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.checkAuthenticatedEmail(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
@@ -44,13 +41,21 @@ public class MemberGetController {
     }
 
     @GetMapping("/check-email")
-    public ResponseEntity<?> checkDuplicatedEmail(@RequestBody MemberEmailRequestDto dto){
+    public ResponseEntity<?> checkDuplicatedEmail(@ModelAttribute MemberEmailRequestDto dto){
+        try {
             return new ResponseEntity<>(memberGetService.checkDuplicatedEmail(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/password")
-    public ResponseEntity<?> findPassword(@RequestBody MemberFindPasswordRequestDto dto){
-        return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
+    public ResponseEntity<?> findPassword(@ModelAttribute MemberFindPasswordRequestDto dto){
+        try {
+            return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
     }
 
 
