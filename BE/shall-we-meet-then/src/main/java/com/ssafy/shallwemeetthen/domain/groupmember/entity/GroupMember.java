@@ -4,10 +4,16 @@ package com.ssafy.shallwemeetthen.domain.groupmember.entity;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupMember {
 
     @Id @GeneratedValue
@@ -29,5 +35,15 @@ public class GroupMember {
     private AgreeState agree;
 
     @Column(name = "gm_score", nullable = false)
-    private String score;
+    private int score;
+
+    @Builder
+    public GroupMember(Long seq, Member member, Groups group, String nickname, AgreeState agree, int score) {
+        this.seq = seq;
+        this.member = member;
+        this.group = group;
+        this.nickname = nickname;
+        this.agree = agree;
+        this.score = score;
+    }
 }
