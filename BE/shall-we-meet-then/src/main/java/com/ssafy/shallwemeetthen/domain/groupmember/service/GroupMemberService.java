@@ -3,10 +3,11 @@ package com.ssafy.shallwemeetthen.domain.groupmember.service;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
-import com.ssafy.shallwemeetthen.domain.groupmember.dto.AddGroupMemberRequestDto;
+import com.ssafy.shallwemeetthen.domain.groupmember.dto.*;
 import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import com.ssafy.shallwemeetthen.domain.groupmember.exception.CodeNotMatchException;
 import com.ssafy.shallwemeetthen.domain.groupmember.exception.DuplicatedGroupMemberException;
+import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberQueryRepository;
 import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 import com.ssafy.shallwemeetthen.domain.member.repository.MemberRepository;
@@ -15,6 +16,8 @@ import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -22,6 +25,9 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class GroupMemberService {
     private final GroupMemberRepository groupMemberRepository;
+
+    private final GroupMemberQueryRepository groupMemberQueryRepository;
+
     private final MemberRepository memberRepository;
 
     private final GroupRepository groupRepository;
@@ -51,5 +57,45 @@ public class GroupMemberService {
         groupMemberRepository.save(groupMember);
 
         return true;
+    }
+
+    public boolean open(OpenDto.Request dto) {
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹의 그룹 멤버가 아닙니다."));
+
+        if (groupMember.getAgree() == AgreeState.Y) throw new IllegalStateException("해당 유저는 이미 열람을 동의한 상태입니다.");
+
+        groupMember.open();
+
+        return true;
+    }
+
+    public GetScoreDto.Response getScore(GetScoreDto.Request dto) {
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹의 그룹 멤버가 아닙니다."));
+
+        return new GetScoreDto.Response(groupMember.getScore());
+    }
+
+    public boolean addScore(AddScoreDto.Request dto) {
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹의 그룹 멤버가 아닙니다."));
+
+        groupMember.updateScore(dto.getScore());
+
+        return true;
+    }
+
+    public boolean checkNickname(CheckNicknameDto.Request dto) {
+        return groupMemberRepository.existsByGroupSeqAndNickname(dto.getGroupSeq(), dto.getNickname());
+    }
+
+    public List<GroupMemberDto.Response> getGroupMembers(GetGroupMembersDto.Request dto) {
+        List<GroupMember> groupMembers = groupMemberQueryRepository.getGroupMembers(dto);
+
+        List<GroupMemberDto.Response> dtos = new ArrayList<>();
+
+        for (GroupMember groupMember : groupMembers) {
+            dtos.add(new GroupMemberDto.Response(groupMember));
+        }
+
+        return dtos;
     }
 }

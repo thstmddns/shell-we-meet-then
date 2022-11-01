@@ -41,7 +41,7 @@ public class GroupBoardService {
 
     public boolean addGroupBoard(AddArticleDto.Request dto) throws IOException {
 
-        GroupMember groupMember = groupMemberRepository.findByGroupAndMember(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
 
         MultipartFile image = dto.getImage().get(0);
         MultipartFile video = dto.getVideo();

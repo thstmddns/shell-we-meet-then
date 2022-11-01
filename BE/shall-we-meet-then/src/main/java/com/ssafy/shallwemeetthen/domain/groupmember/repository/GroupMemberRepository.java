@@ -8,13 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface GroupMemberRepository extends JpaRepository<GroupMember, Long> {
 
-    @Query("select gm from GroupMember gm where gm.group.seq=:groupSeq and gm.member.seq=:memberSeq")
-    Optional<GroupMember> findByGroupAndMember(@Param("groupSeq") Long groupSeq, @Param("memberSeq") Long memberSeq);
+    Optional<GroupMember> findByGroupSeqAndMemberSeq(Long groupSeq, Long memberSeq);
+
+    boolean existsByGroupSeqAndNickname(Long groupSeq, String nickname);
 
     boolean existsByGroupAndMember(Groups groups, Member member);
 }
