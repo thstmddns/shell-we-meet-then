@@ -2,6 +2,7 @@ package com.ssafy.shallwemeetthen.domain.group.controller;
 
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
+import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupAddService;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupGetService;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDateTime;
 
+import static com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState.Y;
 import static com.ssafy.shallwemeetthen.utils.JacksonUtils.convertToJson;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -42,8 +44,9 @@ class GroupControllerTest {
 
         AddGroupRequestDto addGroupRequestDto = AddGroupRequestDto.builder()
                 .name("럽스타그램")
-                .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
+                .openDateTime()
                 .build();
+
 
         //TODO : AddGroupResponseDto 를 리턴하는게 맞을까용?
         given(groupAddService.addGroup(any(AddGroupRequestDto.class))).willReturn(new GroupResponseDto("UUID"));
@@ -67,20 +70,32 @@ class GroupControllerTest {
         GroupResponseDto groupResponseDto = GroupResponseDto.builder()
                 .name("thstmddns")
                 .invitationCode("dfsfdfsfbklwevslblsk")
-                .openDatetime(LocalDateTime.of(2020, 2, 3, 4, 10))
+                .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
                 .headcount(3)
-                .agree("Y")
+                .agree(AgreeState.N)
                 .build();
 
-        given(groupAddService.addGroup(any(AddGroupRequestDto.class))).willReturn()
+//        given(groupAddService.addGroup(any(AddGroupRequestDto.class))).willReturn()
         //when
-        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.get("/"))
-                .param("memberSeq");
+//        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.get("/"))
+//                .param("memberSeq");
         //then
     }
     @Test
     public void getGroupDetails() throws Exception {
         //given
-
+        GroupResponseDto groupResponseDto = GroupResponseDto.builder()
+                .name("thstmddns")
+                .invitationCode("afgnsjfgnsjdfnwlqn")
+                .openDateTime(LocalDateTime.of(2020, 2, 3, 4, 10))
+                .headcount(3)
+                .agree(Y)
+                .build();
+        given(groupGetService.getGroupDetails(any())).willReturn(any());
+        //when
+//        ResultActions actions = mockMvc.perform(MockMvcRequestBuilders.get("/{groupSeq}")
+//                .param(convertToJson(groupResponseDto))
+//                .param
+//        )
     }
 }

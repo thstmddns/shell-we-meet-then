@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState.N;
@@ -26,6 +27,7 @@ GroupAddService {
 //    private final GroupMemberRepository groupMemberRepository;
 
     public GroupResponseDto addGroup(AddGroupRequestDto addgrouprequestDto) {
+
 
         String invitationCode = UUID.randomUUID().toString();
         Groups groups = Groups.builder()
