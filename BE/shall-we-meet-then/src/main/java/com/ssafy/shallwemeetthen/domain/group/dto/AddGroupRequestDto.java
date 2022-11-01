@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class AddGroupRequestDto {
-    private Long seq;
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
@@ -21,7 +20,6 @@ public class AddGroupRequestDto {
 
     @Builder
     public AddGroupRequestDto(Long seq, String name, LocalDateTime openDateTime) {
-        this.seq = seq;
         this.name = name;
         this.openDateTime = openDateTime;
     }
