@@ -1,0 +1,39 @@
+.imgDiv1  {
+    top: 5vh;
+	width: 70%;
+	margin: 10px auto;
+    margin-left: 20vh;
+    float: left;
+	position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.watch1 {
+	width: 60%;
+    /* display: block; */
+	vertical-align: middle;
+}
+
+.inputs {
+    display: inline;
+}
+
+.inputs > div > input {
+    margin-bottom: 20px;
+    width: 300px;
+    height: 30px;
+    background-color: blanchedalmond;
+    border: 0;
+    
+}
+
+.inputs > div > label{
+    margin-right: 15px;
+}
+
+.inputs > button {
+    margin-bottom: 100px;
+} 
+

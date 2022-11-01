@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './Main.css'
-import NavBar from "../../Components/NavBar/NavBar";
 import { getGroupsApi } from '../../api/Main';
 
 
@@ -166,15 +165,20 @@ function Main() {
 
   //  길이 넘으면 ...으로 보이게
   const checkSize = (name) => {
-    if(name.length > 6){
-      return `${name.substr(0,5)}...`
+    if (name.length > 6) {
+      return `${name.substr(0, 5)}...`
     }
     return name
   }
 
   const navigate = useNavigate();
-  const goCreateGroup = () => {
-    navigate("/group/create");
+  // 그룹생성
+  const goCreateGroup1 = () => {
+    navigate("/group/create", { state: { 'temp': 1 } });
+  }
+  // 그룹참여
+  const goCreateGroup2 = () => {
+    navigate("/group/create", { state: { 'temp': 2 } });
   }
   const goWriteBoard = () => {
     navigate(`/group/article/create/${groups[temp].groupSeq}`)
@@ -200,7 +204,7 @@ function Main() {
             <div className="dropdown-content">
               {flowingList.map((flowing, i) => (
                 <div key={i}>
-                  <a  onClick={() => selectGroup(flowing.groupSeq)}>{flowing.name}</a>
+                  <a onClick={() => selectGroup(flowing.groupSeq)}>{flowing.name}</a>
                   <br></br>
                 </div>
               ))}
@@ -227,18 +231,35 @@ function Main() {
         {/* <button onClick={checkButton}>테스트트트트</button> */}
         {/* <h1>D-day</h1> */}
 
-        <button className='downBtn' onClick={minusTemp}> down </button>
-        <button className='upBtn' onClick={plusTemp}> up </button>
+        <div className='pencilDiv'>
+          <div className="dropdown">
+            <img src={process.env.PUBLIC_URL + '/assets/img/pencil.png'} />
+            <div className='dropdown-content'>
+              <a onClick={goWriteBoard}>글쓰러가기</a>
+              <br />
+              <a onClick={goCreateGroup1}>그룹만들기</a>
+              <br />
+              <a onClick={goCreateGroup2}>그룹참여하기</a>
+            </div>
+          </div>
+        </div>
 
-        <button onClick={goWriteBoard}>글 쓰러가기</button>
-        <button onClick={goCreateGroup}>그룹만들기 및 창여하기</button>
+
+
+        <img className='downBtn' src={process.env.PUBLIC_URL + '/assets/img/left.png'} onClick={minusTemp} />
+        <img className='upBtn' src={process.env.PUBLIC_URL + '/assets/img/right.png'} onClick={plusTemp} />
+
+
         <div className='imgDiv'>
           <h1 className='dDay'>D{dDay >= 0 ? '-' : '+'}
             {dDay === 0 ? 'day' : Math.abs(dDay)}</h1>
           <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
         </div>
         <div className='groupName'>
-          <h1 >{groups[temp].name}</h1>
+          <div>
+            <h1 >{groups[temp].name}</h1>
+          </div>
+
         </div>
 
       </div>
