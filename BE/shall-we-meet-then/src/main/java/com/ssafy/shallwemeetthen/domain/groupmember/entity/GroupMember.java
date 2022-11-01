@@ -47,4 +47,12 @@ public class GroupMember {
         this.agree = agree;
         this.score = score;
     }
+
+    public void open() {
+        agree = AgreeState.Y;
+    }
+
+    public void updateScore(int score) {
+        this.score = score;
+    }
 }
