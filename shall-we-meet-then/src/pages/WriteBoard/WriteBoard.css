@@ -1,0 +1,204 @@
+.write-board-page {
+    
+}
+
+.group-name-wrapper{
+    background-color: grey;
+
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+}
+
+.group-name-wrapper .group-name {
+    text-align: center;
+    
+
+    font-size: 30px;
+}
+
+/* 컨텐츠 영역 시작 */
+.group-content-wrapper {
+    background-color: grey;
+
+    display: flex;
+    width: 90vw;
+    height: 74vh;
+
+    margin-left: 5vw;
+    margin-right: 5vw;
+    
+    padding-top: 2vh;
+}
+
+/* 글쓰기 영역 */
+/* .writing-wrapper {
+    background-color: green;
+
+    width: 28vw; 
+    height: 70vh;
+
+    margin-right: 2vw;
+    margin-left: 2vw;
+
+} */
+
+/* .writing-wrapper .writing-header {
+    background-color: aqua;
+    
+    width: 26vw;
+    height: 8vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+}
+
+.writing-wrapper .writing-content-wrapper {
+    background-color: aqua;
+
+    width: 26vw;
+    height:58vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+} */
+
+.writing-content {
+    box-sizing: border-box;
+    width: 25vw;
+    height: 54vh;
+    border-radius: 5px;
+
+    font-size: 22px;
+
+    margin-left: 0.5vw;
+    margin-top: 2vh;
+}
+
+/* 사진 영역 */
+/* .photo-wrapper {
+    background-color: green;
+
+    width: 28vw; 
+    height: 70vh;
+
+    margin-right: 2vw;
+}
+
+
+.photo-wrapper .photo-header {
+    background-color: aqua;
+    
+    width: 26vw;
+    height: 8vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+}
+
+.photo-wrapper .photo-content-wrapper {
+    background-color: aqua;
+
+    width: 26vw;
+    height:58vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+} */
+
+/* default 이미지 & 미리보기 이미지 */
+.photo-content-input {
+    
+}
+
+.photo-content .photo-default-img {
+    box-sizing: border-box;
+    width: 24vw;
+    height: 48vh;
+    border-radius: 5px;
+
+    font-size: 22px;
+
+    margin-left: 1vw;
+    margin-top: 2vh;
+ 
+}
+
+.photo-preview-wrapper {
+    background-color: antiquewhite;
+
+    width: 24vw;
+    height: 45vh;
+
+    margin-left: 1vw;
+    margin-bottom: 3vh;
+    /* margin-top: 4vh; */
+}
+
+.photo-preview-img {
+    background-color: aquamarine;
+    width: 23vw;
+    height: 40vh;
+
+    margin-top: 2vh;
+    margin-left: 0.5vw;
+}
+
+.find-file-btn {
+    /* background-color:violet; */
+    border: 1px solid black;
+    border-radius: 8px;
+
+    width: 8vw;
+    height: 4vh;
+
+    margin-left: 1vw;
+    margin-left: 17vw;
+
+    text-align: center;
+}
+
+.find-file-btn:hover {
+    background-color: antiquewhite;
+}
+
+/* 비디오 영역 */
+/* .video-wrapper {
+    background-color: green;
+
+    width: 28vw; 
+    height: 70vh;
+
+    margin-right: 2vw;
+}
+
+.video-wrapper .video-header {
+    background-color: aqua;
+    
+    width: 26vw;
+    height: 8vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+}
+
+.video-wrapper .video-content-wrapper {
+    background-color: aqua;
+
+    width: 26vw;
+    height:58vh;
+
+    margin-left: 0.6vw;
+    margin-top: 1vh;
+} */
+
+/* 영역별 아이콘 */
+.content-header-icon {
+    width: 4vw;
+    height: inherit;
+
+    margin-left: 10vw;
+    
+}
