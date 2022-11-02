@@ -30,3 +30,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.bold {
+  font-weight: bold;
+}
