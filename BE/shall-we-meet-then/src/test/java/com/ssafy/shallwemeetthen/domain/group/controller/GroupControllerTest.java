@@ -44,7 +44,6 @@ class GroupControllerTest {
 
         AddGroupRequestDto addGroupRequestDto = AddGroupRequestDto.builder()
                 .name("럽스타그램")
-                .openDateTime()
                 .build();
 
 
