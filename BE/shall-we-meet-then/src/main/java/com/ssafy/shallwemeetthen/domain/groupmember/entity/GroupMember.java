@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.groupmember.entity;
 
 
+import com.ssafy.shallwemeetthen.common.entity.BaseEntity;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GroupMember {
+public class GroupMember extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "gm_seq", nullable = false)

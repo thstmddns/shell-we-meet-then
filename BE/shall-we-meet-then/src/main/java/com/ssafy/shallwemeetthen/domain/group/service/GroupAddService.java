@@ -5,13 +5,10 @@ import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
-import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState.N;
@@ -24,7 +21,6 @@ public class
 
 GroupAddService {
     private final GroupRepository groupRepository;
-//    private final GroupMemberRepository groupMemberRepository;
 
     public GroupResponseDto addGroup(AddGroupRequestDto addgrouprequestDto) {
 
