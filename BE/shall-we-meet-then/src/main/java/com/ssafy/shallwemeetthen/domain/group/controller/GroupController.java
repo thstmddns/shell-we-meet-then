@@ -38,5 +38,20 @@ public class GroupController {
     public ResponseEntity<?> getGroupDetails(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.getGroupDetails(groupSeq), HttpStatus.OK);
     }
-}
+
+//    @GetMapping
+//    public ResponseEntity<?> getGroups() {
+//        return new ResponseEntity<>(groupGetService.getGroup(), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/{groupSeq}/count")
+//    public ResponseEntity<?> getTotalArticleCount() {
+//        return new ResponseEntity<>(groupGetService.getTotalArticleCount(), HttpStatus.OK);
+//    }
+
+    @GetMapping("/{groupSeq}")
+    public ResponseEntity<?> getGroupDetails(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getGroupDetails(groupSeq), HttpStatus.OK);
+    }
+ }
 
