@@ -36,9 +36,15 @@ public class GroupResponseDto {
         this.agree = groups.getAgree();
     }
 
-
-
-
+    @Builder
+    public GroupResponseDto(Long seq, String name, String invitationCode, LocalDateTime openDateTime, int headcount, AgreeState agree) {
+        this.seq = seq;
+        this.name = name;
+        this.invitationCode = invitationCode;
+        this.openDateTime = openDateTime;
+        this.headcount = headcount;
+        this.agree = agree;
+    }
 
     @Builder
     public GroupResponseDto(String invitationCode) {
