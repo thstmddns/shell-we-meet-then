@@ -5,11 +5,14 @@ import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
+import org.joda.time.LocalDate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -62,6 +65,26 @@ public class GroupGetService {
         return groups.getAgree() == AgreeState.Y;
     }
 
+    @Scheduled(cron = "0 0 0 * * *")
+    public void checkGroupOpenApi() {
+
+        //1. 모든 그룹을 가져온다
+        List<Groups> groups = groupRepository.findAll();
+
+        LocalDateTime now = LocalDateTime.now();
+
+
+        for (Groups group : groups) {
+
+            LocalDateTime openDateTime = group.getOpenDateTime();
+            //2. 해당 그룹이 오늘 까도 되는 캡슐인지 체크한다 O
+            if (openDateTime.compareTo(now) <= 0) {
+                //3. 엔티티 안에서 수정하는 메소드를 만든다. setAgree 하면 안된다.
+                //4. 그 메소드를 사용한다
+                group.agree();
+            }
+        }
+    }
 }
 
 

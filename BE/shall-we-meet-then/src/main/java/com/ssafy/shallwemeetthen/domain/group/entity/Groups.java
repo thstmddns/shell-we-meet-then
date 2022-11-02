@@ -52,4 +52,8 @@ public class Groups {
     public void addHeadCount() {
         headcount += 1;
     }
+
+    public void agree() {
+        agree = AgreeState.Y;
+    }
 }
