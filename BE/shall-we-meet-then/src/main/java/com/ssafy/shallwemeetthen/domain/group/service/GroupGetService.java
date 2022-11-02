@@ -23,6 +23,8 @@ public class GroupGetService {
     private final GroupRepository groupRepository;
 //    private final GroupBoardRepository groupBoardRepository;
 
+
+    //그룹 리스트 조회
 //    public List<GroupResponseDto> getGroup() {
 ////         Todo : member의 값을 임의로 지정했으므로 추후 수정요망 - getGroup()안에 groupSeq 넣어야 하나요?
 //        List<Groups> groups = groupRepository.findAllList(1000L);
@@ -34,6 +36,7 @@ public class GroupGetService {
 //        return dtos;
 //    }
 
+    //그룹 내 총 게시글 조회
 //    public Map<String, Integer> getTotalArticleCount() {
 //    //Todo groupBoard에서 게시글 엔티티 가져오기
 //        //왜 Long 타입인데, 빨간 줄일까요.....
@@ -46,6 +49,7 @@ public class GroupGetService {
 //    }
 
 
+    //그룹 상세조회
     public GroupResponseDto getGroupDetails(Long groupSeq) {
 
         Groups groups = groupRepository.findById(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
@@ -59,12 +63,15 @@ public class GroupGetService {
 //
 //        return openDateTime.compareTo(LocalDateTime.now()) <= 0;
 //    }
+
+    //그룹 열람 여부
     public boolean checkGroupOpen(Long groupSeq) {
         Groups groups = groupRepository.findById(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 그룹이 없습니다."));
 
         return groups.getAgree() == AgreeState.Y;
     }
 
+    //그룹 열람가능 체크 API
     @Scheduled(cron = "* * * * * *")
     public void checkGroupOpenApi() {
 
