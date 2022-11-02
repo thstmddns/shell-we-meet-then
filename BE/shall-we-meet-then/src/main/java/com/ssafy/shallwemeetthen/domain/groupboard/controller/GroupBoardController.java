@@ -2,6 +2,9 @@ package com.ssafy.shallwemeetthen.domain.groupboard.controller;
 
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.AddArticleDto;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleSearchCondition;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetCountDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetTotalCountRequestDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyTotalCountException;
 import com.ssafy.shallwemeetthen.domain.groupboard.service.GroupBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -51,5 +54,19 @@ public class GroupBoardController {
     @GetMapping(value = "/{boardSeq}/image-download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> getImageFile(@PathVariable Long boardSeq) {
         return new ResponseEntity<>(groupBoardService.getImageFile(boardSeq), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<?> getArticleCount(@ModelAttribute GetCountDto.Request dto) {
+        return new ResponseEntity<>(groupBoardService.getArticleCount(dto), HttpStatus.OK);
+    }
+
+    @GetMapping("/total-count")
+    public ResponseEntity<?> getTotalCount(@ModelAttribute GetTotalCountRequestDto dto) {
+        try {
+            return new ResponseEntity<>(groupBoardService.getTotalCount(dto), HttpStatus.OK);
+        } catch (EmptyTotalCountException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 }
