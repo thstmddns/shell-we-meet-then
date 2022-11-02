@@ -1,6 +1,5 @@
 package com.ssafy.shallwemeetthen.domain.groupboardimage.controller;
 
-import com.ssafy.shallwemeetthen.domain.groupboard.service.GroupBoardService;
 import com.ssafy.shallwemeetthen.domain.groupboardimage.service.GroupBoardImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

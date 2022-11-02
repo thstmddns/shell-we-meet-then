@@ -99,10 +99,12 @@ public class GroupBoardService {
     }
 
     @Transactional(readOnly = true)
-    public ArticleDto.Response getArticle(Long boardSeq) {
+    public ArticleDetailResponseDto getArticle(Long boardSeq) {
         GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
 
-        return new ArticleDto.Response(groupBoard);
+        List<Integer> imageSeqs = groupBoardImageRepository.findSeqsByBoardSeq(boardSeq);
+
+        return new ArticleDetailResponseDto(groupBoard, imageSeqs);
     }
 
     @Transactional(readOnly = true)
