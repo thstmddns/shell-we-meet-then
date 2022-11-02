@@ -196,8 +196,6 @@ function Main() {
             <a>Home</a>
           </div>
         </div>
-
-
         <div className="nav-links">
           <div className="dropdown">
             <a>흐르는 시간</a>
