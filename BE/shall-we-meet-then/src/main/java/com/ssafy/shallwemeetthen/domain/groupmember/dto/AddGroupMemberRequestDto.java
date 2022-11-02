@@ -11,16 +11,15 @@ import lombok.Setter;
 public class AddGroupMemberRequestDto {
 
     private Long groupSeq;
+
     private String nickname;
 
     private String invitationCode;
-    private AgreeState agree;
 
 
-    public AddGroupMemberRequestDto(Long groupSeq, String nickname, String invitationCode, AgreeState agree) {
+    public AddGroupMemberRequestDto(Long groupSeq, String nickname, String invitationCode) {
         this.groupSeq = groupSeq;
         this.nickname = nickname;
         this.invitationCode = invitationCode;
-        this.agree = agree;
     }
 }
