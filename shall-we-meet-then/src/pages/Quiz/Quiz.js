@@ -3,31 +3,34 @@ import React, { useEffect, useState, useCallback } from 'react'
 // import { useNavigate, useParams } from "react-router-dom";
 // // quiz api
 // import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
+import NAV from "../../Components/NavBar/NavBar"
 import './Quiz.css'
 import '../../Common.css'
 
 export default function Quiz() {
   const [pTime, setPTime] = useState(0);
   useEffect(() => {
-    const timeout = setTimeout(() => setPTime(pTime => pTime+0.1), 100)
-    if (pTime >= 15) clearTimeout(timeout);
+    const timeout = setTimeout(() => setPTime(pTime => pTime+0.01), 10)
+    if (pTime >= 10) clearTimeout(timeout);
   }, [pTime])
   return (
     <>
+    <NAV/>
     <div className='quiz-header'>
       <div className='score quiz-user'></div>
       <div className='fmon ptop'>
-        <div className='q_number'>점수</div>
         <div className='progressBar'>
-          1/5 
+          <div className='d-flex justify-between'>
+            <p className='quiz-time'>{10 - Math.floor(pTime)}</p>
+            <p className='quiz-score'>1/5</p>
+          </div>
           <div className='progressBar-warp-body'>
             <div className='progressBar-warp'>
               <div className='quizProgressBar'>
-              <progress id="progress" value={pTime} min="0" max="15"></progress>
+                <progress id="progress" value={pTime} min="0" max="10"></progress>
               </div>
             </div>
           </div>
-          <div className='time'>{15 - Math.floor(pTime)}</div>
         </div>
       </div>
     </div>
