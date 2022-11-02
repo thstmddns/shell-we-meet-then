@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/members")
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin
 public class MemberGetController {
 
     private final MemberGetService memberGetService;
 
 
     @GetMapping("/auth/email")
-    public ResponseEntity<?> authenticateEmail(@RequestBody @Validated MemberEmailRequestDto dto){
+    public ResponseEntity<?> authenticateEmail(@ModelAttribute @Validated MemberEmailRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.authenticateEmail(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
@@ -31,7 +32,7 @@ public class MemberGetController {
     }
 
     @GetMapping("/auth/check-email")
-    public ResponseEntity<?> checkAuthenticatedEmail(@RequestBody MemberEmailCheckRequestDto dto){
+    public ResponseEntity<?> checkAuthenticatedEmail(@ModelAttribute MemberEmailCheckRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.checkAuthenticatedEmail(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
@@ -40,7 +41,7 @@ public class MemberGetController {
     }
 
     @GetMapping("/check-email")
-    public ResponseEntity<?> checkDuplicatedEmail(@RequestBody MemberEmailRequestDto dto){
+    public ResponseEntity<?> checkDuplicatedEmail(@ModelAttribute MemberEmailRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.checkDuplicatedEmail(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
@@ -49,7 +50,7 @@ public class MemberGetController {
     }
 
     @GetMapping("/password")
-    public ResponseEntity<?> findPassword(@RequestBody MemberFindPasswordRequestDto dto){
+    public ResponseEntity<?> findPassword(@ModelAttribute MemberFindPasswordRequestDto dto){
         try {
             return new ResponseEntity<>(memberGetService.findPassword(dto),HttpStatus.OK);
         } catch (IllegalStateException e) {
