@@ -43,11 +43,5 @@ public class GroupController {
     public ResponseEntity<?> checkGroupOpen(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
-
-    @GetMapping("/zz")
-    public ResponseEntity<?> checkGroupOpenApi() {
-        groupGetService.checkGroupOpenApi();
-        return new ResponseEntity<>("zz", HttpStatus.OK);
-    }
  }
 

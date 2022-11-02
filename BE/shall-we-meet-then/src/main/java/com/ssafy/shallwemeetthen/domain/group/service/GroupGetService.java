@@ -65,7 +65,7 @@ public class GroupGetService {
         return groups.getAgree() == AgreeState.Y;
     }
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "* * * * * *")
     public void checkGroupOpenApi() {
 
         //1. 모든 그룹을 가져온다
