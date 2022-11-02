@@ -42,7 +42,7 @@ public class GroupMemberController {
         }
     }
 
-    @PostMapping("/score")
+    @PutMapping("/score")
     public ResponseEntity<?> addScore(@RequestBody AddScoreDto.Request dto) {
         try {
             return new ResponseEntity<>(groupMemberService.addScore(dto), HttpStatus.OK);
