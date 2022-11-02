@@ -2,17 +2,14 @@ package com.ssafy.shallwemeetthen.domain.group.service;
 
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
+import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
-import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
-import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -24,7 +21,7 @@ public class GroupGetService {
 //    private final GroupBoardRepository groupBoardRepository;
 
 //    public List<GroupResponseDto> getGroup() {
-////         Todo : member의 값을 임의로 지정했으므로 추후 수정요망
+////         Todo : member의 값을 임의로 지정했으므로 추후 수정요망 - getGroup()안에 groupSeq 넣어야 하나요?
 //        List<Groups> groups = groupRepository.findAllList(1000L);
 //
 //        List<GroupResponseDto> dtos = new ArrayList<>();
@@ -52,4 +49,19 @@ public class GroupGetService {
 
         return new GroupResponseDto(groups);
     }
+//    public boolean checkGroupOpen(Long groupSeq) {
+//        Groups groups = groupRepository.findById(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
+//
+//        LocalDateTime openDateTime = groups.getOpenDateTime();
+//
+//        return openDateTime.compareTo(LocalDateTime.now()) <= 0;
+//    }
+    public boolean checkGroupOpen(Long groupSeq) {
+        Groups groups = groupRepository.findById(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 그룹이 없습니다."));
+
+        return groups.getAgree() == AgreeState.Y;
+    }
+
 }
+
+

@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.groupmember.service;
 
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
+import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
 import com.ssafy.shallwemeetthen.domain.groupmember.dto.AddGroupMemberRequestDto;
 import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
@@ -43,6 +44,5 @@ public class GroupMemberService {
 
         return true;
     }
-
 
 }
