@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-
+import VideoUploader from './pages/WriteBoard/VideoUploader';
 
 import {
+
   Home, 
   CreateGroup,
   NewPassword,
@@ -34,6 +35,7 @@ function App() {
           <Route path='/group/statistics/:groupSeq' element={<Statistics />} />
           <Route path='/group/article/create/:groupSeq' element={<WriteBoard />} />
             
+          <Route path='/video' element={<VideoUploader />} />
           
         </Routes>
       </Router>
