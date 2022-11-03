@@ -19,6 +19,7 @@ public class AddGroupRequestDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime openDateTime;
 
+    //그룹 생성
     @Builder
     public AddGroupRequestDto(Long seq, String name, LocalDateTime openDateTime) {
         this.seq = seq;

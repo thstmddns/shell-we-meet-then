@@ -53,4 +53,8 @@ public class Groups extends BaseEntity {
     public void addHeadCount() {
         headcount += 1;
     }
+
+    public void agree() {
+        agree = AgreeState.Y;
+    }
 }
