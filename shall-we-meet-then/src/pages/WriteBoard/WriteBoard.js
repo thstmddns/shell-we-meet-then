@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import NavBar from "../../Components/NavBar/NavBar";
 
+import VideoUploader from "./VideoUploader";
+
 import "./WriteBoard.css";
 
 function WriteBoard() {
@@ -131,7 +133,7 @@ function WriteBoard() {
           <input
             multiple="multiple"
             type="file"
-            id="file"
+            id="img"
             name="file"
             accept="image/*"
             onChange={onHandleChangeFile}
@@ -142,7 +144,6 @@ function WriteBoard() {
           </label>
 
         </div>
-
 
             </ContentWrapper>
           </BoardWrapper>
@@ -156,7 +157,13 @@ function WriteBoard() {
                 src={process.env.PUBLIC_URL + "/assets/icon-img/video-btn.png"}
               />
             </ContentHeader>
-            <ContentWrapper></ContentWrapper>
+
+            <ContentWrapper>
+            {/* <h1>동영상</h1>
+              <input type='file' id='video'/> */}
+            <VideoUploader />
+            
+            </ContentWrapper>
           </BoardWrapper>
         </div>
       </div>
@@ -181,7 +188,7 @@ function WriteBoard() {
 export default WriteBoard;
 
 const BoardWrapper = styled.div`
-  background-color: green;
+  // background-color: green;
 
   width: 28vw;
   height: 70vh;
@@ -191,7 +198,7 @@ const BoardWrapper = styled.div`
 `;
 
 const ContentHeader = styled.div`
-  background-color: aqua;
+  // background-color: aqua;
 
   width: 26vw;
   height: 8vh;
@@ -200,7 +207,7 @@ const ContentHeader = styled.div`
   margin-top: 1vh;
 `;
 const ContentWrapper = styled.div`
-  background-color: aqua;
+  // background-color: aqua;
 
   width: 26vw;
   height: 58vh;
@@ -210,7 +217,7 @@ const ContentWrapper = styled.div`
 `;
 
 const PhotoWrapper = styled.div`
-  background-color: antiquewhite;
+  // background-color: antiquewhite;
 
   width: 24vw;
   height: 45vh;
