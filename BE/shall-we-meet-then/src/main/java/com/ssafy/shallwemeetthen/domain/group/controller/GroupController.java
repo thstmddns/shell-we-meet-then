@@ -30,11 +30,10 @@ public class GroupController {
 //        return new ResponseEntity<>(groupGetService.getGroup(), HttpStatus.OK);
 //    }
 //
-    //그룹 내 총 게시글 개수
-//    @GetMapping("/{groupSeq}/count")
-//    public ResponseEntity<?> getTotalArticleCount() {
-//        return new ResponseEntity<>(groupGetService.getTotalArticleCount(), HttpStatus.OK);
-//    }
+    @GetMapping("/{groupSeq}/count")
+    public ResponseEntity<?> getTotalArticleCount(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getTotalArticleCount(groupSeq), HttpStatus.OK);
+    }
 
     //그룹 상세 조회
     @GetMapping("/{groupSeq}")

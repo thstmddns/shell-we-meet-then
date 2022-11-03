@@ -4,6 +4,7 @@ import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
+import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.LocalDate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -21,7 +22,7 @@ import java.util.List;
 public class GroupGetService {
 
     private final GroupRepository groupRepository;
-//    private final GroupBoardRepository groupBoardRepository;
+    private final GroupBoardRepository groupBoardRepository;
 
 
     //그룹 리스트 조회
@@ -36,17 +37,15 @@ public class GroupGetService {
 //        return dtos;
 //    }
 
-    //그룹 내 총 게시글 조회
-//    public Map<String, Integer> getTotalArticleCount() {
-//    //Todo groupBoard에서 게시글 엔티티 가져오기
-//        //왜 Long 타입인데, 빨간 줄일까요.....
-//
-//        Map<String, Integer> map = new HashMap<>();
-//
-//        map.put("totalCount", groupBoardRepository.findAllCount(1L));
-//
-//        return map;
-//    }
+    public Map<String, Integer> getTotalArticleCount(Long groupSeq) {
+    //Todo groupBoard에서 게시글 엔티티 가져오기
+
+        Map<String, Integer> map = new HashMap<>();
+
+        map.put("totalCount", groupBoardRepository.findAllCount(groupSeq));
+
+        return map;
+    }
 
 
     //그룹 상세조회

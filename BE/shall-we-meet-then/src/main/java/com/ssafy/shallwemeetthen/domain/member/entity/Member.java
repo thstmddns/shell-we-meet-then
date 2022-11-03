@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.member.entity;
 
+import com.ssafy.shallwemeetthen.common.entity.BaseEntity;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberModifyPasswordRequestDto;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "mem_seq", nullable = false)
