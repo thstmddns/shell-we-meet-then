@@ -30,8 +30,8 @@ public class GroupController {
 //    }
 //
     @GetMapping("/{groupSeq}/count")
-    public ResponseEntity<?> getTotalArticleCount() {
-        return new ResponseEntity<>(groupGetService.getTotalArticleCount(), HttpStatus.OK);
+    public ResponseEntity<?> getTotalArticleCount(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getTotalArticleCount(groupSeq), HttpStatus.OK);
     }
 
     @GetMapping("/{groupSeq}")

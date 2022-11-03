@@ -34,13 +34,12 @@ public class GroupGetService {
 //        return dtos;
 //    }
 
-    public Map<String, Integer> getTotalArticleCount() {
+    public Map<String, Integer> getTotalArticleCount(Long groupSeq) {
     //Todo groupBoard에서 게시글 엔티티 가져오기
-        //왜 Long 타입인데, 빨간 줄일까요.....
 
         Map<String, Integer> map = new HashMap<>();
 
-        map.put("totalCount", groupBoardRepository.findAllCount(1L));
+        map.put("totalCount", groupBoardRepository.findAllCount(groupSeq));
 
         return map;
     }
