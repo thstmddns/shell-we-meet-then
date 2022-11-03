@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import $ from "jquery";
 import './Home.css';
 import axios from 'axios';
@@ -23,6 +24,8 @@ function InfoMsg(props) {
 
 function Home() {
 
+  
+
   // 회원가입용 state
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
@@ -34,6 +37,12 @@ function Home() {
   const [isDuplicated, setIsDuplicated] = useState(null);
 
 
+
+  const navigate = useNavigate();
+
+  const goFindPassword = () => {
+    navigate('/find-password')
+  }
 
 
 
@@ -56,14 +65,18 @@ function Home() {
             password: signUpPassword,
           },
         })
-          .then(() => {
-
-            changeForm();
+          .then((r) => {
+            if(r.data){
+              changeForm();
+            }
+            else{
+              alert('이메일 또는 비밀번호 형식이 맞지 않습니다.')
+            }
           })
           .catch(error => {
-            if (error.response.status === 401) {
-              // setWrongInputData(true);
-            }
+            // if (error.response.status === 401) {
+            //   // setWrongInputData(true);
+            // }
           })
       }
       else {
@@ -78,25 +91,28 @@ function Home() {
 
   // 로그인 함수
   const signIn = () => {
-
     axios({
       method: 'post',
-      url: '/members/login',
+      url: 'http://k7d105.p.ssafy.io:8080/members/login',
       headers: {
         'Content-Type': 'application/json',
       },
       data: {
-        email: signUpEmail,
-        password: signUpPassword,
+        email: signInEmail,
+        password: signInPassword,
       },
     })
       .then(res => {
-        sessionStorage.setItem('accessToken', res.data)
+        if(res.data){
+          sessionStorage.setItem('accessToken', res.headers.accesstoken)
+          navigate('/main')
+        }
+        else{
+          alert('존재하지 않는 아이디 이거나 틀린 비밀번호입니다')
+        }
       })
       .catch(error => {
-        if (error.response.status === 401) {
-          // setWrongInputData(true);
-        }
+        alert('존재하지 않는 아이디 이거나 틀린 비밀번호입니다')
       })
 
   }
@@ -104,18 +120,20 @@ function Home() {
 
   //이메일 중복 체크
   const checkDuplicatedEmail = () => {
+    
     if (signUpEmail === '') {
       alert('이메일을 입력해주세요');
       return
     }
+
     axios({
       method: 'get',
       url: 'http://k7d105.p.ssafy.io:8080/members/check-email',
-      headers: {
-        'Content-Type': 'application/json',
+      params:{
+        email:signUpEmail
       },
-      data: {
-        email: signUpEmail,
+      headers: {
+        'Content-Type': 'multipart/form-data',
       },
     })
       .then(r => {
@@ -123,7 +141,7 @@ function Home() {
           setIsDuplicated(true);
           alert('이미 존재하는 이메일입니다');
         }
-        else {
+        else {  
           setIsDuplicated(false);
         }
       })
@@ -136,9 +154,15 @@ function Home() {
   // form 체인지를 위한 코드
   const changeForm = () => {
     $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    setSignInEmail('');
+    setSignInPassword('');
+    setSignUpEmail('');
+    setSignUpPassword('');
+    setSignUpPasswordCheck('')
   }
 
-  const stopEvent = () => {
+  const stopEvent = (e) => {
+    e.preventDefault();
     return false;
   }
 
@@ -178,6 +202,7 @@ function Home() {
               onChange={(e) => { setSignInPassword(e.target.value) }} />
             <button onClick={signIn}>login</button>
             <p className="message">아이디가 없으신가요?&nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">회원가입</a></p>
+            <p className="message">비밀번호가 기억나지 않으신가요?&nbsp;&nbsp;&nbsp; <a onClick={goFindPassword}>비밀번호 찾기</a></p>
           </form>
 
 

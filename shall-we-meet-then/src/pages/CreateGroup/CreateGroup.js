@@ -44,11 +44,12 @@ export default function CreateGroup() {
       };
       addGroup(context)
         .then(r => {
+          console.log(r)
           const context = {
             "nickname": nickName,
             "invitationCode": r.data.invitationCode
           };
-          addGroupMember(context);
+          addGroupMember(context).then(r=>{console.log(r)})
         })
     }
   }

@@ -32,7 +32,7 @@ export default function Memory(props) {
                       <div className='Memory-next-container-content'>
                         <div className='Memory-next-content next-left'>
                           <button className='Memory-next-btn'>
-                            <div className='Memory-next-btn-div'><span>&lt;</span></div>
+                            <div className='Memory-next-btn-div'><span className='modal-btn-text'>&lt;</span></div>
                           </button>
                         </div>
                         <div className='Memory-next-content next-right'>
@@ -50,7 +50,20 @@ export default function Memory(props) {
                           <div className='Memory-article-img'>
                             <img className='' alt="#" src={process.env.PUBLIC_URL + '/assets/img/bp.jpg'}/>
                           </div>
-                          <div className='Memory-article-text'></div>
+                          <div className='Memory-article-text'>
+                            <div className='Memory-article-text-nickname'>
+                              <div className='Memory-article-text-content'>
+                                글 쓴 사 람 N i c k n a m e
+                              </div>
+                            </div>
+                            <div className='Memory-article-text-content'>
+                              <div className='a'>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla.
+                                Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. so we plcajkfahwkehagjkdfhvjkadfjk;bdjkfaljla;ejf;jweiojazdfvn,dkls oawilefjialsjlkalgaskjawekgjw iflawepfaj urigaj;rhvj s'jefukl arguwkef \n
+                                that ok
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </article>
                     </div>

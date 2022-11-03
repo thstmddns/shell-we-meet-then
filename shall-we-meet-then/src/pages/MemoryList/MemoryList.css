@@ -116,6 +116,7 @@
   position: relative;
   width: 100%;
   flex: 1 0 0%;
+  border-radius: 15px;  
 }
 .memory-article-img:last-child {
   margin-right: 0;
@@ -126,5 +127,5 @@
   height: 100%;
   position: absolute;
   cursor: pointer;
-
+  border-radius: 15px;
 }

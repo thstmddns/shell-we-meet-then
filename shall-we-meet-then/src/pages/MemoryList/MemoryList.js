@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { getArticlesApi } from '../../api/MemoryApi.js'
-import { getTotalArticleCountApi } from '../../api/StatisticsApi.js'
 import Nav from '../../Components/NavBar/NavBar'
 import './MemoryList.css'
 import MemoryHeader from '../../Components/MemoryList/MemoryHead'
@@ -13,15 +12,7 @@ import Modal from '../../Components/Memory/MemoryModal'
 export default function MemoryList() {
   const [bodyBtn, setBodyBtn] = useState(0)
   const [modalBtn, setModalBtn] = useState(0)
-  useEffect(() => {
-    getTotalArticleCountApi()
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  }, [])
+  const params = useParams()
   function Components(bodyBtn) {
     switch (bodyBtn) {
       case 0 :

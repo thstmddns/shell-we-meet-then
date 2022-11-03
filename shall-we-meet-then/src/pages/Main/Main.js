@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './Main.css'
-import { getGroupsApi } from '../../api/Main';
+import { getGroupsApi, openApi } from '../../api/Main';
 
 
 function Main() {
@@ -10,7 +10,7 @@ function Main() {
     "groupSeq": 1,
     "name": '크리스마스',
     "invitationCode": 'fsdjk23fm',
-    "openDateTime": '2022-11-28 00:00:00',
+    "openDateTime": '2022-11-04 00:00:00',
     "headcount": 8,
     "agree": true
   },
@@ -130,15 +130,20 @@ function Main() {
 
 
 
-  // useEffect(()=>{
-  //   getGroupsApi().then(r => setGroups(r.data))
-  // },[])
+  useEffect(()=>{
+    getGroupsApi()
+    .then(r => {
+      // setGroups(r.data)
+      console.log(r)
+    })
+  },[])
 
 
 
 
   const plusTemp = () => {
     if (temp + 1 === groups.length) {
+      setTemp(0);
       return
     }
     setTemp(temp + 1);
@@ -146,6 +151,7 @@ function Main() {
 
   const minusTemp = () => {
     if (temp === 0) {
+      setTemp(groups.length-1)
       return
     }
     setTemp(temp - 1)
@@ -184,6 +190,13 @@ function Main() {
     navigate(`/group/article/create/${groups[temp].groupSeq}`)
   }
 
+
+  const agreeOpen = () => {
+    const context = {
+      'groupSeq':groups[temp].groupSeq
+    }
+    openApi(context)
+  }
 
 
 
@@ -255,7 +268,7 @@ function Main() {
         </div>
         <div className='groupName'>
           <div>
-            <h1 >{groups[temp].name}</h1>
+            <h1 >{groups[temp].name}</h1>{dDay === 0 ? <button>열람동의</button> : <></>}
           </div>
 
         </div>
