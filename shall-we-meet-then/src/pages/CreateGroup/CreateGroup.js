@@ -46,7 +46,6 @@ export default function CreateGroup() {
         .then(r => {
           console.log(r)
           const context = {
-            "groupSeq": r.data.seq,
             "nickname": nickName,
             "invitationCode": r.data.invitationCode
           };
