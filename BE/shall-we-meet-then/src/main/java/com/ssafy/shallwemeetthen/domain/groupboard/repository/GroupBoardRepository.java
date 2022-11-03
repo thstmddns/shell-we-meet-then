@@ -26,4 +26,8 @@ public interface GroupBoardRepository extends JpaRepository<GroupBoard, Long> {
             where gm.group.seq = :groupSeq 
             """)
     List<GetTotalCountResponseDto> findGetTotalCountDto(@Param("groupSeq") Long groupSeq);
+
+
+    @Query("select count(gb.seq) from GroupBoard gb where gb.groupMember.seq in (select gm.seq from GroupMember gm where gm.group.seq = :groupSeq)")
+    int findAllCount(@Param("groupSeq") Long groupSeq);
 }
