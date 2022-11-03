@@ -139,6 +139,7 @@ function Main() {
 
   const plusTemp = () => {
     if (temp + 1 === groups.length) {
+      setTemp(0);
       return
     }
     setTemp(temp + 1);
@@ -146,6 +147,7 @@ function Main() {
 
   const minusTemp = () => {
     if (temp === 0) {
+      setTemp(groups.length-1)
       return
     }
     setTemp(temp - 1)
