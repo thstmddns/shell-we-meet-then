@@ -29,10 +29,10 @@ public class GroupController {
 //        return new ResponseEntity<>(groupGetService.getGroup(), HttpStatus.OK);
 //    }
 //
-//    @GetMapping("/{groupSeq}/count")
-//    public ResponseEntity<?> getTotalArticleCount() {
-//        return new ResponseEntity<>(groupGetService.getTotalArticleCount(), HttpStatus.OK);
-//    }
+    @GetMapping("/{groupSeq}/count")
+    public ResponseEntity<?> getTotalArticleCount() {
+        return new ResponseEntity<>(groupGetService.getTotalArticleCount(), HttpStatus.OK);
+    }
 
     @GetMapping("/{groupSeq}")
     public ResponseEntity<?> getGroupDetails(@PathVariable Long groupSeq) {
