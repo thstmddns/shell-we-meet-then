@@ -30,16 +30,23 @@ export default function MemoryBody1(props) {
       <article className='memory-article'>
         <div>
           <div className='memory-article-content'>
-            <div className='memory-article-element'>
-              <MemoryCard/>
-              <MemoryCard/>
-              <MemoryCard/>
-            </div>
-            <div className='memory-article-element'>
-              <MemoryCard/>
-              <MemoryCard/>
-              <MemoryCard/>
-            </div>
+            {
+              [0, 1, 2].map((a, i) => {
+                return (
+                  <>
+                  <div className='memory-article-element'>
+                    {
+                      [0, 1, 2].map((b, j) => {
+                        return <MemoryCard
+                                setModalBtn={props.setModalBtn}
+                               />
+                      })
+                    }
+                  </div>
+                  </>
+                )
+              })
+            }
           </div>
         </div>
       </article>

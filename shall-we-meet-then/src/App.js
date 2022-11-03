@@ -10,7 +10,7 @@ import {
   FindPassword,
   Quiz,
   MemoryList,
-  Memory,
+  // Memory,
   Main,
   Statistics,
   WriteBoard
