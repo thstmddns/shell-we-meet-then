@@ -1,10 +1,12 @@
 package com.ssafy.shallwemeetthen.domain.group.service;
 
+import com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
+import com.ssafy.shallwemeetthen.domain.groupmember.dto.GetGroupMemberListRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -25,20 +27,15 @@ public class GroupGetService {
     private final GroupBoardRepository groupBoardRepository;
 
 
-    //그룹 리스트 조회
-//    public List<GroupResponseDto> getGroup() {
-////         Todo : member의 값을 임의로 지정했으므로 추후 수정요망 - getGroup()안에 groupSeq 넣어야 하나요?
-//        List<Groups> groups = groupRepository.findAllList(1000L);
-//
-//        List<GroupResponseDto> dtos = new ArrayList<>();
-//        for (Groups group : groups) {
-//            dtos.add(new GroupResponseDto(group));
-//        }
-//        return dtos;
-//    }
+//    그룹 리스트 조회
+    public List<GetGroupListResponseDto> getGroup(GetGroupMemberListRequestDto dto) {
+
+        List<GetGroupListResponseDto> dtos = groupRepository.findAllList(dto.getMemberSeq());
+
+        return dtos;
+    }
 
     public Map<String, Integer> getTotalArticleCount(Long groupSeq) {
-    //Todo groupBoard에서 게시글 엔티티 가져오기
 
         Map<String, Integer> map = new HashMap<>();
 

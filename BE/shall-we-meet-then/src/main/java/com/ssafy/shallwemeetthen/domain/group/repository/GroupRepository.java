@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.group.repository;
 
 
+import com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,8 +13,13 @@ import java.util.Optional;
 
 @Repository
 public interface GroupRepository extends JpaRepository<Groups, Long> {
-    @Query("select g from Groups g where g.seq in (select gm.group.seq from GroupMember gm where gm.member.seq = :memberSeq)")
-    List<Groups> findAllList(@Param("memberSeq") Long memberSeq);
+    @Query("""
+    select new com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto(g.seq, g.name, g.invitationCode, g.openDateTime, g.headcount, g.createDate, gm.agree)
+    from GroupMember gm
+    inner join gm.group g
+    where gm.member.seq = :memberSeq
+    """)
+    List<GetGroupListResponseDto> findAllList(@Param("memberSeq") Long memberSeq);
 
 
 }
