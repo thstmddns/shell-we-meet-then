@@ -2,8 +2,14 @@ package com.ssafy.shallwemeetthen.domain.member.controller;
 
 
 
+import com.ssafy.shallwemeetthen.common.security.CookieUtil;
+import com.ssafy.shallwemeetthen.common.security.HeaderUtil;
+import com.ssafy.shallwemeetthen.common.security.JwtProperties;
+import com.ssafy.shallwemeetthen.common.security.filter.AuthToken;
+import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberLoginRequestDto;
+import com.ssafy.shallwemeetthen.domain.member.exception.PasswordNotMatchException;
 import com.ssafy.shallwemeetthen.domain.member.service.MemberAddService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +24,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/members")
@@ -27,6 +37,8 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberAddService memberAddService;
+
+
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody @Validated MemberJoinRequestDto dto){
@@ -37,8 +49,20 @@ public class MemberController {
         }
     }
 
+    // 서블릿을 직접 서비스에서 사용하는 방식은 좋은 방식은 아니다.
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid MemberLoginRequestDto dto){
-            return new ResponseEntity<>(memberAddService.login(dto), HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestBody @Valid MemberLoginRequestDto dto, HttpServletResponse response){
+        try {
+            Map<String, AuthToken> tokenMap = memberAddService.login(dto);
+
+            AuthToken accessToken = tokenMap.get("accessToken");
+            AuthToken refreshToken = tokenMap.get("refreshToken");
+
+            HeaderUtil.setAccessToken(response, accessToken);
+            CookieUtil.addCookie(response, JwtProperties.REFRESH_TOKEN, refreshToken.getToken(), JwtProperties.MONTH);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (IllegalArgumentException | PasswordNotMatchException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 }
