@@ -15,5 +15,5 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
     @Query("select g from Groups g where g.seq in (select gm.group.seq from GroupMember gm where gm.member.seq = :memberSeq)")
     List<Groups> findAllList(@Param("memberSeq") Long memberSeq);
 
-
+    Optional<Groups> findByInvitationCode(String invitationCode);
 }
