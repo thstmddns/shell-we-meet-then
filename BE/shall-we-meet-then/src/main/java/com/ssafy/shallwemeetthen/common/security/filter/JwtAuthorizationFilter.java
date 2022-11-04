@@ -4,9 +4,11 @@ import com.ssafy.shallwemeetthen.common.security.*;
 import com.ssafy.shallwemeetthen.common.security.exception.MakeAccessTokenException;
 import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
 
 
 //로그인시 호출하는 필터
@@ -30,15 +34,12 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
 
     private final AuthTokenProvider provider;
 
-    private boolean makeAccessToken(HttpServletRequest request, HttpServletResponse response){
+    private boolean makeAccessToken(HttpServletRequest request, HttpServletResponse response) throws RuntimeException{
 
 
         String tokenStr = HeaderUtil.getAccessToken(request);
-
         AuthToken accessToken = tokenProvider.convertAuthToken(tokenStr);
-
         Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("AccessToken 이 없습니다."));
-
         AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue());
 
         //토큰이 있다면
@@ -59,7 +60,7 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
                //토큰 레디스에서 확인하기
                 if(redisUtil.getData(refreshToken.getToken())== null) throw new IllegalStateException("로그인을 다시 시도해 주세요");
                 else {
-                    throw new MakeAccessTokenException("엑세스 토큰이 만료되었습니다 다시 요청해 주세요");
+                    throw new MakeAccessTokenException("RefreshToken 이 만료되지 않았으므로 엑세스 토큰을 다시 드리겠습니다. API를 재요청해 주세요");
                 }
             }else{
                     throw new IllegalArgumentException("AccessToken을 다시 요청해 주세요.");
@@ -76,14 +77,24 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
         try {
             return makeAccessToken(request, response);
         }catch (MakeAccessTokenException e){
+            Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("AccessToken 이 없습니다."));
 
-            AuthToken accessToken = provider.createAuthToken(JwtProperties.REFRESH_EXPIRED_TIME);
-            log.info("토큰이다!!!"+accessToken);
-            response.setHeader("AccessToken",accessToken.getToken());
+            AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue());
+            AuthToken accessToken = provider.createAuthToken(redisUtil.getData(refreshToken.getToken()),JwtProperties.ACCESS_EXPIRED_TIME);
+            HeaderUtil.setAccessToken(response, accessToken);
+
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.write(e.getMessage());
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
 
-        } catch (RuntimeException e) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        }
+        catch (RuntimeException e) {
+                response.setCharacterEncoding("UTF-8");
+                PrintWriter writer = response.getWriter();
+                writer.write(e.getMessage());
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
         }
     }

@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.member.controller;
 
+import com.ssafy.shallwemeetthen.common.config.MattermostConfig;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.service.MemberAddService;
 import org.junit.jupiter.api.DisplayName;
@@ -8,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.ssafy.utils.JacksonUtil.convertToJson;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MemberController.class)
 @AutoConfigureMockMvc
 @DisplayName("멤버 컨트롤러 단위 테스트")
+@Import(MattermostConfig.class)
 class MemberControllerTest {
     @Autowired
     private MockMvc mockMvc;

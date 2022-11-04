@@ -7,14 +7,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import static com.ssafy.shallwemeetthen.common.webhook.mattermost.dto.MattermostMessage.Attachment;
 import static com.ssafy.shallwemeetthen.common.webhook.mattermost.dto.MattermostMessage.Attachments;
 
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class MattermostSender {
 

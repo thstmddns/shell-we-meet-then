@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Controller
@@ -53,11 +54,12 @@ public class MemberController {
     public ResponseEntity<?> login(@RequestBody @Valid MemberLoginRequestDto dto, HttpServletResponse response){
         try {
             Map<String, AuthToken> tokenMap = memberAddService.login(dto);
+
             AuthToken accessToken = tokenMap.get("accessToken");
             AuthToken refreshToken = tokenMap.get("refreshToken");
 
             HeaderUtil.setAccessToken(response, accessToken);
-            CookieUtil.addCookie(response, JwtProperties.REFRESH_TOKEN, String.valueOf(refreshToken), JwtProperties.MONTH);
+            CookieUtil.addCookie(response, JwtProperties.REFRESH_TOKEN, refreshToken.getToken(), JwtProperties.MONTH);
             return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (IllegalArgumentException | PasswordNotMatchException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);

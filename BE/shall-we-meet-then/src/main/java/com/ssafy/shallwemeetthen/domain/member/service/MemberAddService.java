@@ -10,6 +10,7 @@ import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 import com.ssafy.shallwemeetthen.domain.member.exception.PasswordNotMatchException;
 import com.ssafy.shallwemeetthen.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import java.util.Map;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class MemberAddService {
 
     private final MemberRepository memberRepository;
@@ -54,7 +56,7 @@ public class MemberAddService {
 
         AuthToken accessToken = provider.createAuthToken(String.valueOf(loginMember.getSeq()), JwtProperties.ACCESS_EXPIRED_TIME);
 
-        AuthToken refreshToken = provider.createAuthToken(String.valueOf(loginMember.getSeq()), JwtProperties.REFRESH_EXPIRED_TIME);
+        AuthToken refreshToken = provider.createAuthToken(JwtProperties.REFRESH_EXPIRED_TIME);
 
         Map<String, AuthToken> tokenMap = new HashMap<>();
 
@@ -62,7 +64,8 @@ public class MemberAddService {
         tokenMap.put("refreshToken", refreshToken);
 
         try {
-            redisUtil.setDataExpireToDay(accessToken.getToken(), String.valueOf(loginMember.getSeq()),10);
+            redisUtil.setDataExpireToDay(refreshToken.getToken(), String.valueOf(loginMember.getSeq()),10);
+            System.out.println("dd");
         } catch (IllegalStateException e) {
             throw new IllegalStateException("캐시 데이터 저장소에 저장되지 않았습니다. Email 전송부터 다시 진행해 주세요.");
         }

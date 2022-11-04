@@ -16,6 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
+
         registry.addInterceptor(jwtAuthorizationFilter)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/members/**"); //인터셉터에서 빠질 것

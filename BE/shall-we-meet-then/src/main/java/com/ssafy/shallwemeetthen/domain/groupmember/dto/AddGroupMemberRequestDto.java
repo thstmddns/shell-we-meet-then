@@ -10,17 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddGroupMemberRequestDto {
 
-    private Long groupSeq;
     private String nickname;
 
     private String invitationCode;
-    private AgreeState agree;
 
 
-    public AddGroupMemberRequestDto(Long groupSeq, String nickname, String invitationCode, AgreeState agree) {
-        this.groupSeq = groupSeq;
+    public AddGroupMemberRequestDto(String nickname, String invitationCode) {
         this.nickname = nickname;
         this.invitationCode = invitationCode;
-        this.agree = agree;
     }
 }

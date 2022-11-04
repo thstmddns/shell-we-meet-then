@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.groupboard.entity;
 
+import com.ssafy.shallwemeetthen.common.entity.BaseEntity;
 import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GroupBoard {
+public class GroupBoard extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "gb_seq", nullable = false)

@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.group.entity;
 
+import com.ssafy.shallwemeetthen.common.entity.BaseEntity;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Groups {
+public class Groups extends BaseEntity {
 
 
     @Id @GeneratedValue
@@ -51,5 +52,9 @@ public class Groups {
 
     public void addHeadCount() {
         headcount += 1;
+    }
+
+    public void agree() {
+        agree = AgreeState.Y;
     }
 }

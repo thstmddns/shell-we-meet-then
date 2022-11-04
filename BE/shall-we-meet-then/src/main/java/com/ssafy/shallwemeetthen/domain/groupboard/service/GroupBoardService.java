@@ -2,10 +2,9 @@ package com.ssafy.shallwemeetthen.domain.groupboard.service;
 
 import com.ssafy.shallwemeetthen.common.utils.MultipartFileUtils;
 import com.ssafy.shallwemeetthen.common.utils.S3Utils;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.AddArticleDto;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleDto;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleSearchCondition;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.*;
 import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
+import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyTotalCountException;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardQueryRepository;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import com.ssafy.shallwemeetthen.domain.groupboardimage.entity.GroupBoardImage;
@@ -41,7 +40,7 @@ public class GroupBoardService {
 
     public boolean addGroupBoard(AddArticleDto.Request dto) throws IOException {
 
-        GroupMember groupMember = groupMemberRepository.findByGroupAndMember(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
 
         MultipartFile image = dto.getImage().get(0);
         MultipartFile video = dto.getVideo();
@@ -100,10 +99,12 @@ public class GroupBoardService {
     }
 
     @Transactional(readOnly = true)
-    public ArticleDto.Response getArticle(Long boardSeq) {
+    public ArticleDetailResponseDto getArticle(Long boardSeq) {
         GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
 
-        return new ArticleDto.Response(groupBoard);
+        List<Integer> imageSeqs = groupBoardImageRepository.findSeqsByBoardSeq(boardSeq);
+
+        return new ArticleDetailResponseDto(groupBoard, imageSeqs);
     }
 
     @Transactional(readOnly = true)
@@ -124,6 +125,22 @@ public class GroupBoardService {
         return s3Utils.download("image", thumbnailImageUuidName);
     }
 
+    @Transactional(readOnly = true)
+    public GetCountDto.Response getArticleCount(GetCountDto.Request dto) {
+        Long count = groupBoardRepository.findCountByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L);
+
+        return new GetCountDto.Response(count);
+    }
+
+    @Transactional(readOnly = true)
+    public List<GetTotalCountResponseDto> getTotalCount(GetTotalCountRequestDto dto) {
+        List<GetTotalCountResponseDto> dtos = groupBoardRepository.findGetTotalCountDto(dto.getGroupSeq());
+
+        if (dtos.get(0).getGroupMemberSeq() == null) throw new EmptyTotalCountException("그룹에 작성된 게시글이 없습니다.");
+
+        return dtos;
+    }
+
     private String uploadFile(MultipartFile multipartFile) throws IOException {
 
         MultipartFileUtils utils = new MultipartFileUtils(multipartFile);
@@ -134,4 +151,6 @@ public class GroupBoardService {
 
         return utils.getUuidFileName();
     }
+
+
 }
