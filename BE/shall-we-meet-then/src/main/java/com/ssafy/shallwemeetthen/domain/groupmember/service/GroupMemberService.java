@@ -34,11 +34,11 @@ public class GroupMemberService {
 
 
     //Todo 로그인 멤버로 변경요망
-    public boolean addGroupMember(AddGroupMemberRequestDto addGroupMemberRequestDto) {
+    public boolean addGroupMember(AddGroupMemberRequestDto dto) {
 
-        Groups groups = groupRepository.findById(addGroupMemberRequestDto.getGroupSeq()).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 그룹이 없습니다."));
+        Groups groups = groupRepository.findByInvitationCode(dto.getInvitationCode()).orElseThrow(() -> new IllegalArgumentException("초대 코드가 일치하는 그룹이 없습니다."));
 
-        if (!StringUtils.equals(groups.getInvitationCode(), addGroupMemberRequestDto.getInvitationCode())) throw new CodeNotMatchException("초대 코드가 일치하지 않습니다.");
+        if (groupMemberRepository.existsByGroupSeqAndNickname(groups.getSeq(), dto.getNickname())) throw new IllegalArgumentException("닉네임이 중복되었습니다.");
 
         Member tempMember = memberRepository.findById(10000L).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 멤버가 없습니다."));
 
@@ -49,7 +49,7 @@ public class GroupMemberService {
         GroupMember groupMember = GroupMember.builder()
                 .group(groups)
                 .member(tempMember)
-                .nickname(addGroupMemberRequestDto.getNickname())
+                .nickname(dto.getNickname())
                 .agree(AgreeState.N)
                 .score(0)
                 .build();

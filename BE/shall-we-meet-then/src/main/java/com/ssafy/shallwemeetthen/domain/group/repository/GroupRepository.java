@@ -21,5 +21,5 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
     """)
     List<GetGroupListResponseDto> findAllList(@Param("memberSeq") Long memberSeq);
 
-
+    Optional<Groups> findByInvitationCode(String invitationCode);
 }
