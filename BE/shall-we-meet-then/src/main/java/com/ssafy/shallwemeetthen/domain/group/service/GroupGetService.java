@@ -95,6 +95,10 @@ public class GroupGetService {
 
         return new GroupMemberResponseDto(firstByGroupSeqOrderByCreateDateDesc);
     }
+
+    public GroupMemberResponseDto getManyWrittenMember(Long groupSeq) {
+        GroupMember findManyWrittenMember = groupMemberRepository.
+    }
 }
 
 

@@ -56,6 +56,8 @@ public class GroupController {
     }
 
     //가장 글을 많이 작성한 멤버
-//    @GetMapping
-//    public ResponseEntity<?> getManyWrittenMember(@PathVariable)
+    @GetMapping
+    public ResponseEntity<?> getManyWrittenMember(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getManyWrittenMember(groupSeq), HttpStatus.OK);
+    }
 }
