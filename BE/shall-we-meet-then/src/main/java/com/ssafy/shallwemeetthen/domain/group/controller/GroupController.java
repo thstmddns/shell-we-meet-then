@@ -47,5 +47,14 @@ public class GroupController {
     public ResponseEntity<?> checkGroupOpen(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
- }
 
+    //마지막 게시글 작성자 조회
+    @GetMapping("/{groupSeq}/last-author")
+    public ResponseEntity<?> getLastAuthor(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getLastAuthor(groupSeq), HttpStatus.OK);
+    }
+
+    //가장 글을 많이 작성한 멤버
+//    @GetMapping
+//    public ResponseEntity<?> getManyWrittenMember(@PathVariable)
+}
