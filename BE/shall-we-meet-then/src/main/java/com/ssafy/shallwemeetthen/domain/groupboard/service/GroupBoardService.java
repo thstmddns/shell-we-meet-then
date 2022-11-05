@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.groupboard.service;
 
+import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.common.utils.MultipartFileUtils;
 import com.ssafy.shallwemeetthen.common.utils.S3Utils;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.*;
@@ -36,11 +37,15 @@ public class GroupBoardService {
 
     private final GroupBoardImageRepository groupBoardImageRepository;
 
+    private final SecurityContext securityContext;
+
     private final S3Utils s3Utils;
 
     public boolean addGroupBoard(AddArticleDto.Request dto) throws IOException {
 
-        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
+        Long loginSeq = securityContext.getThreadLocal();
+
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), loginSeq).orElseThrow(() -> new IllegalArgumentException("해당 그룹에 참여한 멤버가 아닙니다."));
 
         MultipartFile image = dto.getImage().get(0);
         MultipartFile video = dto.getVideo();
@@ -127,7 +132,9 @@ public class GroupBoardService {
 
     @Transactional(readOnly = true)
     public GetCountDto.Response getArticleCount(GetCountDto.Request dto) {
-        Long count = groupBoardRepository.findCountByGroupSeqAndMemberSeq(dto.getGroupSeq(), 10000L);
+        Long loginSeq = securityContext.getThreadLocal();
+
+        Long count = groupBoardRepository.findCountByGroupSeqAndMemberSeq(dto.getGroupSeq(), loginSeq);
 
         return new GetCountDto.Response(count);
     }
