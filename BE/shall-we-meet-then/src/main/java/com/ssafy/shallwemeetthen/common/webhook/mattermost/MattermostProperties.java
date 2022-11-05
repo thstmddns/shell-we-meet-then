@@ -3,13 +3,10 @@ package com.ssafy.shallwemeetthen.common.webhook.mattermost;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Component
 @Getter
 @Setter
 @ConfigurationProperties("notification.mattermost")

@@ -1,9 +1,11 @@
 package com.ssafy.shallwemeetthen.domain.group.controller;
 
 
+import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupAddService;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupGetService;
+import com.ssafy.shallwemeetthen.domain.groupmember.dto.GetGroupMemberListRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,10 +27,10 @@ public class GroupController {
         return new ResponseEntity<>(groupAddService.addGroup(addGroupRequestDto), HttpStatus.OK);
     }
     //그룹 리스트 조회
-//    @GetMapping
-//    public ResponseEntity<?> getGroups() {
-//        return new ResponseEntity<>(groupGetService.getGroup(), HttpStatus.OK);
-//    }
+    @GetMapping
+    public ResponseEntity<?> getGroups(@ModelAttribute GetGroupMemberListRequestDto dto) {
+        return new ResponseEntity<>(groupGetService.getGroup(dto), HttpStatus.OK);
+    }
 //
     @GetMapping("/{groupSeq}/count")
     public ResponseEntity<?> getTotalArticleCount(@PathVariable Long groupSeq) {
@@ -46,5 +48,6 @@ public class GroupController {
     public ResponseEntity<?> checkGroupOpen(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
+
  }
 
