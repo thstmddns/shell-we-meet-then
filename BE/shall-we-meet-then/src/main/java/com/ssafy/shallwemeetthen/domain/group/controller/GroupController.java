@@ -48,6 +48,7 @@ public class GroupController {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
 
+
     //마지막 게시글 작성자 조회
     @GetMapping("/{groupSeq}/last-author")
     public ResponseEntity<?> getLastAuthor(@PathVariable Long groupSeq) {
