@@ -38,14 +38,13 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
 
 
         String tokenStr = HeaderUtil.getAccessToken(request);
-        AuthToken accessToken = tokenProvider.convertAuthToken(tokenStr);
+        AuthToken accessToken = tokenProvider.convertAuthToken(tokenStr); // 엑세스 토큰 가져오기
         Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("AccessToken 이 없습니다."));
-        AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue());
+        AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue()); //리프레시 토큰 가져오기
 
         //토큰이 있다면
         if (accessToken.validate()) {
             Claims cl = accessToken.getTokenClaims();
-
             String userSeq = cl.get("seq", String.class);
 
             if(userSeq!=null){
@@ -60,7 +59,7 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
                //토큰 레디스에서 확인하기
                 if(redisUtil.getData(refreshToken.getToken())== null) throw new IllegalStateException("로그인을 다시 시도해 주세요");
                 else {
-                    throw new MakeAccessTokenException("RefreshToken 이 만료되지 않았으므로 엑세스 토큰을 다시 드리겠습니다. API를 재요청해 주세요");
+                    throw new MakeAccessTokenException("AccessToken : 만료됨 \n RefreshToken :  만료되지 않음 \n 엑세스 토큰을 다시 드리겠습니다. API를 재요청해 주세요");
                 }
             }else{
                     throw new IllegalArgumentException("AccessToken을 다시 요청해 주세요.");
@@ -107,5 +106,6 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        securityContext.removeThreadLocal();
     }
 }
