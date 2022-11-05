@@ -32,7 +32,6 @@ public class MemberAddService {
 
     public boolean join(MemberJoinRequestDto dto){
         //이메일 중복 처리
-        //TODO : existBy~ 에서 발생할 수 있는 에러가 있을까? 그리고 중복 이메일이라고 프론트에 알릴 방법이 없을까?
         if(memberRepository.existsByEmail(dto.getEmail())) throw new IllegalStateException("중복된 이메일이 존재합니다.");
 
         Member member = Member.builder()
@@ -62,10 +61,9 @@ public class MemberAddService {
 
         tokenMap.put("accessToken", accessToken);
         tokenMap.put("refreshToken", refreshToken);
-
+        log.info(accessToken.getToken());
         try {
             redisUtil.setDataExpireToDay(refreshToken.getToken(), String.valueOf(loginMember.getSeq()),10);
-            System.out.println("dd");
         } catch (IllegalStateException e) {
             throw new IllegalStateException("캐시 데이터 저장소에 저장되지 않았습니다. Email 전송부터 다시 진행해 주세요.");
         }
