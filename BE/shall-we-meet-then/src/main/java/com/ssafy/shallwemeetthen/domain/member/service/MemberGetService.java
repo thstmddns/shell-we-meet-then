@@ -2,6 +2,7 @@ package com.ssafy.shallwemeetthen.domain.member.service;
 
 import com.ssafy.shallwemeetthen.common.security.AuthTokenProvider;
 import com.ssafy.shallwemeetthen.common.security.JwtProperties;
+import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.common.security.filter.AuthToken;
 import com.ssafy.shallwemeetthen.common.utils.MailUtils;
 import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
@@ -9,6 +10,7 @@ import com.ssafy.shallwemeetthen.domain.member.dto.*;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 import com.ssafy.shallwemeetthen.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -26,6 +28,7 @@ import java.util.UUID;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class MemberGetService {
 
     private final MemberRepository memberRepository;
@@ -38,8 +41,8 @@ public class MemberGetService {
 
     private final AuthTokenProvider provider;
 
-    public boolean authenticateEmail(MemberEmailRequestDto dto){
 
+    public boolean authenticateEmail(MemberEmailRequestDto dto){
         //랜덤 UUID 생성
         String uuid = UUID.randomUUID().toString();
         //레디스에 랜덤 UUID 저장 (키 : 랜덤값 / 밸류 : 이메일 / 만료일자)

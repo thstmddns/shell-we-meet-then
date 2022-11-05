@@ -1,6 +1,7 @@
 package com.ssafy.shallwemeetthen.domain.group.controller;
 
 
+import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupAddService;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupGetService;
@@ -47,5 +48,6 @@ public class GroupController {
     public ResponseEntity<?> checkGroupOpen(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
+
  }
 
