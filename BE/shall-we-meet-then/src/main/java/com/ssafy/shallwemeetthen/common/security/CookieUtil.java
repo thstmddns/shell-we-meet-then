@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.common.security;
 
+import org.springframework.http.ResponseCookie;
 import org.springframework.util.SerializationUtils;
 
 import javax.servlet.http.Cookie;
@@ -24,13 +25,27 @@ public class CookieUtil {
     }
 
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
-        Cookie cookie = new Cookie(name, value);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(maxAge);
-        cookie.setSecure(false);
-        response.addCookie(cookie);
+       ResponseCookie cookie = ResponseCookie.from(name,value)
+               .maxAge(maxAge) // TODO : 나중에 기간 알아서 바꿀것,,,
+               .path("/")
+               .httpOnly(true)
+               .secure(true)
+               .sameSite("None") // TODO : https로 바뀌면 바꿔야함..?
+               .domain("localhost") // TODO : 프론트도에민 수정되면 바꿔야함
+               .build();
+        response.addHeader("Set-Cookie", cookie.toString());
+
+
+//        cookie.setHttpOnly(true);
+//        cookie.setPath("/");
+//        cookie.setMaxAge(maxAge);
+//        cookie.setSecure(false);
+//        response.setHeader("Set-Cookie",  );
+//        response.addCookie(cookie);
     }
+
+
+
 
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
         Cookie[] cookies = request.getCookies();

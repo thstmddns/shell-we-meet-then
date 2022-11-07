@@ -40,7 +40,7 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
 
         String tokenStr = HeaderUtil.getAccessToken(request);
         AuthToken accessToken = tokenProvider.convertAuthToken(tokenStr); // 엑세스 토큰 가져오기
-        Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("AccessToken 이 없습니다."));
+        Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("RefreshToken 이 없습니다. 로그인을 다시 시도해 주세요"));
         AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue()); //리프레시 토큰 가져오기
 
         //토큰이 있다면
