@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.group.service;
 
+import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
@@ -30,12 +31,15 @@ public class GroupGetService {
     private final GroupRepository groupRepository;
     private final GroupBoardRepository groupBoardRepository;
     private final GroupMemberRepository groupMemberRepository;
+    private final SecurityContext securityContext;
 
 
 //    그룹 리스트 조회
-    public List<GetGroupListResponseDto> getGroup(GetGroupMemberListRequestDto dto) {
+    public List<GetGroupListResponseDto> getGroup() {
 
-        List<GetGroupListResponseDto> dtos = groupRepository.findAllList(dto.getMemberSeq());
+        Long loginSeq = securityContext.getThreadLocal();
+
+        List<GetGroupListResponseDto> dtos = groupRepository.findAllList(loginSeq);
 
         return dtos;
     }
