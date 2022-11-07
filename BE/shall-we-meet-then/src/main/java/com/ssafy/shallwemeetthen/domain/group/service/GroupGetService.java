@@ -111,15 +111,16 @@ public class GroupGetService {
         return new GroupMemberResponseDto(findFirstByGroupSeqAndCount);
     }
 
-    //가장 길게 작성한 멤버 조회
-//    public Map<String, Integer> getLongestWrittenMember(Long groupSeq) {
-//
-//        Map<String, Integer> map = new HashMap<>();
-//
-//        map.put("maxLength", groupBoardRepository.fondMaxLength(groupSeq));
-//
-//        return map;
-//    }
+//    가장 길게 작성한 멤버 조회
+    public GroupMemberResponseDto getLongestWrittenMember(Long groupSeq) {
+
+        List<GroupMember> findLongestWrittenMembers = groupMemberRepository.findFirstByGroupSeqAndLength(groupSeq);
+
+        if (findLongestWrittenMembers.isEmpty()) throw new IllegalArgumentException("해당 멤버가 없습니다.");
+
+        GroupMember findFirstByGroupSeqAndLength = findLongestWrittenMembers.get(0);
+        return new GroupMemberResponseDto(findFirstByGroupSeqAndLength);
+    }
 }
 
 
