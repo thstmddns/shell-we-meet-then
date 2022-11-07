@@ -40,8 +40,8 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
 
         String tokenStr = HeaderUtil.getAccessToken(request);
         AuthToken accessToken = tokenProvider.convertAuthToken(tokenStr); // 엑세스 토큰 가져오기
-        Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("RefreshToken 이 없습니다. 로그인을 다시 시도해 주세요"));
-        AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue()); //리프레시 토큰 가져오기
+       // Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("RefreshToken 이 없습니다. 로그인을 다시 시도해 주세요"));
+       // AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue()); //리프레시 토큰 가져오기
 
         //토큰이 있다면
         if (accessToken.validate()) {
@@ -56,18 +56,17 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
             }
         //만료되었다면 Refresh Token 있는지 확인
         }else{
-            if (refreshToken.validate()) {
-               //토큰 레디스에서 확인하기
-                if(redisUtil.getData(refreshToken.getToken())== null) throw new IllegalStateException("로그인을 다시 시도해 주세요");
-                else {
-                    throw new MakeAccessTokenException("AccessToken : 만료됨 \n RefreshToken :  만료되지 않음 \n 엑세스 토큰을 다시 드리겠습니다. API를 재요청해 주세요");
-                }
-            }else{
-                    throw new IllegalArgumentException("AccessToken을 다시 요청해 주세요.");
-            }
-
+            throw new IllegalArgumentException("로그인은 다시 요청해 주세요.");
+//            if (refreshToken.validate()) {
+//               //토큰 레디스에서 확인하기
+//                if(redisUtil.getData(refreshToken.getToken())== null) throw new IllegalStateException("로그인을 다시 시도해 주세요");
+//                else {
+//                    throw new MakeAccessTokenException("AccessToken : 만료됨 \n RefreshToken :  만료되지 않음 \n 엑세스 토큰을 다시 드리겠습니다. API를 재요청해 주세요");
+//                }
+//            }else{
+//                    throw new IllegalArgumentException("AccessToken을 다시 요청해 주세요.");
+//            }
         }
-
 
         return true;
     }
