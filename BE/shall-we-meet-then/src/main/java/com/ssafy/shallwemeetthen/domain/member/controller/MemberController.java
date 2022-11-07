@@ -1,12 +1,10 @@
 package com.ssafy.shallwemeetthen.domain.member.controller;
 
 
-
 import com.ssafy.shallwemeetthen.common.security.CookieUtil;
 import com.ssafy.shallwemeetthen.common.security.HeaderUtil;
 import com.ssafy.shallwemeetthen.common.security.JwtProperties;
 import com.ssafy.shallwemeetthen.common.security.filter.AuthToken;
-import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberJoinRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.dto.MemberLoginRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.exception.PasswordNotMatchException;
@@ -16,18 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Controller

@@ -24,7 +24,7 @@ public class CorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods","*");
         response.setHeader("Access-Control-Max-Age", "3600");
@@ -32,6 +32,7 @@ public class CorsFilter implements Filter {
                 "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 //        header 프론트에서 접근하기 위한 세팅값
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
+
         if("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         }else {

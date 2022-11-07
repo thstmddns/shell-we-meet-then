@@ -5,6 +5,7 @@ import com.ssafy.shallwemeetthen.common.utils.MultipartFileUtils;
 import com.ssafy.shallwemeetthen.common.utils.S3Utils;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.*;
 import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
+import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyFileException;
 import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyTotalCountException;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardQueryRepository;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
@@ -52,8 +53,8 @@ public class GroupBoardService {
 
         String content = dto.getContent();
 
-        String imageUuidFileName = uploadFile(image);
-        String videoUuidFileName = uploadFile(video);
+        String imageUuidFileName = StringUtils.equals(image.getOriginalFilename(), "") ? null : uploadFile(image);
+        String videoUuidFileName = StringUtils.equals(video.getOriginalFilename(), "") ? null : uploadFile(video);
 
         GroupBoard groupBoard = GroupBoard.builder()
                 .groupMember(groupMember)
@@ -70,6 +71,8 @@ public class GroupBoardService {
         List<MultipartFile> images = dto.getImage();
 
         for (MultipartFile multipartFile : images) {
+            if (StringUtils.equals(multipartFile.getOriginalFilename(), "")) break;
+
             String fileName;
 
             if (StringUtils.equals(savedGroupBoard.getThumbnailImageOriginName(), multipartFile.getOriginalFilename())) {
@@ -118,6 +121,8 @@ public class GroupBoardService {
 
         String videoUuidName = groupBoard.getVideoUuidName();
 
+        if (videoUuidName == null) throw new EmptyFileException("비디오 파일이 존재하지 않습니다.");
+
         return s3Utils.download("video", videoUuidName);
     }
 
@@ -126,6 +131,8 @@ public class GroupBoardService {
         GroupBoard groupBoard = groupBoardRepository.findById(boardSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 게시글이 없습니다."));
 
         String thumbnailImageUuidName = groupBoard.getThumbnailImageUuidName();
+
+        if (thumbnailImageUuidName == null) throw new EmptyFileException("이미지 파일이 존재하지 않습니다.");
 
         return s3Utils.download("image", thumbnailImageUuidName);
     }
@@ -158,6 +165,5 @@ public class GroupBoardService {
 
         return utils.getUuidFileName();
     }
-
 
 }

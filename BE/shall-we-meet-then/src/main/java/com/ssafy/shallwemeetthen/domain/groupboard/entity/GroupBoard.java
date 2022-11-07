@@ -26,10 +26,10 @@ public class GroupBoard extends BaseEntity {
     @Column(name = "gb_content", nullable = false)
     private String content;
 
-    @Column(name = "gb_video_origin_name", nullable = false, length = 50)
+    @Column(name = "gb_video_origin_name", length = 50)
     private String videoOriginName;
 
-    @Column(name = "gb_video_uuid_name", nullable = false, length = 50)
+    @Column(name = "gb_video_uuid_name", length = 50)
     private String videoUuidName;
 
     @Column(name = "gb_thumbnail_image_origin_name", length = 50)

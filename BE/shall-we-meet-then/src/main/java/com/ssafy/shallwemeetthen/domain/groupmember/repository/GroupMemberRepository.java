@@ -19,4 +19,6 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long> 
     boolean existsByGroupSeqAndNickname(Long groupSeq, String nickname);
 
     boolean existsByGroupAndMember(Groups groups, Member member);
+
+    Optional<GroupMember> findFirstByGroupSeqOrderByCreateDateDesc(Long groupSeq);
 }
