@@ -103,8 +103,9 @@ function Home() {
       },
     })
       .then(res => {
+        console.log(res)
         if(res.data){
-          sessionStorage.setItem('accessToken', res.headers.accesstoken)
+          sessionStorage.setItem('accessToken', res.headers.authorization)
           navigate('/main')
         }
         else{

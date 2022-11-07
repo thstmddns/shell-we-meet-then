@@ -45,11 +45,15 @@ export default function CreateGroup() {
       addGroup(context)
         .then(r => {
           console.log(r)
+          setInvitationCode(r.data.invitationCode);
           const context = {
             "nickname": nickName,
             "invitationCode": r.data.invitationCode
           };
           addGroupMember(context).then(r=>{console.log(r)})
+        })
+        .then(()=>{
+          alert(invitationCode);
         })
     }
   }

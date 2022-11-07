@@ -5,7 +5,7 @@ const VideoUploader = () => {
     const [defaultImg, setDefaultImg] = useState(
         `${process.env.PUBLIC_URL}/assets/default-img/default-image.jpg`
       );
-    const [file, setFile] = useState({
+    const [videoFile, setVideoFile] = useState({
       fileObject: "",
       preview_URL: `${process.env.PUBLIC_URL}/assets/default-img/default-image.jpg`,
       type: "image"
@@ -13,13 +13,13 @@ const VideoUploader = () => {
   
     let inputRef;
   
-    const saveImage = (e) => {
+    const saveVideoImage = (e) => {
       e.preventDefault();
       // 미리보기 url 만들기
       // 파일이 존재하면 file 읽기
       if (e.target.files[0]) {
         // 새로운 파일 올리면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-        URL.revokeObjectURL(file.preview_URL);
+        URL.revokeObjectURL(videoFile.preview_URL);
         // 새로운 미리보기 URL 생성
         const preview_URL = URL.createObjectURL(e.target.files[0]);
         const fileType = e.target.files[0].type.split("/")[0];
@@ -40,7 +40,7 @@ const VideoUploader = () => {
                 // src에 넣지 않을 것이므로 미리보기 URL 제거
                 URL.revokeObjectURL(preview_URL);
               } else {
-                setFile(
+                setVideoFile(
                   {
                     fileObject: e.target.files[0],
                     preview_URL: preview_URL,
@@ -52,7 +52,7 @@ const VideoUploader = () => {
             }
           }, 500);
         } else { // image일 땐 시간제한이 없으므로 그냥 상태에 넣어줌
-          setFile(
+          setVideoFile(
             {
               fileObject: e.target.files[0],
               preview_URL: preview_URL,
@@ -63,10 +63,10 @@ const VideoUploader = () => {
       }
     }
     //  상태 초기화하기
-    const deleteImage = () => {
+    const deleteVideoImage = () => {
       // createObjectURL()을 통해 생성한 기존 URL을 폐기
-      URL.revokeObjectURL(file.preview_URL);
-      setFile({
+      URL.revokeObjectURL(videoFile.preview_URL);
+      setVideoFile({
         fileObject: "",
         preview_URL: `${process.env.PUBLIC_URL}/assets/default-img/default-image.jpg`,
         type: "image"
@@ -78,7 +78,7 @@ const VideoUploader = () => {
         <input
           type="file" accept="video/*, image/*"
           id="video"
-          onChange={saveImage}
+          onChange={saveVideoImage}
           // 클릭할 때 마다 file input의 value를 초기화 하지 않으면 버그가 발생할 수 있다
           // 사진 등록을 두개 띄우고 첫번째에 사진을 올리고 지우고 두번째에 같은 사진을 올리면 그 값이 남아있음!
           onClick={(e) => e.target.value = null}
@@ -86,16 +86,16 @@ const VideoUploader = () => {
           style={{display: "none"}}
         />
         <div className="file-wrapper">
-          {file.type === "image" ?
-            <img alt="" src={file.preview_URL} style={{width:"300px", height:"300px", ObjectFit:"contain"}} /> :
-            <video controls={true} autoPlay={true} src={file.preview_URL}/>
+          {videoFile.type === "image" ?
+            <img alt="" src={videoFile.preview_URL} style={{width:"300px", height:"300px", ObjectFit:"contain"}} /> :
+            <video controls={true} autoPlay={true} src={videoFile.preview_URL}/>
           }
         </div>
         <div className="upload-button">
           <button variant="contained" onClick={() => inputRef.click()}>
             영상업로드
           </button>
-          <button variant="contained" color="error" onClick={deleteImage}>
+          <button variant="contained" color="error" onClick={deleteVideoImage}>
             삭제
           </button>
         </div>
