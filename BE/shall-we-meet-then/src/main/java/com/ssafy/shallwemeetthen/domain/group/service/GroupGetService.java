@@ -5,6 +5,7 @@ import com.ssafy.shallwemeetthen.domain.group.dto.GroupResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
 import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
+import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import com.ssafy.shallwemeetthen.domain.groupmember.dto.GetGroupMemberListRequestDto;
 import com.ssafy.shallwemeetthen.domain.groupmember.dto.GroupMemberResponseDto;
@@ -90,15 +91,35 @@ public class GroupGetService {
     //마지막 게시글 작성자 조회
 
     public GroupMemberResponseDto getLastAuthor(Long groupSeq) {
+        List<GroupMember> findGroupMembers = groupMemberRepository.findFirstByGroupSeqOrderByCreateDateDesc(groupSeq);
 
-        GroupMember firstByGroupSeqOrderByCreateDateDesc = groupMemberRepository.findFirstByGroupSeqOrderByCreateDateDesc(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 멤버가 없습니다."));
+        if (findGroupMembers.isEmpty()) throw new IllegalArgumentException("해당 멤버가 없습니다.");
+
+        GroupMember firstByGroupSeqOrderByCreateDateDesc = findGroupMembers.get(0);
 
         return new GroupMemberResponseDto(firstByGroupSeqOrderByCreateDateDesc);
     }
 
+
+    //가장 많은 게시글을 작성한 작성자 조회
     public GroupMemberResponseDto getManyWrittenMember(Long groupSeq) {
-        GroupMember findManyWrittenMember = groupMemberRepository.
+        List<GroupMember> findManyWrittenMembers = groupMemberRepository.findFirstByGroupSeqAndCount(groupSeq);
+
+        if (findManyWrittenMembers.isEmpty()) throw new IllegalArgumentException("해당 멤버가 없습니다.");
+
+        GroupMember findFirstByGroupSeqAndCount = findManyWrittenMembers.get(0);
+        return new GroupMemberResponseDto(findFirstByGroupSeqAndCount);
     }
+
+    //가장 길게 작성한 멤버 조회
+//    public Map<String, Integer> getLongestWrittenMember(Long groupSeq) {
+//
+//        Map<String, Integer> map = new HashMap<>();
+//
+//        map.put("maxLength", groupBoardRepository.fondMaxLength(groupSeq));
+//
+//        return map;
+//    }
 }
 
 
