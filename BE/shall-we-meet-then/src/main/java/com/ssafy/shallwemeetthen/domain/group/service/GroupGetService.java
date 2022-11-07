@@ -7,6 +7,9 @@ import com.ssafy.shallwemeetthen.domain.group.entity.enumerate.AgreeState;
 import com.ssafy.shallwemeetthen.domain.group.repository.GroupRepository;
 import com.ssafy.shallwemeetthen.domain.groupboard.repository.GroupBoardRepository;
 import com.ssafy.shallwemeetthen.domain.groupmember.dto.GetGroupMemberListRequestDto;
+import com.ssafy.shallwemeetthen.domain.groupmember.dto.GroupMemberResponseDto;
+import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
+import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,7 @@ public class GroupGetService {
 
     private final GroupRepository groupRepository;
     private final GroupBoardRepository groupBoardRepository;
+    private final GroupMemberRepository groupMemberRepository;
 
 
 //    그룹 리스트 조회
@@ -52,13 +56,7 @@ public class GroupGetService {
 
         return new GroupResponseDto(groups);
     }
-//    public boolean checkGroupOpen(Long groupSeq) {
-//        Groups groups = groupRepository.findById(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
-//
-//        LocalDateTime openDateTime = groups.getOpenDateTime();
-//
-//        return openDateTime.compareTo(LocalDateTime.now()) <= 0;
-//    }
+
 
     //그룹 열람 여부
     public boolean checkGroupOpen(Long groupSeq) {
@@ -87,6 +85,15 @@ public class GroupGetService {
                 group.agree();
             }
         }
+    }
+
+    //마지막 게시글 작성자 조회
+
+    public GroupMemberResponseDto getLastAuthor(Long groupSeq) {
+
+        GroupMember firstByGroupSeqOrderByCreateDateDesc = groupMemberRepository.findFirstByGroupSeqOrderByCreateDateDesc(groupSeq).orElseThrow(() -> new IllegalArgumentException("해당 멤버가 없습니다."));
+
+        return new GroupMemberResponseDto(firstByGroupSeqOrderByCreateDateDesc);
     }
 }
 
