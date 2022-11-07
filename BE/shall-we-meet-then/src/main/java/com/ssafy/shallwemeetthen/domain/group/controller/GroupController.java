@@ -1,7 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.group.controller;
 
 
-import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.domain.group.dto.AddGroupRequestDto;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupAddService;
 import com.ssafy.shallwemeetthen.domain.group.service.GroupGetService;
@@ -49,5 +48,14 @@ public class GroupController {
         return new ResponseEntity<>(groupGetService.checkGroupOpen(groupSeq), HttpStatus.OK);
     }
 
- }
 
+    //마지막 게시글 작성자 조회
+    @GetMapping("/{groupSeq}/last-author")
+    public ResponseEntity<?> getLastAuthor(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getLastAuthor(groupSeq), HttpStatus.OK);
+    }
+
+    //가장 글을 많이 작성한 멤버
+//    @GetMapping
+//    public ResponseEntity<?> getManyWrittenMember(@PathVariable)
+}

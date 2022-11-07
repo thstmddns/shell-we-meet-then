@@ -18,7 +18,7 @@ public class Member extends BaseEntity {
     @Column(name = "mem_seq", nullable = false)
     private Long seq;
 
-    @Column(name = "mem_email", nullable = false, length = 20)
+    @Column(name = "mem_email", nullable = false, length = 100)
     private String email;
 
     @Column(name = "mem_password", nullable = false, length = 100)
