@@ -60,6 +60,7 @@ public class MemberController {
 
             HeaderUtil.setAccessToken(response, accessToken);
             CookieUtil.addCookie(response, JwtProperties.REFRESH_TOKEN, refreshToken.getToken(), JwtProperties.MONTH);
+
             return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (IllegalArgumentException | PasswordNotMatchException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
