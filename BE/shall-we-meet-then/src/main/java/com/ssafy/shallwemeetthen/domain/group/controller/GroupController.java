@@ -56,6 +56,14 @@ public class GroupController {
     }
 
     //가장 글을 많이 작성한 멤버
-//    @GetMapping
-//    public ResponseEntity<?> getManyWrittenMember(@PathVariable)
+    @GetMapping("/{groupSeq}/most-written-member")
+    public ResponseEntity<?> getManyWrittenMember(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getManyWrittenMember(groupSeq), HttpStatus.OK);
+    }
+
+//    //가장 길게 글을 작성한 멤버 조회
+//    @GetMapping("/{groupSeq}/longest-written-member")
+//    public ResponseEntity<?> getLongestWrittenMember(@PathVariable Long groupSeq) {
+//        return new ResponseEntity<>(groupGetService.getLongestWrittenMember(groupSeq), HttpStatus.OK);
+//    }
 }
