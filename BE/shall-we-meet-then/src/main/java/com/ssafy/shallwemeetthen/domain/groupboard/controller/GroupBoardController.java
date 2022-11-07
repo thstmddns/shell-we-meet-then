@@ -4,6 +4,7 @@ import com.ssafy.shallwemeetthen.domain.groupboard.dto.AddArticleDto;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleSearchCondition;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetCountDto;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetTotalCountRequestDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyFileException;
 import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyTotalCountException;
 import com.ssafy.shallwemeetthen.domain.groupboard.service.GroupBoardService;
 import lombok.RequiredArgsConstructor;
@@ -48,12 +49,20 @@ public class GroupBoardController {
 
     @GetMapping(value = "/{boardSeq}/video-download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> getVideoFile(@PathVariable Long boardSeq) {
-        return new ResponseEntity<>(groupBoardService.getVideoFile(boardSeq), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(groupBoardService.getVideoFile(boardSeq), HttpStatus.OK);
+        } catch (IllegalArgumentException | EmptyFileException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @GetMapping(value = "/{boardSeq}/image-download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> getImageFile(@PathVariable Long boardSeq) {
-        return new ResponseEntity<>(groupBoardService.getImageFile(boardSeq), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(groupBoardService.getImageFile(boardSeq), HttpStatus.OK);
+        } catch (IllegalArgumentException | EmptyFileException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
     }
 
     @GetMapping("/count")
