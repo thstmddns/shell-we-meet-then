@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
+import java.util.Date;
 
 
 //로그인시 호출하는 필터
@@ -79,7 +80,7 @@ public class JwtAuthorizationFilter implements HandlerInterceptor {
             Cookie cookie = CookieUtil.getCookie(request, JwtProperties.REFRESH_TOKEN).orElseThrow(() -> new IllegalArgumentException("AccessToken 이 없습니다."));
 
             AuthToken refreshToken = tokenProvider.convertAuthToken(cookie.getValue());
-            AuthToken accessToken = provider.createAuthToken(redisUtil.getData(refreshToken.getToken()),JwtProperties.ACCESS_EXPIRED_TIME);
+            AuthToken accessToken = provider.createAuthToken(redisUtil.getData(refreshToken.getToken()), new Date(System.currentTimeMillis() + JwtProperties.ACCESS_EXPIRED_TIME));
             HeaderUtil.setAccessToken(response, accessToken);
 
             response.setCharacterEncoding("UTF-8");
