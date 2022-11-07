@@ -2,24 +2,20 @@ package com.ssafy.shallwemeetthen.domain.member.service;
 
 import com.ssafy.shallwemeetthen.common.security.AuthTokenProvider;
 import com.ssafy.shallwemeetthen.common.security.JwtProperties;
-import com.ssafy.shallwemeetthen.common.security.SecurityContext;
 import com.ssafy.shallwemeetthen.common.security.filter.AuthToken;
 import com.ssafy.shallwemeetthen.common.utils.MailUtils;
 import com.ssafy.shallwemeetthen.common.utils.RedisUtil;
-import com.ssafy.shallwemeetthen.domain.member.dto.*;
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailCheckRequestDto;
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberEmailRequestDto;
+import com.ssafy.shallwemeetthen.domain.member.dto.MemberFindPasswordRequestDto;
 import com.ssafy.shallwemeetthen.domain.member.entity.Member;
 import com.ssafy.shallwemeetthen.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -53,8 +49,7 @@ public class MemberGetService {
         }
 
         String subject = "우리 그때 만나? 의 인증코드를 확인해 주세요";
-        String text = uuid;
-        mailUtils.sendMail(dto.getEmail(), subject,text);
+        mailUtils.sendMail(dto.getEmail(), subject, uuid);
 
         return true;
     }
@@ -91,6 +86,6 @@ public class MemberGetService {
 
     public AuthToken getAccessToken(MemberEmailRequestDto dto) {
         Member loginMember = memberRepository.findByEmail(dto.getEmail()).orElseThrow(() -> new IllegalArgumentException("이메일이 틀립니다."));
-        return provider.createAuthToken(String.valueOf(loginMember.getSeq()), JwtProperties.ACCESS_EXPIRED_TIME);
+        return provider.createAuthToken(String.valueOf(loginMember.getSeq()), new Date(System.currentTimeMillis() + JwtProperties.ACCESS_EXPIRED_TIME));
     }
 }

@@ -15,6 +15,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,9 +54,9 @@ public class MemberAddService {
         //비밀번호가 같은지 체크
         if(!BCrypt.checkpw(dto.getPassword(), loginMember.getPassword())) throw new PasswordNotMatchException("비밀번호가 틀립니다.");
 
-        AuthToken accessToken = provider.createAuthToken(String.valueOf(loginMember.getSeq()), JwtProperties.ACCESS_EXPIRED_TIME);
+        AuthToken accessToken = provider.createAuthToken(String.valueOf(loginMember.getSeq()), new Date(System.currentTimeMillis() + JwtProperties.ACCESS_EXPIRED_TIME));
 
-        AuthToken refreshToken = provider.createAuthToken(JwtProperties.REFRESH_EXPIRED_TIME);
+        AuthToken refreshToken = provider.createAuthToken(new Date(System.currentTimeMillis() + JwtProperties.REFRESH_EXPIRED_TIME));
 
         Map<String, AuthToken> tokenMap = new HashMap<>();
 
