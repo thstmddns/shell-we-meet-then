@@ -30,4 +30,7 @@ public interface GroupBoardRepository extends JpaRepository<GroupBoard, Long> {
 
     @Query("select count(gb.seq) from GroupBoard gb where gb.groupMember.seq in (select gm.seq from GroupMember gm where gm.group.seq = :groupSeq)")
     int findAllCount(@Param("groupSeq") Long groupSeq);
+
+    @Query("select max(gb.length) from GroupBoard gb where gb.groupMember.seq in (select gm.seq from GroupMember gm where gm.group.seq = :groupSeq)")
+    int fondMaxLength(@Param("groupSeq") Long groupSeq);
 }
