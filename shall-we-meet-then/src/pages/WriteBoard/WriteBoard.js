@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import styled from "styled-components";
-
 import NavBar from "../../Components/NavBar/NavBar";
-
-import VideoUploader from "./VideoUploader";
-
 import "./WriteBoard.css";
 import { writeMemoryApi } from "../../api/WriteBoardApi";
 
@@ -23,7 +18,6 @@ function WriteBoard() {
 
   let inputRef;
 
-  const [returnImg, setReturnImg] = useState("");
   const [imgBase64, setImgBase64] = useState([]); // 미리보기를 구현할 state
   const [imgFile, setImgFile] = useState("");
   const [defaultImg, setDefaultImg] = useState(
@@ -75,19 +69,18 @@ function WriteBoard() {
 
   const onSaveWriting = () => {
     const formData = new FormData();
-    const testData = "zzzzz";
 
     const imgs = document.getElementById("img").files;
     const videoFile = document.getElementById("video").files[0];
 
-    console.log("imgs@@@@:", imgs);
-    console.log("videoFile@@@:", videoFile);
+    // console.log("imgs@@@@:", imgs);
+    // console.log("videoFile@@@:", videoFile);
     // form.append("content", content);
     // form.append("image", imgs);
     // form.append("video", videoFile);
 
-    formData.append("groupSeq", 3);
-    formData.append("content", testData);
+    formData.append("groupSeq", groupSeq);
+    formData.append("content", content);
     formData.append("image", imgs);
     formData.append("video", videoFile);
 
@@ -182,7 +175,7 @@ function WriteBoard() {
             </ContentHeader>
 
             <ContentWrapper>
-              <textarea className="writing-content"></textarea>
+              <textarea className="writing-content" onChange={(e) => { setContent(e.target.value)}}></textarea>
             </ContentWrapper>
             <button onClick={onSaveWriting}>글쓰기 완료</button>
           </BoardWrapper>
@@ -237,7 +230,7 @@ function WriteBoard() {
                   onChange={onHandleChangeFile}
                   style={{ display: "none" }}
                 />
-                <label for="img">
+                <label htmlFor="img">
                   <div className="find-file-btn">사진 올리기</div>
                 </label>
               </div>
