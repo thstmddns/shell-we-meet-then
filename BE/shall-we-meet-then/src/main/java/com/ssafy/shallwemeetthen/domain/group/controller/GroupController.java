@@ -66,4 +66,9 @@ public class GroupController {
     public ResponseEntity<?> getLongestWrittenMember(@PathVariable Long groupSeq) {
         return new ResponseEntity<>(groupGetService.getLongestWrittenMember(groupSeq), HttpStatus.OK);
     }
+    //문제를 가장 많이 맞춘 멤버 조회
+    @GetMapping("/{groupSeq}/quiz-king")
+    public ResponseEntity<?> getQuizKing(@PathVariable Long groupSeq) {
+        return new ResponseEntity<>(groupGetService.getQuizKing(groupSeq), HttpStatus.OK);
+    }
 }

@@ -121,6 +121,17 @@ public class GroupGetService {
         GroupMember findFirstByGroupSeqAndLength = findLongestWrittenMembers.get(0);
         return new GroupMemberResponseDto(findFirstByGroupSeqAndLength);
     }
+
+    //문제를 가장 많이 맞춘 멤버 조회
+    public GroupMemberResponseDto getQuizKing(Long groupSeq) {
+
+        List<GroupMember> findMostCorrectMembers = groupMemberRepository.findFirstGroupAndScore(groupSeq);
+
+        if (findMostCorrectMembers.isEmpty()) throw new IllegalArgumentException("해당 멤버가 없습니다.");
+
+        GroupMember findFirstGroupAndScore = findMostCorrectMembers.get(0);
+        return new GroupMemberResponseDto(findFirstGroupAndScore);
+    }
 }
 
 

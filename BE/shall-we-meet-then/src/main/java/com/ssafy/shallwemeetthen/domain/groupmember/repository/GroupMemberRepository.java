@@ -28,4 +28,7 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long> 
 
     @Query("select distinct gm from GroupBoard gb inner join gb.groupMember gm where gm.group.seq = :groupSeq order by gb.length desc")
     List<GroupMember> findFirstByGroupSeqAndLength(@Param("groupSeq") Long groupSeq);
+
+   @Query("select gm from GroupMember gm where gm.group.seq = :groupSeq order by gm.score desc")
+    List<GroupMember> findFirstGroupAndScore(@Param("groupSeq") Long groupSeq);
 }
