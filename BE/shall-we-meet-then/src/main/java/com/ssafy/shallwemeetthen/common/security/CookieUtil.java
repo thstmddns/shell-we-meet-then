@@ -29,8 +29,8 @@ public class CookieUtil {
                .maxAge(maxAge) // TODO : 나중에 기간 알아서 바꿀것,,,
                .path("/")
                .httpOnly(true)
-               .secure(false) // 이걸 달면 https 랑만 통신
-               .sameSite("None") // TODO : https로 바뀌면 바꿔야함..?
+               .secure(false) // 이걸 달면 https 랑만 통신한
+//               .sameSite("None") // TODO : https로 바뀌면 바꿔야함..?
 //               .domain("localhost") // TODO : 프론트도메인 수정되면 바꿔야함
                .build();
         response.addHeader("Set-Cookie", cookie.toString());
