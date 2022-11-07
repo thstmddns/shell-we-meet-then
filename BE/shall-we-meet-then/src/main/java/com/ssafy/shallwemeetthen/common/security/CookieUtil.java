@@ -31,7 +31,7 @@ public class CookieUtil {
                .httpOnly(true)
                .secure(true)
                .sameSite("None") // TODO : https로 바뀌면 바꿔야함..?
-               .domain("localhost") // TODO : 프론트도에민 수정되면 바꿔야함
+//               .domain("localhost") // TODO : 프론트도메인 수정되면 바꿔야함
                .build();
         response.addHeader("Set-Cookie", cookie.toString());
 
