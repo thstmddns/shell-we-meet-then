@@ -20,5 +20,9 @@ public interface GroupMemberRepository extends JpaRepository<GroupMember, Long> 
 
     boolean existsByGroupAndMember(Groups groups, Member member);
 
-    Optional<GroupMember> findFirstByGroupSeqOrderByCreateDateDesc(Long groupSeq);
+    @Query("select gm from GroupBoard gb inner join gb.groupMember gm where gm.group.seq = :groupSeq order by gb.createDate desc")
+    List<GroupMember> findFirstByGroupSeqOrderByCreateDateDesc(@Param("groupSeq") Long groupSeq);
+
+    @Query("select distinct gm from GroupBoard gb inner join gb.groupMember gm where gm.group.seq = :groupSeq group by gb.groupMember.seq order by count(gb.seq) desc")
+    List<GroupMember> findFirstByGroupSeqAndCount(@Param("groupSeq") Long groupSeq);
 }
