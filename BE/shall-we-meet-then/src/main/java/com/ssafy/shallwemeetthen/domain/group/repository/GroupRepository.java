@@ -3,6 +3,7 @@ package com.ssafy.shallwemeetthen.domain.group.repository;
 
 import com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto;
 import com.ssafy.shallwemeetthen.domain.group.entity.Groups;
+import com.ssafy.shallwemeetthen.domain.groupmember.entity.GroupMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
