@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './Main.css'
+import './Main.scss'
 import { getGroupsApi, openApi } from '../../api/Main';
 
 
@@ -127,6 +128,12 @@ function Main() {
 
   return (
     <div>
+
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <div id='title'></div>
+
       <div className="nav">
         <div className="nav-header">
           <div className="nav-title">
@@ -186,6 +193,7 @@ function Main() {
 
 
         <div className='imgDiv'>
+
           {groups[temp].name === "그룹을 만들어주세요" ? <>
             <h1 className='dDay'>그룹 추가하기</h1>
             <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
@@ -195,6 +203,7 @@ function Main() {
             <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
 
           </>}
+
         </div>
         <div className='groupName'>
           <div>
