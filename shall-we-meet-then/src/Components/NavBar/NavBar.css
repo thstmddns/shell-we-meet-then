@@ -9,24 +9,40 @@
     width: 100%;
     background-color: rgba( 255, 255, 255, 0 );
     position: relative;
+    font-size: 30px;
+
     /* opacity: 0.5; */
+  }
+
+  .nav .home-btn-wrapper {
+    cursor: pointer;
+  }
+
+  .nav > a {
+    cursor: pointer;
   }
   
   .nav > .nav-header {
     display: inline;
+
   }
   
   .nav > .nav-header > .nav-title {
     display: inline;
     float: left;
-    font-size: 18px;
+    font-size: 30px;
+
+
+
   }
   
   .nav > .nav-header > .nav-title > a {
     display: inline-block;
     padding: 13px 10px 13px 10px;
     text-decoration: none;
-    color: rgba(0, 0, 0, 1);
+    /* color: rgba(0, 0, 0, 1); */
+    /* font-size: 30px; */
+    color: white;
   }
 
   .nav > .nav-header > .nav-title > a:hover {
@@ -36,17 +52,22 @@
   .nav > .nav-links {
     display: inline;
     float: right;
-    font-size: 18px;
+    /* font-size: 18px; */
   }
   
   .nav > .nav-links > a {
     display: inline-block;
     padding: 13px 10px 13px 10px;
     text-decoration: none;
-    color: rgba(0, 0, 0, 1);
+    /* color: rgba(0, 0, 0, 1); */
   }
   
   .nav > .nav-links > a:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
   
+
+  /* 로그아웃 btn css */
+  .logout-btn-wrapper {
+    cursor: pointer;
+  }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Main.css'
 import './Main.scss'
 import { getGroupsApi, openApi } from '../../api/Main';
-
+import $ from 'jquery'
 
 function Main() {
 
@@ -100,10 +100,58 @@ function Main() {
     console.log(temp)
   }
 
+  const rotation = (target, val) => {
+    target.style.transform =  `rotate(${val}deg)`;
+  }
+
 
   useEffect(() => {
-    setDDay(Math.ceil((now - testTime) / (1000 * 60 * 60 * 24)))
-  }, [testTime])
+    /*  clock */
+  const hours = document.querySelector('.hours');
+  const minutes = document.querySelector('.minutes');
+  const seconds = document.querySelector('.seconds');
+
+  /*  play button */
+  const play = document.querySelector('.play');
+  const pause = document.querySelector('.pause');
+  const playBtn = document.querySelector('.circle__btn');
+  const wave1 = document.querySelector('.circle__back-1');
+  const wave2 = document.querySelector('.circle__back-2');
+
+  /*  rate slider */
+  const container = document.querySelector('.slider__box');
+  const btn = document.querySelector('.slider__btn');
+  const color = document.querySelector('.slider__color');
+  const tooltip = document.querySelector('.slider__tooltip');
+
+  const clock = () => {
+    let today = new Date();
+    let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
+    let m = today.getMinutes(); // 0 - 59
+    let s = today.getSeconds(); // 0 - 59
+
+    h *= 30; // 12 * 30 = 360deg
+    m *= 6;
+    s *= 6; // 60 * 6 = 360deg
+
+    // rotation = (target, val) => {
+    //   target.style.transform =  `rotate(${val}deg)`;
+    // }
+
+    rotation(hours, h);
+    rotation(minutes, m);
+    rotation(seconds, s);
+
+    // call every second
+    setTimeout(clock, 500);
+  }
+
+
+
+  window.onload = clock();
+
+  setDDay(Math.ceil((now - testTime) / (1000 * 60 * 60 * 24)))
+}, [testTime])
 
   useEffect(() => {
     const check1 = []
@@ -125,12 +173,6 @@ function Main() {
     setFlowedList(check2)
   }, [])
 
-
-
-
-
-
-
   useEffect(()=>{
     getGroupsApi()
     .then(r => {
@@ -138,8 +180,6 @@ function Main() {
       console.log(r)
     })
   },[])
-
-
 
 
   const plusTemp = () => {
@@ -203,7 +243,7 @@ function Main() {
 
 
   return (
-    <div>
+    <div className='main-page'>
 
       <div id='stars'></div>
       <div id='stars2'></div>
@@ -211,12 +251,12 @@ function Main() {
       <div id='title'></div>
 
       <div className="nav">
-        <div className="nav-header">
-          <div className="nav-title">
+        <div className="nav-header" >
+          <div className="nav-title" >
             <a>Home</a>
           </div>
         </div>
-        <div className="nav-links">
+        <div className="nav-links" >
           <div className="dropdown">
             <a>흐르는 시간</a>
             <div className="dropdown-content">
@@ -239,12 +279,12 @@ function Main() {
               ))}
             </div>
           </div>
-          <a>로그아웃</a>
+          <div className="dropdown">
+            <a className='logout-btn'>로그아웃</a>
+          </div>
         </div>
       </div>
-      <div>
-
-
+      <div style={{marginTop:"-20vh"}}>
 
         {/* <button onClick={checkButton}>테스트트트트</button> */}
         {/* <h1>D-day</h1> */}
@@ -262,8 +302,6 @@ function Main() {
           </div>
         </div>
 
-
-
         <img className='downBtn' src={process.env.PUBLIC_URL + '/assets/img/left.png'} onClick={minusTemp} />
         <img className='upBtn' src={process.env.PUBLIC_URL + '/assets/img/right.png'} onClick={plusTemp} />
 
@@ -271,17 +309,34 @@ function Main() {
         <div className='imgDiv'>
           <h1 className='dDay'>D{dDay >= 0 ? '-' : '+'}
             {dDay === 0 ? 'day' : Math.abs(dDay)}</h1>
-          <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.png'} />
+          {/* <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.png'} /> */}
+        
+        <div class="container">
+          <div class="components">
+            <div class="clock">
+              <div class="hand hours"></div>
+              <div class="hand minutes"></div>
+              <div class="hand seconds"></div>
+              <div class="point"></div>
+              <div class="marker">
+                <span class="marker__1"></span>
+                <span class="marker__2"></span>
+                <span class="marker__3"></span>
+                <span class="marker__4"></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='groupName'>
-          <div>
+
+
+          
+        </div>
+        {/* <div > */}
+          <div className='group-name-wrapper'>
             <h1 >{groups[temp].name}</h1>{dDay === 0 ? <button>열람동의</button> : <></>}
           </div>
-
-        </div>
-
+        {/* </div> */}
       </div>
-
 
     </div>
   )
