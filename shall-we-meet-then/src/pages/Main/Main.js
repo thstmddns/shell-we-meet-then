@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Main.css'
 import './Main.scss'
 import { getGroupsApi, openApi } from '../../api/Main';
-
+import $ from 'jquery'
 
 function Main() {
 
@@ -28,40 +28,93 @@ function Main() {
 
 
   const now = new Date();
+  // const testTime = new Date(`${groups[temp].openDateTime} 00:00:00`);
   const targetTime = new Date(groups[temp].openDateTime);
 
 
 
-  useEffect(() => {
-    setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)))
-  }, [targetTime])
+  const rotation = (target, val) => {
+    target.style.transform =  `rotate(${val}deg)`;
+  }
+
 
   useEffect(() => {
-    getGroupsApi()
-      .then((r) => {
-        if (r.data.length !== 0) {
-          console.log(r)
-          setGroups(r.data)
-          const check1 = []
-          const check2 = []
-          for (let i = 0; i < r.data.length; i++) {
-            const checkTime = new Date(r.data[i].openDateTime);
-            const nowTime = new Date();
+    /*  clock */
+  const hours = document.querySelector('.hours');
+  const minutes = document.querySelector('.minutes');
+  const seconds = document.querySelector('.seconds');
 
-            // 흐르는시간
-            if (Math.ceil((nowTime - checkTime) / (1000 * 60 * 60 * 24)) > 0) {
-              check2.push(r.data[i])
-            }
-            // 흘러간 시간
-            else {
-              check1.push(r.data[i])
-            }
+  /*  play button */
+  const play = document.querySelector('.play');
+  const pause = document.querySelector('.pause');
+  const playBtn = document.querySelector('.circle__btn');
+  const wave1 = document.querySelector('.circle__back-1');
+  const wave2 = document.querySelector('.circle__back-2');
+
+  /*  rate slider */
+  const container = document.querySelector('.slider__box');
+  const btn = document.querySelector('.slider__btn');
+  const color = document.querySelector('.slider__color');
+  const tooltip = document.querySelector('.slider__tooltip');
+
+  const clock = () => {
+    let today = new Date();
+    let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
+    let m = today.getMinutes(); // 0 - 59
+    let s = today.getSeconds(); // 0 - 59
+
+    h *= 30; // 12 * 30 = 360deg
+    m *= 6;
+    s *= 6; // 60 * 6 = 360deg
+
+    // rotation = (target, val) => {
+    //   target.style.transform =  `rotate(${val}deg)`;
+    // }
+
+    rotation(hours, h);
+    rotation(minutes, m);
+    rotation(seconds, s);
+
+    // call every second
+    setTimeout(clock, 500);
+  }
+
+
+
+  window.onload = clock();
+
+  setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)))
+}, [targetTime]
+
+)
+
+useEffect(() => {
+  getGroupsApi()
+    .then((r) => {
+      if (r.data.length !== 0) {
+        console.log(r)
+        setGroups(r.data)
+        const check1 = []
+        const check2 = []
+        for (let i = 0; i < r.data.length; i++) {
+          const checkTime = new Date(r.data[i].openDateTime);
+          const nowTime = new Date();
+
+          // 흐르는시간
+          if (Math.ceil((nowTime - checkTime) / (1000 * 60 * 60 * 24)) > 0) {
+            check2.push(r.data[i])
           }
-          setFlowingList(check1)
-          setFlowedList(check2)
+          // 흘러간 시간
+          else {
+            check1.push(r.data[i])
+          }
         }
-      })
-  }, [])
+        setFlowingList(check1)
+        setFlowedList(check2)
+      }
+    })
+}, [])
+
 
 
 
@@ -127,7 +180,7 @@ function Main() {
 
 
   return (
-    <div>
+    <div className='main-page'>
 
       <div id='stars'></div>
       <div id='stars2'></div>
@@ -135,12 +188,12 @@ function Main() {
       <div id='title'></div>
 
       <div className="nav">
-        <div className="nav-header">
-          <div className="nav-title">
+        <div className="nav-header" >
+          <div className="nav-title" >
             <a>Home</a>
           </div>
         </div>
-        <div className="nav-links">
+        <div className="nav-links" >
           <div className="dropdown">
             <a>흐르는 시간</a>
             <div className="dropdown-content">
@@ -163,12 +216,12 @@ function Main() {
               ))}
             </div>
           </div>
-          <a>로그아웃</a>
+          <div className="dropdown">
+            <a className='logout-btn'>로그아웃</a>
+          </div>
         </div>
       </div>
-      <div>
-
-
+      <div style={{marginTop:"-20vh"}}>
 
         {/* <button onClick={checkButton}>테스트트트트</button> */}
         {/* <h1>D-day</h1> */}
@@ -185,8 +238,6 @@ function Main() {
             </div>
           </div>
         </div>
-
-
 
         <img className='downBtn' src={process.env.PUBLIC_URL + '/assets/img/left.png'} onClick={minusTemp} />
         <img className='upBtn' src={process.env.PUBLIC_URL + '/assets/img/right.png'} onClick={plusTemp} />
