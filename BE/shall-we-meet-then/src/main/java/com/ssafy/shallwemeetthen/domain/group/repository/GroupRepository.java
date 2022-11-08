@@ -22,5 +22,8 @@ public interface GroupRepository extends JpaRepository<Groups, Long> {
     """)
     List<GetGroupListResponseDto> findAllList(@Param("memberSeq") Long memberSeq);
 
+//    @Query("select g from GroupMember gm inner join gm.group g where gm.member.seq = :memberSeq")
+//    List<Groups> findAllList(@Param("memberSeq") Long memberSeq);
+
     Optional<Groups> findByInvitationCode(String invitationCode);
 }

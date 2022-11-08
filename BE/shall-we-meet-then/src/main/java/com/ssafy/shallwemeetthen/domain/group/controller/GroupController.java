@@ -27,8 +27,8 @@ public class GroupController {
     }
     //그룹 리스트 조회
     @GetMapping
-    public ResponseEntity<?> getGroups(@ModelAttribute GetGroupMemberListRequestDto dto) {
-        return new ResponseEntity<>(groupGetService.getGroup(dto), HttpStatus.OK);
+    public ResponseEntity<?> getGroups() {
+        return new ResponseEntity<>(groupGetService.getGroup(), HttpStatus.OK);
     }
 //
     @GetMapping("/{groupSeq}/count")
