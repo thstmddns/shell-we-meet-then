@@ -1,14 +1,13 @@
 import api from './api'
 
 // Write
-export const writeMemoryApi = async(formData, success, fail) => {
+export const writeMemoryApi = async(formData) => {
     return await api.post('/boards', formData, {
         header: {
             "Content-Type": "multipart/form-data",
         },
     })
-    .then(success)
-    .catch(fail)
+
 }
 
 // axios
