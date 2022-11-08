@@ -146,7 +146,7 @@ function Main() {
             <div className="dropdown-content">
               {flowingList.map((flowing, i) => (
                 <div key={i}>
-                  <a onClick={() => selectGroup(flowing.seq)}>{flowing.name}</a>
+                  <a onClick={() => selectGroup(flowing.seq)}>{checkSize(flowing.name)}</a>
                   <br></br>
                 </div>
               ))}
