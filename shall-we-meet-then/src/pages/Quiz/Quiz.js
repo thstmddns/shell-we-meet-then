@@ -1,18 +1,35 @@
 import React, { useEffect, useState, useCallback } from 'react'
 // import { useSelector } from 'react-redux';
-// import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // // quiz api
 // import { quizApi, quizAddScoreApi } from '../../api/QuizApi.js'
 import NAV from "../../Components/NavBar/NavBar"
 import './Quiz.css'
 import '../../Common.css'
+import {
+  quizApi,
+  quizGetScoreApi,
+  quizAddScoreApi,
+} from '../../api/QuizApi.js'
 
 export default function Quiz() {
   const [pTime, setPTime] = useState(0);
+  const [problem, setProblem] = useState([])
+  const { groupSeq } = useParams()
   useEffect(() => {
     const timeout = setTimeout(() => setPTime(pTime => pTime+0.01), 10)
     if (pTime >= 10) clearTimeout(timeout);
   }, [pTime])
+  useEffect(() => {
+    quizApi(groupSeq)
+      .then(res => {
+        console.log(res.data);
+        setProblem(res.data)
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }, [])
   return (
     <>
     <NAV/>
