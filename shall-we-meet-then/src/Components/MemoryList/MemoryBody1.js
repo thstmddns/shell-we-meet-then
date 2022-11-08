@@ -1,12 +1,26 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
-import { getArticlesApi } from '../../api/MemoryApi.js'
 import '../../pages/MemoryList/MemoryList.css'
 import MemoryCard from './MemoryCard'
 import '../../Common.css';
 
 
 export default function MemoryBody1(props) {
+  const [articleArr, setArticleArr] = useState([])
+  useEffect(() => {
+    setArticleArr(() => chunk(props.articles, 3))
+  }, [])
+
+  function chunk(data = [], size = 1) {
+    const items = [...data];
+    const arr = [];
+  
+    while (items.length) {
+      arr.push(items.splice(0, size));
+    }
+  
+    return arr;
+  }
   return (
     <>
     <div className='memory-item-list'>
@@ -31,13 +45,15 @@ export default function MemoryBody1(props) {
         <div>
           <div className='memory-article-content'>
             {
-              [0, 1, 2].map((a, i) => {
+              articleArr.map((a, i) => {
                 return (
                   <>
                   <div className='memory-article-element'>
                     {
-                      [0, 1, 2].map((b, j) => {
+                      a.map((b, j) => {
                         return <MemoryCard
+                                // boardSeq={props.b.boardSeq}
+                                boardSeq={1}
                                 setModalBtn={props.setModalBtn}
                                />
                       })

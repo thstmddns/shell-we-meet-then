@@ -1,6 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
-import { getArticlesApi } from '../../api/MemoryApi.js'
+import {
+  getArticlesApi,
+  getArticleApi,
+  getVideoApi,
+  getThumbnailApi,
+  getImageApi,
+  getArticleCount,
+  getTotalArticleCount,
+} from '../../api/MemoryApi.js'
 import Nav from '../../Components/NavBar/NavBar'
 import './MemoryList.css'
 import MemoryHeader from '../../Components/MemoryList/MemoryHead'
@@ -12,11 +20,25 @@ import Modal from '../../Components/Memory/MemoryModal'
 export default function MemoryList() {
   const [bodyBtn, setBodyBtn] = useState(0)
   const [modalBtn, setModalBtn] = useState(0)
-  const params = useParams()
+  const [articles, setArticles] = useState([])
+  const { groupSeq } = useParams()
+  useEffect(() => {
+    getArticlesApi({ groupSeq })
+      .then(res => {
+        console.log(res.data);
+        setArticles(res.data)
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }, [])
+
+
   function Components(bodyBtn) {
     switch (bodyBtn) {
       case 0 :
         return  (<MemoryBody1
+                  articles={articles}
                   setBodyBtn={setBodyBtn}
                   setModalBtn={setModalBtn}
                 />)
