@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './Main.css'
+import './Main.scss'
 import { getGroupsApi, openApi } from '../../api/Main';
 
 
@@ -203,6 +204,12 @@ function Main() {
 
   return (
     <div>
+
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <div id='title'></div>
+
       <div className="nav">
         <div className="nav-header">
           <div className="nav-title">
@@ -264,7 +271,7 @@ function Main() {
         <div className='imgDiv'>
           <h1 className='dDay'>D{dDay >= 0 ? '-' : '+'}
             {dDay === 0 ? 'day' : Math.abs(dDay)}</h1>
-          <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
+          <img className='watch' src={process.env.PUBLIC_URL + '/assets/img/watch.png'} />
         </div>
         <div className='groupName'>
           <div>

@@ -85,7 +85,7 @@ export default function CreateGroup() {
     <div>
       <NavBar />
       <div className='imgDiv1'>
-        <img className='watch1' src={process.env.PUBLIC_URL + '/assets/img/watch.jpg'} />
+        <img className='watch1' src={process.env.PUBLIC_URL + '/assets/img/watch.png'} />
         <div className='inputs'>
           {formTemp === 1 ?
             <>
