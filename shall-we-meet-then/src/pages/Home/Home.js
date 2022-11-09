@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import $ from "jquery";
 import './Home.css';
 import axios from 'axios';
-import Button from "../../Components/Button";
+
 
 
 
@@ -66,6 +66,7 @@ function Home() {
           },
         })
           .then((r) => {
+            console.log(r)
             if(r.data){
               changeForm();
             }
@@ -91,20 +92,22 @@ function Home() {
 
   // 로그인 함수
   const signIn = () => {
+    // axios.post('http://43.201.82.64:8080/members/login',{email: signInEmail,password: signInPassword,})
     axios({
       method: 'post',
-      url: 'http://k7d105.p.ssafy.io:8080/members/login',
+      url: 'http://k7d105.p.ssafy.io:8080/members/login',                                       
       headers: {
         'Content-Type': 'application/json',
+        // withCredentials: true
       },
       data: {
         email: signInEmail,
         password: signInPassword,
       },
+      
     })
       .then(res => {
-        console.log(res)
-        if(res.data){
+        if(res.data === true){
           sessionStorage.setItem('accessToken', res.headers.authorization)
           navigate('/main')
         }
@@ -147,7 +150,6 @@ function Home() {
         }
       })
       .catch(err => {
-
       })
 
   }

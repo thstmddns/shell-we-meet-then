@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "../../Components/NavBar/NavBar";
+import axios from "axios";
 import "./WriteBoard.css";
 import { writeMemoryApi } from "../../api/WriteBoardApi";
 
@@ -24,26 +25,8 @@ function WriteBoard() {
     `${process.env.PUBLIC_URL}/assets/default-img/default-image.jpg`
   );
 
-  // const addArticle = () => {
-  //   let form = new FormData();
-  //   const imgs = document.getElementById("img").files;
-  //   // const imgs = imgFile;
-  //   const videoFile = document.getElementById("video").files[0];
-  //   form.append("content", content);
-  //   form.append("image", imgs);
-  //   form.append("video", videoFile);  
-  //   form.append("groupSeq", groupSeq);
-  //   axios
-  //     .post("/boards", form, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     })
-  //     .then(navigate("/main"));
-  // };
 
   const onHandleChangeFile = (event) => {
-    console.log(event.target.files);
     setImgFile(event.target.files);
 
     // 미리보기 state
@@ -67,32 +50,52 @@ function WriteBoard() {
     }
   };
 
+
   const onSaveWriting = () => {
-    const formData = new FormData();
-
+    if(content === ''){
+      alert("내용을 입력해주세요")
+      return
+    }
+    let form = new FormData();
     const imgs = document.getElementById("img").files;
+    if (imgs.length !== 0) {
+      for (let i = 0; i < imgs.length; i++) {
+        form.append("image", imgs[i]);
+      }
+    }else {
+      const imgBlob = new Blob()
+      form.append("image", imgBlob)
+
+
+    }
     const videoFile = document.getElementById("video").files[0];
+    
+    form.append("content", content);
+    
+    
+    if (videoFile !== undefined){
+      // console.log("form:", form);
+      form.append("video", videoFile);
+    }
+    else {
+      const blob = new Blob()
+      form.append("video", blob)
+    }
+    form.append("groupSeq", groupSeq);
 
-    // console.log("imgs@@@@:", imgs);
-    // console.log("videoFile@@@:", videoFile);
-    // form.append("content", content);
-    // form.append("image", imgs);
-    // form.append("video", videoFile);
-
-    formData.append("groupSeq", groupSeq);
-    formData.append("content", content);
-    formData.append("image", imgs);
-    formData.append("video", videoFile);
-
-    writeMemoryApi(formData)
-      .then((res) => {
-        console.log(res.data);
-        // navigate("/main")
+    axios
+      .post("/boards", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": sessionStorage.getItem("accessToken")
+        },
       })
-      .catch((err) => {
-        console.log("Error");
-      });
+      .then(navigate("/main"));
   };
+
+
+
+
 
   const saveVideoImage = (e) => {
     e.preventDefault();
@@ -175,7 +178,7 @@ function WriteBoard() {
             </ContentHeader>
 
             <ContentWrapper>
-              <textarea className="writing-content" onChange={(e) => { setContent(e.target.value)}}></textarea>
+              <textarea className="writing-content" onChange={(e) => { setContent(e.target.value) }}></textarea>
             </ContentWrapper>
             <button onClick={onSaveWriting}>글쓰기 완료</button>
           </BoardWrapper>
@@ -206,9 +209,9 @@ function WriteBoard() {
                   </PhotoWrapper>
                 ) : (
                   <>
-                    {imgBase64.map((item) => {
+                    {imgBase64.map((item, i) => {
                       return (
-                        <PhotoWrapper>
+                        <PhotoWrapper key={i}>
                           <img
                             className="photo-preview-img"
                             src={item}
