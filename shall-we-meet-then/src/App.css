@@ -4,8 +4,9 @@
   src: url("../public/assets/fonts/fontone.ttf")
 }
 
-* {
+body{
   font-family: "fontone";
+  color: rgb(204, 68, 68);
 }
 
 .App {

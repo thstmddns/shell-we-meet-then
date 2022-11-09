@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { addGroup, addGroupMember } from '../../api/CreateGroupApi'
 import NavBar from "../../Components/NavBar/NavBar";
 import './CreateGroup.css'
 
- 
+import { ShiningComponent, ShiningContainer } from "../../Components/Group/Clock";
 export default function CreateGroup() {
 
 
@@ -20,6 +20,52 @@ export default function CreateGroup() {
   //  useLocation 훅 취득
   const location = useLocation();
   const formTemp = location.state.temp
+
+  const rotation = (target, val) => {
+    target.style.transform = `rotate(${val}deg)`;
+  };
+
+
+  useEffect(() => {
+    /*  clock */
+    const hours = document.querySelector(".hours");
+    const minutes = document.querySelector(".minutes");
+    const seconds = document.querySelector(".seconds");
+
+    /*  play button */
+    const play = document.querySelector(".play");
+    const pause = document.querySelector(".pause");
+    const playBtn = document.querySelector(".circle__btn");
+    const wave1 = document.querySelector(".circle__back-1");
+    const wave2 = document.querySelector(".circle__back-2");
+
+    /*  rate slider */
+    const container = document.querySelector(".slider__box");
+    const btn = document.querySelector(".slider__btn");
+    const color = document.querySelector(".slider__color");
+    const tooltip = document.querySelector(".slider__tooltip");
+
+    const clock = () => {
+      let today = new Date();
+      let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
+      let m = today.getMinutes(); // 0 - 59
+      let s = today.getSeconds(); // 0 - 59
+
+      h *= 30; // 12 * 30 = 360deg
+      m *= 6;
+      s *= 6; // 60 * 6 = 360deg
+
+      rotation(hours, h);
+      rotation(minutes, m);
+      rotation(seconds, s);
+
+      // call every second
+      setTimeout(clock, 500);
+    };
+
+    window.onload = clock();
+
+  }, []);
 
 
   // 그룹생성 함수
@@ -77,23 +123,30 @@ export default function CreateGroup() {
     }
   }
 
-
-
-
-
-
-
-
-
   return (
-    <div>
+    <div className='create-group-page'>
       <NavBar />
       <div className='imgDiv1'>
-        <img className='watch1' src={process.env.PUBLIC_URL + '/assets/img/watch.png'} />
-        <div className='inputs'>
+
+            <div className='create-clock-wrapper'>
+              <div class="clock">
+                <div class="hand hours"></div>
+                <div class="hand minutes"></div>
+                <div class="hand seconds"></div>
+                <div class="point"></div>
+                <div class="marker">
+                  <span class="marker__1"></span>
+                  <span class="marker__2"></span>
+                  <span class="marker__3"></span>
+                  <span class="marker__4"></span>
+                </div>
+              </div>
+            </div>
+  
+        <div className='clock-info-wrapper'>
           {formTemp === 1 ?
             <>
-              <h1>시계 만들기</h1>
+              <h1 style={{fontFamily:"fontone"}}>시계 만들기</h1>
               <div>
                 <label htmlFor='groupName'>시계이름</label>
                 <input type='text' id='groupName' placeholder='그룹이름' value={groupName}

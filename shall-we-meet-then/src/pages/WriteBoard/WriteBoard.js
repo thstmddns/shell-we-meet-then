@@ -62,11 +62,24 @@ function WriteBoard() {
       for (let i = 0; i < imgs.length; i++) {
         form.append("image", imgs[i]);
       }
+    }else {
+      const imgBlob = new Blob()
+      form.append("image", imgBlob)
+
+
     }
     const videoFile = document.getElementById("video").files[0];
+    
     form.append("content", content);
+    
+    
     if (videoFile !== undefined){
+      // console.log("form:", form);
       form.append("video", videoFile);
+    }
+    else {
+      const blob = new Blob()
+      form.append("video", blob)
     }
     form.append("groupSeq", groupSeq);
 

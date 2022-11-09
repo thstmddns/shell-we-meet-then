@@ -1,25 +1,27 @@
-import React from 'react';
-import './NavBar.css';
-
+import React from "react";
+import "./NavBar.css";
+import styled from 'styled-components';
 
 function NavBar() {
+  return (
 
 
-    return (
-        <div className="nav">
-            <div className="nav-header">
-                <div className="nav-title">
-                    <a>Home</a>
-                </div>
-            </div>
+    <div className="navBar-wrapper">
 
+        <div className="nav-home-wrapper">
+          <a>Home</a>
+      </div>
 
-            <div className="nav-links">
+      <div className="nav-time-wrapper">
 
-                <a>로그아웃</a>
-            </div>
-        </div>
-    )
+      </div>
+
+      <div className="nav-logout-wrapper">
+          <a className="logout-btn">로그아웃</a>
+      </div>
+    </div>
+  );
 }
 
-export default NavBar
+export default NavBar;
+

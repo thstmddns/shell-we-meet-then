@@ -2,21 +2,80 @@
     box-sizing: border-box;
   } */
   
-
+  @font-face {
+    font-family:"fontone";
+    src: url("../../../public/assets/fonts/fontone.ttf")
+  }
   
-  .nav {
-    height: 50px;
-    width: 100%;
-    background-color: rgba( 255, 255, 255, 0 );
-    position: relative;
-    font-size: 30px;
+  .navBar-wrapper {
+    position: absolute;
+    display: flex;
 
+    width: 97%;
+    height: 50px;
+
+    font-size: 30px;
+    font-family: "fontone";
+
+    margin-bottom: 10vh;
+    margin-left: 1%;
+
+    color: white;
+
+    /* border: 1px solid red; */
     /* opacity: 0.5; */
   }
 
-  .nav .home-btn-wrapper {
+  .navBar-wrapper .nav-home-wrapper {
+    justify-content: start;
+
+    text-align: start;
+
+    width: 20%;
     cursor: pointer;
+
+    /* border: 1px solid black; */
   }
+
+  .navBar-wrapper .nav-time-wrapper {
+    justify-content: end;
+
+    width: 75%; 
+
+    text-align: end;
+    cursor: pointer;
+    /* margin-left: 50vw; */
+    /* border: 1px solid blue;   */
+  
+  }
+
+  
+
+  .navBar-wrapper .nav-logout-wrapper {
+    justify-content: end;
+
+    width: 5%; 
+
+    text-align: end;
+    cursor: pointer;
+    margin-left: -0.5vw;
+    /* border: 1px solid green;   */
+  
+  }
+
+  .navBar-wrapper .nav-logout-wrapper .logout-btn {
+
+  }
+
+
+    /* **************************************** */
+  .navBar-wrapper .home-btn-wrapper {
+    cursor: pointer;
+  
+  }
+
+
+
 
   .nav > a {
     cursor: pointer;
@@ -32,6 +91,8 @@
     float: left;
     font-size: 30px;
 
+    font-family: "fontone";
+    color: white;
 
 
   }

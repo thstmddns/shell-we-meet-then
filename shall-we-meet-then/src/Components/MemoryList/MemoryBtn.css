@@ -7,7 +7,7 @@
     padding: 12px 20px;
     margin: 20px;
     border-radius: 15px;
-    font-family: "paybooc-Light", sans-serif;
+    /* font-family: "paybooc-Light", sans-serif; */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     font-weight: 600;
@@ -18,7 +18,7 @@
     position: relative;
     padding: 15px 30px;
     border-radius: 15px;
-    font-family: "paybooc-Light", sans-serif;
+    /* font-family: "paybooc-Light", sans-serif; */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     font-weight: 600;
