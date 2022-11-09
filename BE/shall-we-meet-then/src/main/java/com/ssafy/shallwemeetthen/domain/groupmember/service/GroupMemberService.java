@@ -110,4 +110,12 @@ public class GroupMemberService {
 
         return dtos;
     }
+
+    public GroupMemberDto.Response getMyInfo(GetMyInfoDto.Request dto) {
+        Long loginSeq = securityContext.getThreadLocal();
+
+        GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), loginSeq).orElseThrow(() -> new IllegalArgumentException("해당 그룹 멤버가 존재하지 않습니다."));
+
+        return new GroupMemberDto.Response(groupMember);
+    }
 }
