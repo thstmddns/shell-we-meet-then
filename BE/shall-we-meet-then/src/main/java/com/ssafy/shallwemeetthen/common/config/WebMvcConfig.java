@@ -18,7 +18,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(jwtAuthorizationFilter)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/members/**"); //인터셉터에서 빠질 것
+                .excludePathPatterns("/members/**")
+                .excludePathPatterns("/board-image/**")
+                .excludePathPatterns("/boards/**/image-download")
+                .excludePathPatterns("/boards/**/video-download");
+ //인터셉터에서 빠질 것
 
     }
 }
