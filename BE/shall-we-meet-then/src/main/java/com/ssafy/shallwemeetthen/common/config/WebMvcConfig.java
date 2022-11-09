@@ -20,10 +20,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/members/**")
                 .excludePathPatterns("/board-image/**")
-                .excludePathPatterns("/boards/board-image/**/image-download")
-                .excludePathPatterns("/boards/board-image/**/video-download")
-
-                .excludePathPatterns(""); //인터셉터에서 빠질 것
+                .excludePathPatterns("/boards/**/image-download")
+                .excludePathPatterns("/boards/**/video-download");
+ //인터셉터에서 빠질 것
 
     }
 }
