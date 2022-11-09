@@ -5,9 +5,10 @@ import MemoryCard from './MemoryCard'
 import '../../Common.css';
 
 
-export default function MemoryBody1(props) {
+export default function MemoryComponent(props) {
   const [articleArr, setArticleArr] = useState([])
   useEffect(() => {
+    console.log("articles::::", props.articles)
     setArticleArr(() => chunk(props.articles, 3))
   }, [])
 
@@ -23,7 +24,7 @@ export default function MemoryBody1(props) {
   }
   return (
     <>
-    <div className='memory-item-list'>
+    {/* <div className='memory-item-list'>
       <div
         onClick={() => {props.setBodyBtn(0)}}
         className='memory-item memory-item-click'>
@@ -39,7 +40,7 @@ export default function MemoryBody1(props) {
         className='memory-item'>
         <div>글 </div>
       </div>
-    </div>
+    </div> */}
     <div className='memory-content'>
       <article className='memory-article'>
         <div>

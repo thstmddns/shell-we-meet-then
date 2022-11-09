@@ -24,7 +24,7 @@ export default function MemoryHead() {
     // 그룹인원 에러!! 데이터 없음
     getGroupDetailsApi(groupSeq)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setGroupMemberCount(res.data.headcount)
       })
       .catch(err => {
@@ -32,11 +32,11 @@ export default function MemoryHead() {
       })
   }, [groupMemberCount])
   useEffect(() => {
-    getTotalArticleCount({groupSeq})
+    getTotalArticleCount(groupSeq)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data === "그룹에 작성된 게시글이 없습니다.") setTotalArticleCount(0);
-        else setTotalArticleCount(res.data.articleCount)
+        else setTotalArticleCount(res.data.totalCount)
       })
       .catch(err => {
         console.error(err);
@@ -45,7 +45,7 @@ export default function MemoryHead() {
   useEffect(() => {
     getArticleCount({groupSeq})
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setMyArticleCount(res.data.articleCount)
       })
       .catch(err => {

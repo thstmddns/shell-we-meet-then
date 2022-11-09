@@ -13,8 +13,7 @@ export default function MemoryCard(props) {
     <>
     <div className='memory-article-img'>
       <div onClick={() => {props.setModalBtn(1)}} className='click-memory'>
-        {/* <img className='memory-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/> */}
-        <img className='memory-img' alt="#" src={process.env.PUBLIC_URL + '/assets/img/bp.jpg'}/>
+        <img className='memory-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
       </div>
     </div>
     </>
