@@ -129,3 +129,6 @@
   cursor: pointer;
   border-radius: 15px;
 }
+.group-member {
+  cursor: pointer;
+}

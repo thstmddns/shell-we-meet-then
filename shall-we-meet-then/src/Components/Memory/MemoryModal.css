@@ -236,6 +236,9 @@
   padding: 14px 16px;
   position: relative; 
 }
+.modal-img {
+  padding: 5% 0;
+}
 .a {
   white-space: pre-line;
 }

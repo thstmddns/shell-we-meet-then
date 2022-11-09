@@ -32,6 +32,15 @@ const getImageApi = async(boardImageSeq) => {
 const getGroupDetailsApi = async(groupSeq) => {
     return await api.get(`/groups/${groupSeq}`)
 }
+// 그룹 맴버 리스트 조회
+const getGroupMembersApi = async(info) => {
+    return await api.get(`/group-members`, { params : info })
+}
+// 그룹 내 내 정보 조회
+const getMyInfoApi = async(info) => {
+    return await api.get(`/group-members/my-info`, { params : info })
+}
+
 
 
 
@@ -44,4 +53,6 @@ export {
     getArticleCount,
     getTotalArticleCount,
     getGroupDetailsApi,
+    getGroupMembersApi,
+    getMyInfoApi,
   }

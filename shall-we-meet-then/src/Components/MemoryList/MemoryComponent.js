@@ -1,15 +1,31 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  getArticlesApi,
+  getArticleApi,
+  getVideoApi,
+  getThumbnailApi,
+  getImageApi,
+  getArticleCount,
+  getTotalArticleCount,
+} from '../../api/MemoryApi.js'
 import '../../pages/MemoryList/MemoryList.css'
 import MemoryCard from './MemoryCard'
 import '../../Common.css';
 
 
-export default function MemoryComponent(props) {
+export default function MemoryBody1(props) {
   const [articleArr, setArticleArr] = useState([])
+  const { groupSeq } = useParams()
   useEffect(() => {
-    console.log("articles::::", props.articles)
-    setArticleArr(() => chunk(props.articles, 3))
+    getArticlesApi({ groupSeq })
+      .then(res => {
+        console.log(res.data);
+        setArticleArr(() => chunk(res.data, 3))
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }, [])
 
   function chunk(data = [], size = 1) {
@@ -24,23 +40,6 @@ export default function MemoryComponent(props) {
   }
   return (
     <>
-    {/* <div className='memory-item-list'>
-      <div
-        onClick={() => {props.setBodyBtn(0)}}
-        className='memory-item memory-item-click'>
-        <div>게시글 </div>
-      </div>
-      <div
-        onClick={() => {props.setBodyBtn(1)}}
-        className='memory-item'>
-        <div>영상 </div>
-      </div>
-      <div
-        onClick={() => {props.setBodyBtn(2)}}
-        className='memory-item'>
-        <div>글 </div>
-      </div>
-    </div> */}
     <div className='memory-content'>
       <article className='memory-article'>
         <div>
@@ -55,6 +54,7 @@ export default function MemoryComponent(props) {
                         return <MemoryCard
                                 boardSeq={article.boardSeq}
                                 setModalBtn={props.setModalBtn}
+                                setBoardSeq={props.setBoardSeq}
                                />
                       })
                     }

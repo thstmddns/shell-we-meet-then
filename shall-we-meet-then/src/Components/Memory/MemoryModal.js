@@ -1,10 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
-import { getArticlesApi } from '../../api/MemoryApi.js'
+import { LeftOutlined, RightOutlined, CloseOutlined } from '@ant-design/icons'
+import {
+  getArticlesApi,
+  getArticleApi,
+  getVideoApi,
+  getThumbnailApi,
+  getImageApi,
+  getArticleCount,
+  getTotalArticleCount,
+} from '../../api/MemoryApi.js'
 import './MemoryModal.css'
 
 export default function Memory(props) {
+  const baseURL = "http://k7d105.p.ssafy.io:8080"
+  const [article, setArticle] = useState({})
+  const [nickName, setNickName] = useState('')
   const outSection = useRef()
+  useEffect(() => {
+    getArticleApi(props.boardSeq)
+      .then(res => {
+        console.log(res.data);
+        setNickName(res.data.groupMember.nickname)
+        setArticle(res.data)
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }, [])
   return (
     <>
     <div className='Memory-modal'>
@@ -16,9 +39,12 @@ export default function Memory(props) {
         <div className='Memory-modal-exit'>
           <div className='Memory-modal-exit-positon'>
             <div
-              onClick={() => props.setModalBtn(0)}
               className='Memory-modal-exit-text'>
-              x
+                <CloseOutlined
+                  onClick={() => {
+                    props.setModalBtn(0);
+                  }}
+                />
             </div>
           </div>
         </div>
@@ -32,12 +58,12 @@ export default function Memory(props) {
                       <div className='Memory-next-container-content'>
                         <div className='Memory-next-content next-left'>
                           <button className='Memory-next-btn'>
-                            <div className='Memory-next-btn-div'><span className='modal-btn-text'>&lt;</span></div>
+                            <div className='Memory-next-btn-div'><span className='modal-btn-text'><LeftOutlined/></span></div>
                           </button>
                         </div>
                         <div className='Memory-next-content next-right'>
                           <button className='Memory-next-btn'>
-                            <div className='Memory-next-btn-div'><span className='modal-btn-text'>&gt;</span></div>
+                            <div className='Memory-next-btn-div'><span className='modal-btn-text'><RightOutlined/></span></div>
                           </button>
                         </div>
                       </div>
@@ -48,19 +74,17 @@ export default function Memory(props) {
                       <article className='Memory-article'>
                         <div className='Memory-article-content'>
                           <div className='Memory-article-img'>
-                            <img className='' alt="#" src={process.env.PUBLIC_URL + '/assets/img/bp.jpg'}/>
+                            <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
                           </div>
                           <div className='Memory-article-text'>
                             <div className='Memory-article-text-nickname'>
                               <div className='Memory-article-text-content'>
-                                글 쓴 사 람 N i c k n a m e
+                                {nickName}
                               </div>
                             </div>
                             <div className='Memory-article-text-content'>
                               <div className='a'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla.
-                                Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. so we plcajkfahwkehagjkdfhvjkadfjk;bdjkfaljla;ejf;jweiojazdfvn,dkls oawilefjialsjlkalgaskjawekgjw iflawepfaj urigaj;rhvj s'jefukl arguwkef \n
-                                that ok
+                                {article.content}
                               </div>
                             </div>
                           </div>

@@ -1,5 +1,8 @@
 .modal {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   right: 0;
   bottom: 0;
@@ -13,9 +16,10 @@
   border: 0;
 }
 .modal > section {
+  position: relative;
   width: 90%;
+  height: 50%;
   max-width: 450px;
-  margin: 0 auto;
   border-radius: 0.3rem;
   background-color: #fff;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
@@ -81,3 +85,15 @@
 }
 
 /* InModal */
+.group-modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.x-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
