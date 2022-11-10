@@ -35,16 +35,17 @@ public class QuizGetService {
         Random random = new Random();
         List<QuizResponseDto> quizList = new ArrayList<>();
         List<GroupBoard> findGroupBoardList = groupBoardQueryRepository.findAllAgreeAndNonAgreeBoard(articleSearchCondition);// 모든 그룹의 글
-        log.info(String.valueOf(articleSearchCondition.getGroupSeq()));
+
         int quizNum = 10;
+        //게시글 수가 10보다 작다면 게시글 수만큼 넣기
         if(findGroupBoardList.size()<=quizNum) quizNum = findGroupBoardList.size();
-        log.info(String.valueOf("퀴즈수 :"+ quizNum));
         //중복없이 quizNum 개 넣기
         HashSet<Integer> nonOverlapIdxList = new HashSet<>();
         ArrayList<Integer> idxList = new ArrayList<>();
         while(nonOverlapIdxList.size()<quizNum) nonOverlapIdxList.add(random.nextInt(quizNum));
         for (int tmpIdxList:nonOverlapIdxList) idxList.add(tmpIdxList);
 
+        //랜덤으로 퀴즈 선정
         for(int i = 0 ; i < quizNum ; i++){
             int quizType = random.nextInt(QUIZ_TYPE_NUM);
             switch (quizType){

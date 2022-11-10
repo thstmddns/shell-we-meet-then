@@ -120,7 +120,7 @@ public class GroupGetService {
 
         List<GroupMember> findLongestWrittenMembers = groupMemberRepository.findFirstByGroupSeqAndLength(groupSeq);
 
-        if (findLongestWrittenMembers.isEmpty()) throw new IllegalArgumentException("해당 멤버가 없습니다.");
+        if (findLongestWrittenMembers.isEmpty()) throw new IllegalArgumentException("해당 그룹의 멤버가 없습니다.");
 
         GroupMember findFirstByGroupSeqAndLength = findLongestWrittenMembers.get(0);
         return new GroupMemberResponseDto(findFirstByGroupSeqAndLength);

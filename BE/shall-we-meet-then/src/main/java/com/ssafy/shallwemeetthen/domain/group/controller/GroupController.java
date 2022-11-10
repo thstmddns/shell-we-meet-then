@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequestMapping("/groups")
 @RestController
@@ -22,7 +24,7 @@ public class GroupController {
 
     //그룸생성
     @PostMapping
-    public ResponseEntity<?> addGroup(@RequestBody AddGroupRequestDto addGroupRequestDto) {
+    public ResponseEntity<?> addGroup(@RequestBody @Valid AddGroupRequestDto addGroupRequestDto) {
         return new ResponseEntity<>(groupAddService.addGroup(addGroupRequestDto), HttpStatus.OK);
     }
     //그룹 리스트 조회
@@ -58,7 +60,11 @@ public class GroupController {
     //가장 글을 많이 작성한 멤버
     @GetMapping("/{groupSeq}/most-written-member")
     public ResponseEntity<?> getManyWrittenMember(@PathVariable Long groupSeq) {
-        return new ResponseEntity<>(groupGetService.getManyWrittenMember(groupSeq), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(groupGetService.getManyWrittenMember(groupSeq), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     //가장 길게 글을 작성한 멤버 조회
