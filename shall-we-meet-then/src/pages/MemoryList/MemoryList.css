@@ -19,6 +19,7 @@
   order: 4;
   padding: 0;
   position: relative;
+  color: white;
 }
 .memory-list {
   flex-grow: 1;
@@ -50,15 +51,16 @@
   margin-right: 40px;
 }
 .memory-info-text {
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 20px;
+  line-height: 20px;
 }
 .memory-item-list {
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-top: 1px solid rgb(219, 219, 219)
+  border-top: 2px solid rgb(219, 219, 219);
+  font-size: 32px;
 }
 .memory-item {
   align-items: center;
@@ -74,8 +76,8 @@
   margin-right: 0;
 }
 .memory-item-click {
-  border-top: 1px solid rgb(38, 38, 38);
-  margin-top: -1px;
+  border-top: 2px solid rgb(167 79 179);
+  margin-top: -4px;
 }
 .memory-content {
   display: flex;
@@ -128,4 +130,7 @@
   position: absolute;
   cursor: pointer;
   border-radius: 15px;
+}
+.group-member {
+  cursor: pointer;
 }

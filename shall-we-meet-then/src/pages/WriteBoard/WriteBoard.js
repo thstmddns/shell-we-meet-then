@@ -63,7 +63,7 @@ function WriteBoard() {
         form.append("image", imgs[i]);
       }
     }else {
-      const imgBlob = new Blob()
+      const imgBlob = new File([], '')
       form.append("image", imgBlob)
 
 
@@ -78,7 +78,7 @@ function WriteBoard() {
       form.append("video", videoFile);
     }
     else {
-      const blob = new Blob()
+      const blob = new File([], '')
       form.append("video", blob)
     }
     form.append("groupSeq", groupSeq);
