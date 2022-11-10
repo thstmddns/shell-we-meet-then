@@ -53,7 +53,9 @@ public class GroupBoardService {
 
         String content = dto.getContent();
 
-        String imageUuidFileName = StringUtils.equals(image.getOriginalFilename(), "") ? null : uploadFile(image);
+        String imageUuidFileName =
+                StringUtils.equals(image.getOriginalFilename(), "") | StringUtils.equals(image.getOriginalFilename(), "blob")
+                        ? null : uploadFile(image);
         String videoUuidFileName = StringUtils.equals(video.getOriginalFilename(), "") ? null : uploadFile(video);
 
         GroupBoard groupBoard = GroupBoard.builder()
@@ -72,6 +74,7 @@ public class GroupBoardService {
 
         for (MultipartFile multipartFile : images) {
             if (StringUtils.equals(multipartFile.getOriginalFilename(), "")) break;
+            if (StringUtils.equals(multipartFile.getOriginalFilename(), "blob")) break;
 
             String fileName;
 

@@ -21,10 +21,16 @@ public class ArticleDto {
 
         private String content;
 
+        private boolean hasImage;
+
+        private boolean hasVideo;
+
         public Response(GroupBoard groupBoard) {
             this.boardSeq = groupBoard.getSeq();
             this.groupMember = new GroupMemberDto.Response(groupBoard.getGroupMember());
             this.content = groupBoard.getContent();
+            this.hasImage = groupBoard.getThumbnailImageUuidName() != null;
+            this.hasVideo = groupBoard.getVideoUuidName() != null;
         }
     }
 }
