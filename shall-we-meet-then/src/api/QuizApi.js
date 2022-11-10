@@ -17,15 +17,15 @@ import api from './api'
 
 // 퀴즈 불러오기
 const quizApi = async(groupSeq) => {
-    return await api.get(`/group-members/quiz/${groupSeq}`)
+    return await api.get(`/quiz`, { params: groupSeq})
 }
 // 퀴즈 맞춘 갯수 조회
-const quizGetScoreApi = async(quizInfo, groupMemberSeq) => {
-  return await api.get(`/group-members/${groupMemberSeq}/score`, quizInfo)
+const quizGetScoreApi = async(groupSeq) => {
+  return await api.get(`/group-members/score`, { params: groupSeq})
 }
 // 퀴즈 맞춘 갯수 저장
-const quizAddScoreApi = async(quizInfo) => {
-  return await api.put(`/group-members/score`, quizInfo)
+const quizAddScoreApi = async(groupSeq, score) => {
+  return await api.put(`/group-members/score`, { params: {groupSeq, score}})
 }
 
 export {
