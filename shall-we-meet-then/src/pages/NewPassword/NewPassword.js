@@ -32,7 +32,7 @@ function NewPassword() {
         },
       }).then(r=>{
         console.log(r)
-        // navigate('/')
+        navigate('/')
       })
     }
     else {

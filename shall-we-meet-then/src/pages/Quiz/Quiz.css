@@ -81,7 +81,7 @@ ul {
   color: #fff;
   float: right;
   font-style: italic;
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
   margin-top: 15px;
   right: 20px;
   position: absolute;
@@ -138,7 +138,7 @@ ul {
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
+  /* font-family: 'Lato', sans-serif; */
   font-weight: 500;
   background: transparent;
   cursor: pointer;

@@ -42,7 +42,7 @@ const StyledButton = styled.button`
   color: #ececec;
 
   cursor: pointer;
-  font-family: "alsongdalsong";
+  font-family: "fontone";
 
   &:hover {
     background-color: ${(props) => props.color};;

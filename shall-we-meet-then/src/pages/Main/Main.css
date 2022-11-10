@@ -1,3 +1,172 @@
+
+@font-face {
+  font-family:"fontone";
+  src: url("../../../public/assets/fonts/fontone.ttf")
+}
+
+.main-page {
+  /* font-family: "fontone"; */
+  color: white;
+}
+
+/* 시계 테스트 */
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #E4EBF5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+  --pink: #f9d5e8; 
+}
+
+
+.main-page, .main-page::before, .main-page::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/* .main-page .container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-page .components {
+  width: 75rem;
+  height: 39rem;
+  border-radius: 3rem;
+  box-shadow: 0.2rem 0.2rem 1.2rem var(--pink), -0.2rem -0.2rem 1.2rem var(--pink);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, -webkit-min-content);
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+
+  margin-top: 6vh;
+  margin-bottom: 50vh;
+  
+} */
+
+/*  CLOCK  */
+.clock {
+  grid-column: 2/3;
+  grid-row: 1/3;
+  width: 32rem;
+  height: 32rem;
+  justify-self: center;
+  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  align-items: center;
+
+  margin-top:-5vh;
+  margin-bottom: 60h;
+}
+
+.clock .hand {
+  position: absolute;
+  transform-origin: bottom;
+  bottom: 6rem;
+  border-radius: 0.2rem;
+  z-index: 200;
+
+  margin-bottom: 22vh;
+}
+
+.clock .hours {
+  width: 0.3rem;
+  height: 3.6rem;
+  background: var(--greyLight-3);
+}
+
+.clock .minutes {
+  width: 0.4rem;
+  height: 4.6rem;
+  background: var(--greyDark);
+}
+
+.clock .seconds {
+  width: 0.2rem;
+  height: 5.2rem;
+  background: var(--primary);
+}
+.clock .point {
+  position: absolute;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--primary);
+  z-index: 300;
+}
+
+.clock .marker {
+  width: 95%;
+  height: 95%;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2), inset -0.2rem -0.2rem 0.5rem var(--white);
+}
+
+.clock .marker::after {
+  content: "";
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+  border-radius: 50%;
+  top: 20%;
+  left: 20%;
+  filter: blur(1px);
+}
+.clock .marker__1, .clock .marker__2, .clock .marker__3, .clock .marker__4 {
+  position: absolute;
+  border-radius: 0.1rem;
+  box-shadow: inset 1px 1px 1px var(--greyLight-2), inset -1px -1px 1px var(--white);
+}
+.clock .marker__1, .clock .marker__2 {
+  width: 0.2rem;
+  height: 0.6rem;
+  left: 5.6rem;
+}
+.clock .marker__3, .clock .marker__4 {
+  width: 0.6rem;
+  height: 0.2rem;
+  top: 5.6rem;
+}
+.clock .marker__1 {
+  top: 2%;
+}
+.clock .marker__2 {
+  top: 98%;
+  transform: translateY(-0.6rem);
+}
+.clock .marker__3 {
+  left: 2%;
+}
+.clock .marker__4 {
+  left: 98%;
+  transform: translateX(-0.6rem);
+
+
+}
+
+
+
+/* 시계 테스트 END */
+
 .imgDiv {
   top: 15vh;
   width: 30%;
@@ -20,38 +189,83 @@
   top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  /* background-color: grey; */
+  border: 1px solid grey;
+  cursor: pointer;
+  z-index: 2;
 }
 
-.groupName {
+.remain-d-day {
+  padding: 5px 10px;
+
+  font-size: 70px;
+  text-align: center;
   position: absolute;
 
-  top: 85%;
-  left: 47%;
+  /* top: 43%; */
+  margin-top:36vh;
+  margin-left: 13.2vw;
+  
+  transform: translate(-50%, -50%);
 
+  /* background-color: grey; */
+  /* border: 1px solid grey; */
+  cursor: pointer;
+  z-index: 2;
+}
+
+.main-page .group-name-wrapper {
+  position: absolute;
+
+  width: 30vw;
+  height: 8vh;
+
+  margin-top: 80vh;
+  margin-left: -1vw;
+
+  /* background-color: grey; */
+  border: 1px solid grey;
+  /* top: 85%;
+  left: 47%; */
+  cursor: pointer;
+  z-index: 2; 
+}
+
+.group-name-wrapper > h1 {
+  text-align: center;
 }
 
 .downBtn {
   position: absolute;
-  top: 50%;
-  left: 30%;
-  width: 2%;
-  height: 5%;
+  top: 43%;
+  left: 19%;
+  width: 9vw;
+  height: 15vh;
+
+  z-index: 2;
 }
 
 .upBtn {
   position: absolute;
-  top: 50%;
+  top: 43%;
   left: 68%;
-  width: 2%;
-  height: 5%;
+  width: 9vw;
+  height: 15vh;
+
+  z-index: 2;
 }
 
 .downBtn:hover {
   cursor: pointer;
+  background-color: grey;
+  z-index: 2;
 }
 
 .upBtn:hover {
   cursor: pointer;
+  background-color: grey;
+  z-index: 2;
 }
 
 
@@ -65,12 +279,13 @@
 
 
 
-.nav {
+/* .main-page .nav {
   height: 50px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0);
   position: relative;
-  /* opacity: 0.5; */
+  color: white;
+
 }
 
 .nav>.nav-header {
@@ -121,19 +336,36 @@
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+ */
 
+ .pencil-choice{
+  position: absolute;
+  
+  
 
+  top: 85%;
+  left: 57%;
 
+  cursor: pointer;
 
+  z-index: 3;
+}
 
+.pencil-choice > img {
+  width: 10vw;
 
+}
 
-
+.pencil-choice:hover {
+  background-color: green;
+}
 
 
 .dropdown {
   position: relative;
   display: inline-block;
+
+  margin-right: 1.1vw;
 }
 
 .dropdown:hover {
@@ -144,14 +376,23 @@
   display: none;
   position: absolute;
   background-color: #f9f9f9;
+  color: black;
+  
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
   /* height: 20vh; */
   max-height: 20vh;
-  overflow: auto
+  overflow: auto;
+  -ms-overflow-style: none;
+  
 }
+
+.dropdown-content::-webkit-scrollbar {
+  display: none;
+}
+
 
 .dropdown:hover .dropdown-content {
   display: block;
@@ -169,7 +410,6 @@
 }
 
 
-
 .dropdown>img:hover {
   cursor: pointer;
 }
@@ -183,10 +423,3 @@
   height: 10%;
 }
 
-.pencilDiv{
-  position: absolute;
-
-  top: 85%;
-  left: 57%;
-
-}

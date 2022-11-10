@@ -9,6 +9,16 @@
     justify-content: space-between;
 }
 
+.create-clock-wrapper {
+    width: 50vw;
+    height: 70vh;
+
+    /* margin-right: 20vw; */
+    margin-left: 7vw;
+    margin-top: 13vh;
+
+    /* border: 1px solid grey; */
+}
 
 .watch1 {
 	width: 60%;
@@ -16,11 +26,16 @@
 	vertical-align: middle;
 }
 
-.inputs {
+.clock-info-wrapper {
     display: inline;
+
+    margin-right: 0vw;
+    margin-top: 13vh;
+
+    color: white;
 }
 
-.inputs > div > input {
+.clock-info-wrapper > div > input {
     margin-bottom: 20px;
     width: 300px;
     height: 30px;
@@ -29,11 +44,11 @@
     
 }
 
-.inputs > div > label{
+.clock-info-wrapper > div > label{
     margin-right: 15px;
 }
 
-.inputs > button {
+.clock-info-wrapper > button {
     margin-bottom: 100px;
 } 
 
