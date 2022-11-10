@@ -29,7 +29,7 @@ public class QuizGetService {
     private final GroupBoardQueryRepository groupBoardQueryRepository;
 
 
-    private final int QUIZ_TYPE_NUM = 1;
+    private final int QUIZ_TYPE_NUM = 2;
 
     public List<QuizResponseDto> quiz(ArticleSearchCondition articleSearchCondition){
         Random random = new Random();
@@ -37,7 +37,7 @@ public class QuizGetService {
         List<GroupBoard> findGroupBoardList = groupBoardQueryRepository.findAllAgreeAndNonAgreeBoard(articleSearchCondition);// 모든 그룹의 글
         log.info(String.valueOf(articleSearchCondition.getGroupSeq()));
         int quizNum = 10;
-        if(findGroupBoardList.size()<=10) quizNum = findGroupBoardList.size();
+        if(findGroupBoardList.size()<=quizNum) quizNum = findGroupBoardList.size();
         log.info(String.valueOf("퀴즈수 :"+ quizNum));
         //중복없이 quizNum 개 넣기
         HashSet<Integer> nonOverlapIdxList = new HashSet<>();
@@ -52,6 +52,7 @@ public class QuizGetService {
                     quizList.add(quizUtils.Question2(findGroupBoardList.get(idxList.get(i)).getSeq()));
                     break;
                 case 1 :
+                    quizList.add(quizUtils.Question1(findGroupBoardList.get(idxList.get(i)).getSeq(),articleSearchCondition.getGroupSeq()));
                     break;
             }
         }
