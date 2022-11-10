@@ -97,3 +97,19 @@
   font-size: 24px;
   cursor: pointer;
 }
+.group-body {
+  margin-left: 20px;
+}
+.group-content {
+
+}
+.group-set {
+  position: relative;
+}
+.group-item {
+
+}
+.group-agree {
+  position: absolute;
+  right: 20%;
+}

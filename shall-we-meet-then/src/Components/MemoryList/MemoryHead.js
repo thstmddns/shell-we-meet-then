@@ -21,6 +21,7 @@ import './MemoryBtn.css'
 export default function MemoryHead() {
   const { groupSeq } = useParams()
   const navigate = useNavigate();
+  const [groupName, setGroupName] = useState("")
   const [groupMemberCount, setGroupMemberCount] = useState(0)
   const [totalArticleCount, setTotalArticleCount] = useState(0)
   const [myArticleCount, setMyArticleCount] = useState(0)
@@ -32,12 +33,12 @@ export default function MemoryHead() {
     getGroupDetailsApi(groupSeq)
       .then(res => {
         // console.log(res.data);
-        setGroupMemberCount(res.data.headcount)
+        setGroupName(res.data.name)
       })
       .catch(err => {
         console.error(err);
       })
-  }, [groupMemberCount])
+  }, [])
   useEffect(() => {
     getTotalArticleCount(groupSeq)
       .then(res => {
@@ -63,6 +64,7 @@ export default function MemoryHead() {
     getGroupMembersApi({ groupSeq })
       .then(res => {
         // console.log(res.data);
+        setGroupMemberCount(res.data.length)
         setGroupMembers(res.data)
       })
       .catch(err => {
@@ -90,10 +92,8 @@ export default function MemoryHead() {
     <div className='memory-header'>
       <div className='memory-nickname-header align-center'>
         <div className='memory-nickname '>
-          {myInfo.nickname}
-        </div>
-        <div>
-          <button onClick={() => navigate(`/group/statistics/${groupSeq}`) } className='w-btn w-btn-skin'>통계 보러가기</button>
+          <h2>{groupName}</h2>
+          Nickname : {myInfo.nickname}
         </div>
       </div>
       <ul className='memory-info'>

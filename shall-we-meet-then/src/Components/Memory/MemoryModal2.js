@@ -12,7 +12,7 @@ import {
 } from '../../api/MemoryApi.js'
 import './MemoryModal.css'
 
-export default function Memory(props) {
+export default function Memory2(props) {
   const baseURL = "http://k7d105.p.ssafy.io:8080"
   const [article, setArticle] = useState({})
   const [nickName, setNickName] = useState('')
@@ -28,6 +28,9 @@ export default function Memory(props) {
         console.error(err);
       })
   }, [props.articleIndex])
+  // useEffect(() => {
+  //   console.log(props.articles);
+  // })
   return (
     <>
     <div className='Memory-modal'>
@@ -56,7 +59,7 @@ export default function Memory(props) {
                   <div className='Memory-next'>
                     <div className='Memory-next-container'>
                       <div className='Memory-next-container-content'>
-                        <div className='Memory-next-content next-left'>
+                      <div className='Memory-next-content next-left'>
                           {
                             props.articleIndex === 0
                             ? null
@@ -115,8 +118,8 @@ export default function Memory(props) {
                       <article className='Memory-article'>
                         <div className='Memory-article-content'>
                           <div className='Memory-article-img'>
-                            <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
-                            {/* <video width="320" height="240" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} type="video/quicktime"></video>  */}
+                            {/* <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/> */}
+                            <video width="100%" height="100%" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} type="video/quicktime"></video> 
                           </div>
                           <div className='Memory-article-text'>
                             <div className='Memory-article-text-nickname'>

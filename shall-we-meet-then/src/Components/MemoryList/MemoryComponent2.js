@@ -11,16 +11,17 @@ import {
 } from '../../api/MemoryApi.js'
 import '../../pages/MemoryList/MemoryList.css'
 import MemoryCard from './MemoryCard'
+import MemoryCardVideo from './MemoryCardVideo'
 import '../../Common.css';
 
 
-export default function MemoryComponent(props) {
+export default function MemoryComponent2(props) {
   const [articleArr, setArticleArr] = useState([])
   const { groupSeq } = useParams()
   useEffect(() => {
     getArticlesApi({ groupSeq })
       .then(res => {
-        const result = res.data.filter(obj => obj.hasImage);
+        const result = res.data.filter(obj => obj.hasVideo);
         setArticleArr(() => chunk(result, 3))
       })
       .catch(err => {
@@ -52,7 +53,7 @@ export default function MemoryComponent(props) {
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
-                          return <MemoryCard
+                          return <MemoryCardVideo
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
@@ -68,7 +69,7 @@ export default function MemoryComponent(props) {
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
-                          return <MemoryCard
+                          return <MemoryCardVideo
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
@@ -85,7 +86,7 @@ export default function MemoryComponent(props) {
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
-                          return <MemoryCard
+                          return <MemoryCardVideo
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
