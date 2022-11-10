@@ -35,4 +35,17 @@ public class GroupBoardQueryRepository {
                 .where(builder)
                 .fetch();
     }
+
+    public List<GroupBoard> findAllAgreeAndNonAgreeBoard(ArticleSearchCondition condition) {
+        Long groupSeq = condition.getGroupSeq();
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (!ObjectUtils.isEmpty(groupSeq)) builder.and(groupBoard.groupMember.group.seq.eq(groupSeq));
+
+        return query.select(groupBoard)
+                .from(groupBoard)
+                .where(builder)
+                .fetch();
+    }
 }
