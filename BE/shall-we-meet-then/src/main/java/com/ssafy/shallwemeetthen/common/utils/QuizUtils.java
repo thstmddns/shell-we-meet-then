@@ -8,10 +8,12 @@ import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberQueryR
 import com.ssafy.shallwemeetthen.domain.groupmember.repository.GroupMemberRepository;
 import com.ssafy.shallwemeetthen.domain.quiz.dto.QuizResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @RequiredArgsConstructor
+@Component
 public class QuizUtils {
 
     private final GroupBoardRepository groupBoardRepository;
@@ -22,7 +24,7 @@ public class QuizUtils {
 
 
     //작성한 글이 어느 그룹원의 게시글일지
-    private QuizResponseDto Question1(Long groupBoardSeq){
+ //   private QuizResponseDto Question1(Long groupBoardSeq){
 //        GroupBoard findboard = groupBoardRepository.findById(groupBoardSeq).orElseThrow(() -> new IllegalArgumentException("그룹Seq가 잘못되었습니다."));
 //
 //        List<GroupMember> groupMember = GroupMemberQueryRepository.getGroupMembers(new GetGroupMembersDto.Request);
@@ -46,9 +48,9 @@ public class QuizUtils {
 //                .answer4() // 그룹멤버 4
 //                .build();
 //        return quizResponseDto;
-    }
+//    }
     //작성한 글이 몇 월에 작성한 글인지
-    private  QuizResponseDto Question2(Long groupBoardSeq) {
+    public QuizResponseDto Question2(Long groupBoardSeq) {
         GroupBoard findboard = groupBoardRepository.findById(groupBoardSeq).orElseThrow(() -> new IllegalArgumentException("그룹Seq가 잘못되었습니다."));
 
         Random random = new Random();
