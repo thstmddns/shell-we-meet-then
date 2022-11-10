@@ -22,9 +22,11 @@ public class QuizResponseDto {
 
     String boardSeq;
 
+    String subject;
+
 
     @Builder
-    public QuizResponseDto(String question, String correctAnswer, String answer1, String answer2, String answer3, String answer4, String existPicture, String boardSeq) {
+    public QuizResponseDto(String question, String correctAnswer, String answer1, String answer2, String answer3, String answer4, String existPicture, String boardSeq, String subject) {
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.answer1 = answer1;
@@ -33,5 +35,6 @@ public class QuizResponseDto {
         this.answer4 = answer4;
         this.existPicture = existPicture;
         this.boardSeq = boardSeq;
+        this.subject = subject;
     }
 }
