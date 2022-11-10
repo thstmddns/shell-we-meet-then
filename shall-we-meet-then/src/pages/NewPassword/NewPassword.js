@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
-
-
-
-
 function NewPassword() {
 
   const [email, setEmail] = useState('');

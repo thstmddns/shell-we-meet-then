@@ -34,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+
 }
 
 .main-page .components {
@@ -191,7 +191,7 @@
   transform: translate(-50%, -50%);
 
   /* background-color: grey; */
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   cursor: pointer;
   z-index: 2;
 }
@@ -224,8 +224,7 @@
   margin-top: 80vh;
   margin-left: -1vw;
 
-  /* background-color: grey; */
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   /* top: 85%;
   left: 47%; */
   cursor: pointer;
@@ -341,23 +340,40 @@
  .pencil-choice{
   position: absolute;
   
-  
+  width: 10vw;
+  height: 10vh;
 
-  top: 85%;
-  left: 57%;
+  margin-top: 83vh;
+  margin-left: 55vw;
+  margin-right: 80vw;
+
+  /* top: 85%; */
+  /* left: 57%; */
+
+  /* border: 2px solid red; */
 
   cursor: pointer;
 
   z-index: 3;
 }
 
-.pencil-choice > img {
-  width: 10vw;
-
+.pencil-choice:hover {
+  /* background-color: green; */
 }
 
-.pencil-choice:hover {
-  background-color: green;
+.pencil-img {
+  /* position: relative; */
+  /* display: inline-block; */
+
+  /* margin-right: 1.1vw; */
+
+  /* border: 3px solid grey; */
+  
+}
+
+.pencil-img > img {
+  width: 8vw;
+  height: inherit;
 }
 
 
@@ -378,8 +394,13 @@
   background-color: #f9f9f9;
   color: black;
   
+  text-align: center;
+  
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+  border-radius: 5%;
+
   padding: 12px 16px;
   z-index: 1;
   /* height: 20vh; */
@@ -395,6 +416,11 @@
 
 
 .dropdown:hover .dropdown-content {
+  display: block;
+
+}
+
+.pencil-choice:hover .dropdown-content {
   display: block;
 }
 
@@ -418,8 +444,42 @@
   display: block;
 }
 
-.dropdown>img {
-  width: 10%;
-  height: 10%;
+
+
+/* 캐릭터 이미지  */
+
+.rabbit-img-wrapper {
+  /* border: 1px solid red; */
+
+  position: absolute;
+
+  margin-top: 28vh;
+  margin-left: 52vw;
+
+  width: 20vw;
+  height: 44vh;
 }
 
+.rabbit-img-wrapper > img {
+  width: 22vw;
+  height: auto;
+}
+
+.alice-img-wrapper {
+  /* border: 1px solid red; */
+
+  position: absolute;
+
+  margin-top: 28vh;
+  margin-left: -3vw;
+
+  transform: rotateZ(-10deg);
+
+  width: 20vw;
+  height: 44vh;
+}
+
+.alice-img-wrapper > img {
+  width: 12vw;
+  height: auto;
+}

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 
 .login-page {
   width: 360px;
@@ -8,10 +8,12 @@
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
   max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
+  
+  /* margin: 0 auto 140px; */
+  margin-bottom: 20vh;
+
+  padding: 25px;
   text-align: center;
   top: 15vh;
   left: 7vh;
@@ -31,30 +33,31 @@
   /* font-family: "Roboto", sans-serif; */
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #e0bad7;
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #FFFFFF;
+  color: black;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: #a98ba2;
 }
 .form .message {
   margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
+  color: #f7eded;
+  font-size: 19px;
 }
 .form .message a {
-  color: #4CAF50;
+  color: #cad7cb;
   text-decoration: none;
 }
 .form .register-form {
   display: none;
+
 }
 .container {
   position: relative;
@@ -90,11 +93,8 @@
   color: #EF3B3A;
 }
 .landing__bg {
-  /* font-family: "Roboto", sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
-  /* background-image: url('../../../public/assets/img/landerBG.jpg'); */
-  /* background-size: cover; */
   width: 100%;
   height: 100%;
   position: absolute;

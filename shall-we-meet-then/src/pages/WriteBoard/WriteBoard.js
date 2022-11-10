@@ -157,10 +157,13 @@ function WriteBoard() {
 
   return (
     <>
+    
+    <NavBar />
       <div className="write-board-page">
-        <NavBar />
+   
+     
         {/* group-name 부분 */}
-        <div className="group-name-wrapper">
+        <div className="group-name-wrapper" style={{marginTop:"10vh"}}>
           <div className="group-name">자율 프로젝트</div>
         </div>
         {/* 글, 사진, 영상 영역 */}
@@ -180,7 +183,7 @@ function WriteBoard() {
             <ContentWrapper>
               <textarea className="writing-content" onChange={(e) => { setContent(e.target.value) }}></textarea>
             </ContentWrapper>
-            <button onClick={onSaveWriting}>글쓰기 완료</button>
+
           </BoardWrapper>
 
           {/* 사진 */}
@@ -270,9 +273,10 @@ function WriteBoard() {
                       alt=""
                       src={videoFile.preview_URL}
                       style={{
-                        width: "300px",
-                        height: "300px",
-                        ObjectFit: "contain",
+                        width: "25vw",
+                        height: "50vh",
+                        marginTop:"2vh"
+                        // ObjectFit: "contain",
                       }}
                     />
                   ) : (
@@ -300,20 +304,10 @@ function WriteBoard() {
           </BoardWrapper>
         </div>
       </div>
-      {/* <div>
-        <textarea 
-          value={content}
-          onChange={(e) => { setContent(e.target.value) }} 
-        />
-        <br />
-        <h1>사진</h1>
-        <input type='file' id='img' multiple />
-        <br />
-        <h1>동영상</h1>
-        <input type='file' id='video'/>
-        <br />
-        <button onClick={addArticle}>글 쓰기</button>
-    </div> */}
+
+      <div className="complete-btn-wrapper">
+        <button onClick={onSaveWriting}>글쓰기 완료</button>
+      </div>
     </>
   );
 }
@@ -327,7 +321,7 @@ const BoardWrapper = styled.div`
   height: 70vh;
 
   margin-right: 2vw;
-  margin-left: 2vw;
+  margin-left: 1vw;
 `;
 
 const ContentHeader = styled.div`

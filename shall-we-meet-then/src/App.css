@@ -6,7 +6,8 @@
 
 body{
   font-family: "fontone";
-  color: rgb(204, 68, 68);
+  /* color: rgb(204, 68, 68); */
+  color: white;
 }
 
 .App {

@@ -27,10 +27,16 @@
 }
 
 .clock-info-wrapper {
+    position: absolute;
+    /* border: 1px solid red; */
+
     display: inline;
 
-    margin-right: 0vw;
-    margin-top: 13vh;
+    width: 30vw;
+    height: 80vh;
+
+    margin-left: 49vw;
+    margin-top: 5vh;
 
     color: white;
 }
@@ -39,7 +45,7 @@
     margin-bottom: 20px;
     width: 300px;
     height: 30px;
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
     border: 0;
     
 }
@@ -52,3 +58,165 @@
     margin-bottom: 100px;
 } 
 
+.clock-input-group-name {
+    text-align: start;
+    margin-left: 5.5vw;
+    
+    margin-bottom: 2vh;
+
+    font-size: 28px;
+}
+
+.clock-input-wrapper {
+    /* border: 1px solid blue; */
+
+    padding-top:-1vh;
+    margin-bottom: -2vh;
+}
+
+.clock-input {
+    border: none;
+    background-color: transparent;
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--pink), -0.2rem -0.2rem 0.5rem var(--pink);
+    border-radius: 3rem;
+
+    padding-left: 1vw;
+
+    margin-bottom: 20px;
+    width: 300px;
+    height: 30px;
+    /* background-color: blanchedalmond; */
+    border: 0;
+}
+/* input:focus {outline: 2px solid #d50000;} */
+.clock-input:focus {
+    outline: 1px solid transparent;
+}
+
+.clock-input::placeholder {
+    color: rgb(243, 210, 210);
+    font-family: "fontone";
+    font-size: 22px;
+
+}
+
+
+.clock-input-nick-name {
+        /* border: 1px solid red; */
+        text-align: start;
+        margin-left: 5.5vw;
+        
+        margin-bottom: 2vh;
+    
+        font-size: 28px;
+}
+
+
+/* 열람날짜 관련 CSS */
+.clock-input-open-date {
+    text-align: start;
+    margin-left: 5.5vw;
+    
+    margin-bottom: 2vh;
+
+    font-size: 28px;
+}
+
+/* .clock-input-open-date */
+
+input[type="date"]{
+    position: relative;
+    min-height:30px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    
+
+    font-family: 'fontone';
+
+    font-size: 22px;
+
+    border-radius: 3rem;
+
+    background-color: transparent;
+
+    color: rgb(243, 210, 210);  
+
+    box-shadow: 0.2rem 0.2rem 0.5rem var(--pink), -0.2rem -0.2rem 0.5rem var(--pink);
+    
+  }
+  
+  /* input[type="date"]::-webkit-calendar-picker-indicator {
+    color: yellow;
+    background: none;
+    z-index: 1;
+  } */
+
+
+  /* 그룹생성 버튼 디자인 */
+
+  @keyframes gradient1 {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+  .w-btn {
+    /* position: relative; */
+    border: none;
+    display: inline-block;
+    /* padding: 15px 30px; */
+    border-radius: 15px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    /* font-weight: 600; */
+    transition: 0.25s;
+
+    /* color: black; */
+}
+
+.w-btn:hover {
+    /* letter-spacing: 1px; */
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.w-btn:active {
+    transform: scale(1.2);
+}
+
+.w-btn-gra2 {
+    background: linear-gradient(-45deg, #dbb8d4, #ca346e, #9f9fd1, #8a64e8);
+    color: black;
+}
+
+.w-btn-gra-anim {
+    background-size: 400% 400%;
+    animation: gradient1 1.5s ease infinite;
+}
+
+.clock-make-btn-wrapper {
+    position: absolute;
+
+    /* border: 1px solid grey; */
+
+    margin-left: 9vw;
+
+    width: 12vw;
+    /* padding-bottom: ; */
+}
+
+.clock-make-btn-wrapper > button {
+    width: 9vw;
+    /* height: 5vh; */
+    font-family: 'fontone';
+
+    font-size: 24px;
+    text-align: center;
+
+}
