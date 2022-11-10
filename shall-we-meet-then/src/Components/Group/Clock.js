@@ -27,7 +27,6 @@ export const ShiningComponent = styled.div`
 
   margin-top: 6vh;
   margin-bottom: 50vh;
-
 `
 
 export const ShiningClock = styled.div`

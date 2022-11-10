@@ -5,6 +5,7 @@ import './Home.css';
 import axios from 'axios';
 
 
+import styled from "styled-components";
 
 
 
@@ -176,6 +177,7 @@ function Home() {
     <div className="landing__bg">
       {/* 회원가입 */}
       <div className="login-page">
+        <ShiningLoginComponent>
         <div className="form">
           <form className="register-form" onSubmit={stopEvent}>
 
@@ -195,8 +197,6 @@ function Home() {
           </form>
 
 
-
-
           {/* 로그인 */}
           <form className="login-form" onSubmit={stopEvent}>
             <input type="text" placeholder="username" value={signInEmail}
@@ -205,16 +205,11 @@ function Home() {
               onChange={(e) => { setSignInPassword(e.target.value) }} />
             <button onClick={signIn}>login</button>
             <p className="message">아이디가 없으신가요?&nbsp;&nbsp;&nbsp;<a onClick={changeForm} href="#">회원가입</a></p>
-            <p className="message">비밀번호가 기억나지 않으신가요?&nbsp;&nbsp;&nbsp; <a onClick={goFindPassword}>비밀번호 찾기</a></p>
+            <p className="message">비밀번호가 기억나지 않으신가요?&nbsp;&nbsp;&nbsp; <a style={{cursor: "pointer"}} onClick={goFindPassword}>비밀번호 찾기</a></p>
           </form>
 
-
-
-
-
-
-
         </div>
+        </ShiningLoginComponent>
       </div>
 
 
@@ -225,3 +220,25 @@ function Home() {
 }
 
 export default Home
+
+export const ShiningLoginComponent = styled.div`
+  width: 26.5rem;
+  height: 30rem;
+  border-radius: 3rem;
+  box-shadow: 0.2rem 0.2rem 1.2rem var(--pink), -0.2rem -0.2rem 1.2rem var(--pink);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, -webkit-min-content);
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+
+  margin-right:30vw;
+  margin-top: 6vh;
+  margin-bottom: 50vh;
+
+
+
+`

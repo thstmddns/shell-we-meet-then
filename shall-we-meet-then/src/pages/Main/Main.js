@@ -86,7 +86,7 @@ function Main() {
 
     window.onload = clock();
 
-    setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)));
+    setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)) -1);
   }, [targetTime]);
 
   useEffect(() => {
@@ -169,15 +169,30 @@ function Main() {
     openApi(context).then((r) => console.log(r, groups[temp].seq));
   };
 
+  const onMoveMain = () => {
+    navigate("/main")
+  }
+
   return (
     <div className="main-page">
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
       <div id="title"></div>
+  
+          {/* <div className="rabbit-img-wrapper" >
+            <img alt="" 
+              src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} 
+            />
+          </div> */}
+
 
       <div className="navBar-wrapper">
-        <div className="nav-home-wrapper">
+        <div 
+          className="nav-home-wrapper" 
+          style={{cursor:"pointer"}}
+          onClick={{onMoveMain}}
+        >
           <a>Home</a>
         </div>
 
@@ -222,11 +237,12 @@ function Main() {
         {/* <h1>D-day</h1> */}
 
         <div className="pencil-choice">
-          <div className="dropdown">
+          <div className="pencil-img" >
             <img
               alt=""
               src={process.env.PUBLIC_URL + "/assets/img/pencil.png"}
             />
+          </div>
             <div className="dropdown-content">
               <a onClick={goWriteBoard}>글쓰러가기</a>
               <br />
@@ -234,7 +250,7 @@ function Main() {
               <br />
               <a onClick={goCreateGroup2}>그룹참여하기</a>
             </div>
-          </div>
+    
         </div>
 
         <img
@@ -281,8 +297,23 @@ function Main() {
                   <span class="marker__4"></span>
                 </div>
               </div>
+
+            <div className="rabbit-img-wrapper" >
+              <img alt="" 
+                src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} 
+              />
+            </div>
+
+            <div className="alice-img-wrapper" >
+              <img alt="" 
+                src={process.env.PUBLIC_URL + "/assets/img/alice-character.png"} 
+              />
+            </div>
             </ShiningComponent>
+
           </ShiningContainer>
+
+
         </div>
         {/* <div className="group-name-wrapper">
             <h1>{groups[temp].name}</h1>

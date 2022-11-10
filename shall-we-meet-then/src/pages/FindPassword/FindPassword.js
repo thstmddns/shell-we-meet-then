@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './FindPassword.css'
 import axios from "axios";
 
-
+import { ShiningLoginComponent } from "../Home/Home";
 
 function FindPassword() {
   const [Email, setEmail] = useState('');
@@ -34,17 +34,18 @@ function FindPassword() {
 
 
   return (
-    <div className="landing__bg" >
-      <div className="login-page">
-        <div className="form">
+    <div className="find-password-wrapper" >
+      <ShiningLoginComponent>
+      <div className="find-page">
+        <div className="find-password-form">
           <div className="login-form">
             <input type="text" placeholder="E-mail" value={Email}
               onChange={(e) => { setEmail(e.target.value) }} />
-            <button onClick={sendEmail}>비밀번호 찾기</button>
+            <button onClick={sendEmail}>Find Password</button>
           </div>
         </div>
       </div>
-
+      </ShiningLoginComponent>
 
 
 

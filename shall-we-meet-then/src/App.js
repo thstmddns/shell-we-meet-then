@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import VideoUploader from './pages/WriteBoard/VideoUploader';
 import "./App.css"
+import { useEffect } from 'react'
 
 import {
 
@@ -23,6 +24,10 @@ import {
 function App() {
   return (
     <div className="App">
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+      <div id="title"></div>
       <Router>
         <Routes>
           <Route path='/' element={<Home />} />

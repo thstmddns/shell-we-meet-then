@@ -2,7 +2,7 @@
     
 }
 
-.group-name-wrapper{
+.write-board-page .group-name-wrapper{
     /* background-color: grey; */
     /* border: 1px solid grey;  */
 
@@ -11,19 +11,24 @@
     margin-right: 5vw;
     margin-top: 3vh;
     margin-bottom: 4vh;
+    
+    /* font-size: 40px; */
+
 }
 
 .group-name-wrapper .group-name {
     text-align: center;
     
 
-    font-size: 30px;
+    font-size: 52px;
+    margin-top: -2vh;
+    /* border: 1px solid grey; */
 }
 
 /* 컨텐츠 영역 시작 */
 .group-content-wrapper {
     /* background-color: grey; */
-    border: 1px solid grey; 
+    /* border: 1px solid grey;  */
 
     display: flex;
     width: 90vw;
@@ -31,8 +36,8 @@
 
     margin-left: 5vw;
     margin-right: 5vw;
-    
-    padding-top: 2vh;
+    margin-top: -2vh;
+    /* padding-top: 0vh; */
 }
 
 /* 글쓰기 영역 */
@@ -70,13 +75,15 @@
 .writing-content {
     box-sizing: border-box;
     width: 25vw;
-    height: 54vh;
+    height: 50vh;
     border-radius: 5px;
 
-    font-size: 22px;
+    font-size: 24px;
 
     margin-left: 0.5vw;
     margin-top: 2vh;
+
+    font-family: "fontone";
 }
 
 /* 사진 영역 */
@@ -141,8 +148,8 @@
 
 .photo-preview-img {
     background-color: aquamarine;
-    width: 23vw;
-    height: 40vh;
+    width: 25vw;
+    height: 50vh;
 
     margin-top: 2vh;
     margin-left: 0.5vw;
@@ -156,8 +163,8 @@
     width: 8vw;
     height: 4vh;
 
-    margin-left: 1vw;
-    margin-left: 17vw;
+    margin-top: 10vh;
+    margin-left: 18.5vw;
 
     text-align: center;
 }
@@ -201,6 +208,20 @@
     width: 4vw;
     height: inherit;
 
-    margin-left: 10vw;
+    margin-left: 1vw;
     
+}
+
+.complete-btn-wrapper {
+    /* border: 1px solid green; */
+
+    position: absolute;
+
+    margin-left: 84vw;
+    /* margin-bottom: -3vh; */
+
+    width: 10vw;
+    height: auto;
+
+
 }
