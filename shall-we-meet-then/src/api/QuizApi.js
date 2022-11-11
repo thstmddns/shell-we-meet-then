@@ -25,7 +25,7 @@ const quizGetScoreApi = async(groupSeq) => {
 }
 // 퀴즈 맞춘 갯수 저장
 const quizAddScoreApi = async(groupSeq, score) => {
-  return await api.put(`/group-members/score`, { params: {groupSeq, score}})
+  return await api.put(`/group-members/score`, {groupSeq, score})
 }
 
 export {

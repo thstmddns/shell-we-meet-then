@@ -44,15 +44,16 @@ export default function MemoryComponent(props) {
       <article className='memory-article'>
         <div>
           <div className='memory-article-content'>
-            {
+          {
               articleArr.map((arr, i) => {
                 if (arr.length === 3) {
                   return (
-                    <>
+                    <div key={i}>
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
                           return <MemoryCard
+                                  key={j}
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
@@ -60,15 +61,16 @@ export default function MemoryComponent(props) {
                         })
                       }
                     </div>
-                    </>
+                    </div>
                   )
                 } else if (arr.length === 2) {
                   return (
-                    <>
+                    <div key={i}>
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
                           return <MemoryCard
+                                  key={j}
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
@@ -77,15 +79,16 @@ export default function MemoryComponent(props) {
                       }
                       <div style={{flex:"1 0 0%"}}></div>
                     </div>
-                    </>
+                    </div>
                   )
                 } else {
                   return (
-                    <>
+                    <div key={i}>
                     <div className='memory-article-element'>
                       {
                         arr.map((article, j) => {
                           return <MemoryCard
+                                  key={j}
                                   boardSeq={article.boardSeq}
                                   setModalBtn={props.setModalBtn}
                                   setBoardSeq={props.setBoardSeq}
@@ -95,7 +98,7 @@ export default function MemoryComponent(props) {
                       <div style={{flex:"1 0 0%"}}></div>
                       <div style={{flex:"1 0 0%"}}></div>
                     </div>
-                    </>
+                    </div>
                   )
                 }
               })

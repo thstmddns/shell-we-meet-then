@@ -30,7 +30,7 @@ export default function MemoryList() {
   useEffect(() => {
     getArticlesApi({ groupSeq })
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data);
         const resultImage = res.data.filter(obj => obj.hasImage);
         const resultVideo = res.data.filter(obj => obj.hasVideo);
         setArticlesPhoto(resultImage);
