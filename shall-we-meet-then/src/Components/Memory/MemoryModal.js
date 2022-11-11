@@ -20,7 +20,6 @@ export default function Memory(props) {
   useEffect(() => {
     getArticleApi(props.boardSeq)
       .then(res => {
-        console.log(res.data);
         setNickName(res.data.groupMember.nickname)
         setArticle(res.data)
       })

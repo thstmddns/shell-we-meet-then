@@ -8,34 +8,83 @@ import './Quiz.css'
 import '../../Common.css'
 import {
   quizApi,
-  quizGetScoreApi,
   quizAddScoreApi,
 } from '../../api/QuizApi.js'
 
 export default function Quiz() {
   const baseURL = "http://k7d105.p.ssafy.io:8080"
+  const navigate = useNavigate()
   const [pTime, setPTime] = useState(0);
   const [problem, setProblem] = useState({})
   const [problems, setProblems] = useState([])
   const [problemIndex, setProblemIndex] = useState(0)
+  const [score, setScore] = useState(0)
   const { groupSeq } = useParams()
   useEffect(() => {
     const timeout = setTimeout(() => setPTime(pTime => pTime+0.01), 10)
-    if (pTime >= 10) clearTimeout(timeout);
+    if (pTime >= 10) {
+      clearTimeout(timeout);
+
+      if (problemIndex === problems.length-1) {
+        console.log(score);
+        quizAddScoreApi(groupSeq, score)
+          .then(res => {
+            // console.log(res.data);
+          })
+          .catch(err => {
+            console.error(err);
+          })
+          navigate(`/group/memory/${groupSeq}`)
+      }
+      setPTime(0)
+      setProblem(problems[problemIndex+1])
+      setProblemIndex(i => i+1)
+    }
   }, [pTime])
   useEffect(() => {
     quizApi({ groupSeq })
       .then(res => {
         console.log(res.data);
         setProblems(res.data)
+        setProblem(res.data[problemIndex])
       })
       .catch(err => {
         console.error(err);
       })
   }, [])
-  useEffect(() => {
-    setProblem(problems[problemIndex])
-  }, [problemIndex])
+
+  function problemSolved(answer) {
+    if (answer === problem.correctAnswer) {
+      setScore(i => Math.round(i+100*(10-pTime)))
+    }
+    
+    if (problemIndex === problems.length-1) {
+      console.log(score);
+      quizAddScoreApi(groupSeq, score)
+        .then(res => {
+          // console.log(res.data);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+        navigate(`/group/memory/${groupSeq}`)
+    }
+    console.log(score);
+    setPTime(0)
+    setProblem(problems[problemIndex+1])
+    setProblemIndex(i => i+1)
+  }
+  function goMemoryPage() {
+    console.log(score);
+      quizAddScoreApi(groupSeq, score)
+        .then(res => {
+          // console.log(res.data);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    navigate(`/group/memory/${groupSeq}`)
+  }
   return (
     <>
     <NAV/>
@@ -59,7 +108,7 @@ export default function Quiz() {
         </div>
       </div>
       <div className='text-right skip-btn-loc'>
-        <button className='skip-btn btn-effect'><span>skip</span></button>
+        <button onClick={() => {goMemoryPage()}} className='skip-btn btn-effect'><span>skip</span></button>
       </div>
       <div className='quiz-container'>
         <div className='user_quiz_content'>
@@ -77,19 +126,19 @@ export default function Quiz() {
 
             <div className='quiz-answer'>
               <ul className='d-flex justify-center answer-only'>
-                <li className='d-flex select-box'>
+                <li className='d-flex select-box' onClick={() => problemSolved(problem.answer1)}>
                   <span className="box-order">1</span>
                   <p>{problem.answer1}</p>
                 </li>
-                <li className='select-box'>
+                <li className='select-box' onClick={() => problemSolved(problem.answer2)}>
                   <span className="box-order">2</span>
                   <p>{problem.answer2}</p>
                 </li>
-                <li className='select-box'>
+                <li className='select-box' onClick={() => problemSolved(problem.answer3)}>
                   <span className="box-order">3</span>
                   <p>{problem.answer3}</p>
                 </li>
-                <li className='select-box'>
+                <li className='select-box' onClick={() => problemSolved(problem.answer4)}>
                   <span className="box-order">4</span>
                   <p>{problem.answer4}</p>
                 </li>
