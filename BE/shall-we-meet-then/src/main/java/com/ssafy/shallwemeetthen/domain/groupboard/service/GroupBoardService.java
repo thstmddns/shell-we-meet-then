@@ -150,10 +150,29 @@ public class GroupBoardService {
     }
 
     @Transactional(readOnly = true)
+    public List<GetCountDayResponseDto> getArticleCount(GetCountDayRequestDto dto) {
+        Long loginSeq = securityContext.getThreadLocal();
+
+        List<GetCountDayResponseDto> dtos = groupBoardQueryRepository.findCountDay(dto.getGroupSeq(), loginSeq);
+
+        if (dtos.get(0).getGroupMember() == null) throw new EmptyTotalCountException("그룹에 작성된 게시글이 없습니다.");
+
+        return dtos;
+    }
+
+    @Transactional(readOnly = true)
     public List<GetTotalCountResponseDto> getTotalCount(GetTotalCountRequestDto dto) {
         List<GetTotalCountResponseDto> dtos = groupBoardRepository.findGetTotalCountDto(dto.getGroupSeq());
 
         if (dtos.get(0).getGroupMemberSeq() == null) throw new EmptyTotalCountException("그룹에 작성된 게시글이 없습니다.");
+
+        return dtos;
+    }
+
+    public List<GetMemberBoardCountResponseDto> getTotalCount(GetMemberBoardCountRequestDto dto) {
+        List<GetMemberBoardCountResponseDto> dtos = groupBoardRepository.findMemberBoardCount(dto.getGroupSeq());
+
+        if (dtos.get(0).getGroupMember() == null) throw new EmptyTotalCountException("그룹에 작성된 게시글이 없습니다.");
 
         return dtos;
     }
