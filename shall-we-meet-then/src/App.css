@@ -49,3 +49,12 @@ body{
   }
 }
 
+
+/* SweetAlert2 CSS Custon */
+.swal2-title {
+  font-size: 3rem !important;
+}
+
+.swal2-text {
+  font-size: 3rem !important;
+}
