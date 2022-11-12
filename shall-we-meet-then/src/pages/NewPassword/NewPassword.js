@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
-
+import Swal from "sweetalert2";
 function NewPassword() {
 
   const [email, setEmail] = useState('');
@@ -32,7 +32,12 @@ function NewPassword() {
       })
     }
     else {
-      alert('비밀번호가 다릅니다.')
+      // alert('비밀번호가 다릅니다.')
+      Swal.fire({
+        icon: "error",
+        title: "비밀번호가 다릅니다",
+        // text: "이메일을 입력해주세요",
+      });
     }
 
   }

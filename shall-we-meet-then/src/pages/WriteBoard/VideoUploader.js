@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import "./VideoUploader.scss";
+import Swal from "sweetalert2";
 
 const VideoUploader = () => {
     const [defaultImg, setDefaultImg] = useState(
@@ -34,9 +35,13 @@ const VideoUploader = () => {
             setInterval로 비디오가 로딩된 상태가 될 때까지 계속 확인하면서 기다려준다
           */
           const timer = setInterval(() => {
-            if (videoElement.readyState == 4) {
-              if (videoElement.duration > 16) {
-                alert("동영상의 길이가 16초보다 길면 안됩니다");
+            if (videoElement.readyState === 4) {
+              if (videoElement.duration > 180) {
+                // alert("동영상의 길이가 3분보다 길면 안됩니다. ");
+                Swal.fire({
+                  icon: "error",
+                  title: "동영상의 길이가 3분보다 길면 안됩니다.",
+                });
                 // src에 넣지 않을 것이므로 미리보기 URL 제거
                 URL.revokeObjectURL(preview_URL);
               } else {

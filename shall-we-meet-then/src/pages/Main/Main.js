@@ -173,6 +173,12 @@ function Main() {
     navigate("/main")
   }
 
+  const onLogOutBtn = ()=>{
+    sessionStorage.removeItem("accessToken")
+
+    navigate("/")  
+  }
+
   return (
     <div className="main-page">
       <div id="stars"></div>
@@ -229,7 +235,7 @@ function Main() {
         </div>
 
         <div className="nav-logout-wrapper">
-          <a className="logout-btn">로그아웃</a>
+          <a className="logout-btn" onClick={onLogOutBtn }>로그아웃</a>
         </div>
       </div>
       <div style={{ marginTop: "-20vh" }}>
@@ -238,10 +244,22 @@ function Main() {
 
         <div className="pencil-choice">
           <div className="pencil-img" >
-            <img
-              alt=""
-              src={process.env.PUBLIC_URL + "/assets/img/pencil.png"}
-            />
+
+
+          <div class="circle">
+          <span class="circle__btn">
+            <img 
+              style={{width:'8vw'}}
+              alt="" 
+              src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} />
+          {/* <img alt="" src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} /> */}
+          </span>
+          <span class="circle__back-1"></span>
+          <span class="circle__back-2"></span>
+        </div>
+
+
+           
           </div>
             <div className="dropdown-content">
               <a onClick={goWriteBoard}>글쓰러가기</a>

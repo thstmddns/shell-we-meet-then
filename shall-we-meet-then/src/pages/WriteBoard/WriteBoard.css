@@ -40,37 +40,6 @@
     /* padding-top: 0vh; */
 }
 
-/* 글쓰기 영역 */
-/* .writing-wrapper {
-    background-color: green;
-
-    width: 28vw; 
-    height: 70vh;
-
-    margin-right: 2vw;
-    margin-left: 2vw;
-
-} */
-
-/* .writing-wrapper .writing-header {
-    background-color: aqua;
-    
-    width: 26vw;
-    height: 8vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-}
-
-.writing-wrapper .writing-content-wrapper {
-    background-color: aqua;
-
-    width: 26vw;
-    height:58vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-} */
 
 .writing-content {
     box-sizing: border-box;
@@ -86,36 +55,7 @@
     font-family: "fontone";
 }
 
-/* 사진 영역 */
-/* .photo-wrapper {
-    background-color: green;
 
-    width: 28vw; 
-    height: 70vh;
-
-    margin-right: 2vw;
-}
-
-
-.photo-wrapper .photo-header {
-    background-color: aqua;
-    
-    width: 26vw;
-    height: 8vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-}
-
-.photo-wrapper .photo-content-wrapper {
-    background-color: aqua;
-
-    width: 26vw;
-    height:58vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-} */
 
 /* default 이미지 & 미리보기 이미지 */
 .photo-content-input {
@@ -147,7 +87,6 @@
 }
 
 .photo-preview-img {
-    background-color: aquamarine;
     width: 25vw;
     height: 50vh;
 
@@ -156,52 +95,27 @@
 }
 
 .find-file-btn {
-    /* background-color:violet; */
-    border: 1px solid black;
+    background-color:transparent;
     border-radius: 8px;
+    border: none;
 
     width: 8vw;
     height: 4vh;
 
-    margin-top: 10vh;
-    margin-left: 18.5vw;
+    margin-top: 2.3vh;
+    margin-left: 2vw;
 
     text-align: center;
+
+    font-family: 'fontone';
+    font-size: 23px;
 }
 
 .find-file-btn:hover {
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 
-/* 비디오 영역 */
-/* .video-wrapper {
-    background-color: green;
 
-    width: 28vw; 
-    height: 70vh;
-
-    margin-right: 2vw;
-}
-
-.video-wrapper .video-header {
-    background-color: aqua;
-    
-    width: 26vw;
-    height: 8vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-}
-
-.video-wrapper .video-content-wrapper {
-    background-color: aqua;
-
-    width: 26vw;
-    height:58vh;
-
-    margin-left: 0.6vw;
-    margin-top: 1vh;
-} */
 
 /* 영역별 아이콘 */
 .content-header-icon {
@@ -220,6 +134,73 @@
     margin-left: 84vw;
     /* margin-bottom: -3vh; */
 
+    width: 10vw;
+    height: auto;
+}
+
+
+/*  BUTTONS  */
+.btn {
+  width: 8rem;
+  height: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.3rem rgb(229, 178, 206), -0.1rem -0.1rem 0.3rem rgb(229, 178, 206);
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn__secondary {
+  grid-column: 1/2;
+  grid-row: 5/6;
+  /* color: var(--greyDark); */
+  color: rgb(244, 225, 225);
+}
+.btn__secondary:hover {
+  color: rgb(237, 154, 199);
+}
+.btn__secondary:active {
+  box-shadow: inset 0.1rem 0.1rem 0.3rem rgb(237, 154, 199), inset -0.2rem -0.2rem 0.5rem rgb(237, 154, 199);
+}
+.btn p {
+  font-size: 1.6rem;
+}
+
+
+/* 영상 업로드 버튼 */
+.upload-button-wrapper {
+    display: flex;
+    /* border: 1px solid red;` */
+
+    padding-top: -10vh;
+    margin-left: 4vw;
+
+
+}
+
+.upload-video-btn {
+    /* margin-right: -10vw; */
+}
+
+/* 이미지 업로드 버튼 */
+.upload-img-btn {
+    position: relative;
+
+    margin-left: 18vw;
+    margin-top: 10vh;
+
+    display: flex;
+}
+
+.board-complete-btn-wrapper {
+    position: absolute;
+
+    margin-left: 83.6vw;
+    /* margin-bottom: -3vh; */
+    margin-top: -4vh;
     width: 10vw;
     height: auto;
 

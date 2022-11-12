@@ -5,7 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import "./CreateGroup.css";
 
 import styled from "styled-components";
-
+import Swal from "sweetalert2";
 import {
   ShiningComponent,
   ShiningContainer,
@@ -72,13 +72,36 @@ export default function CreateGroup() {
   const callAddGroup = () => {
     console.log(`${openDate} 00:00:00`);
     if (groupName === "") {
-      alert("그룹이름을 입력해주세요");
+      // alert("그룹이름을 입력해주세요");
+      Swal.fire({
+        icon: "error",
+        title: "시계 생성 실패",
+        text: "그룹이름을 입력해주세요.",
+      });
+
+
       return;
     } else if (nickName === "") {
-      alert("사용하실 닉네임을 입력해주세요");
+      // alert("사용하실 닉네임을 입력해주세요");
+      Swal.fire({
+        icon: "error",
+        title: "시계 생성 실패",
+        text: "사용하실 닉네임을 입력해주세요.",
+      });
+
+
+
       return;
     } else if (openDate === "") {
-      alert("열람날짜를 입력해주세요");
+      // alert("열람날짜를 입력해주세요");
+      Swal.fire({
+        icon: "error",
+        title: "시계 생성 실패",
+        text: "열람날짜를 입력해주세요.",
+      });
+
+
+
       return;
     } else {
       const context = {
@@ -106,10 +129,23 @@ export default function CreateGroup() {
   // 그룹참가 함수
   const joinGroup = () => {
     if (joinNickname === "") {
-      alert("사용하실 닉네임을 입력해주세요");
+      // alert("사용하실 닉네임을 입력해주세요");
+      Swal.fire({
+        icon: "error",
+        title: "참가 실패",
+        text: "사용하실 닉네임을 입력해주세요.",
+      });
+
       return;
     } else if (invitationCode === "") {
-      alert("초대코드를 입력해주세요");
+      // alert("초대코드를 입력해주세요");
+      
+      Swal.fire({
+        icon: "error",
+        title: "참가 실패",
+        text: "초대코드를 입력해주세요.",
+      });
+
       return;
     } else {
       const context = {
