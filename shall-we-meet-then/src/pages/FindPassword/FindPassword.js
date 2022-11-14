@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './FindPassword.css'
 import axios from "axios";
-
+import Swal from "sweetalert2";
 import { ShiningLoginComponent } from "../Home/Home";
 
 function FindPassword() {
@@ -22,14 +22,24 @@ function FindPassword() {
       .then(res => {
         console.log(res)
         if (res.status === 200) {
-          alert('비밀번호 수정 이메일이 전송되었습니다.')
+          // alert('비밀번호 찾기 이메일이 전송되었습니다.')
+          Swal.fire({
+            icon: "success",
+            title: "이메일이 전송되었습니다",
+            showConfirmButton: false,
+            timer: 1300,
+          });
+    
         }
         else {
-          alert('없는 아이디입니다')
+          Swal.fire({
+            icon: "error",
+            title: "비밀번호 찾기 실패",
+            text: "없는 아이디입니다.",
+          });
         }
       })
   }
-
 
 
 

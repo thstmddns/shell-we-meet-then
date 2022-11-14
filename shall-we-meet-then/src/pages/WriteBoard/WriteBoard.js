@@ -6,6 +6,8 @@ import axios from "axios";
 import "./WriteBoard.css";
 import { writeMemoryApi } from "../../api/WriteBoardApi";
 
+import Swal from "sweetalert2";
+
 function WriteBoard() {
   const [content, setContent] = useState("");
   const { groupSeq } = useParams();
@@ -53,7 +55,15 @@ function WriteBoard() {
 
   const onSaveWriting = () => {
     if(content === ''){
-      alert("내용을 입력해주세요")
+      // alert("내용을 입력해주세요")
+
+      Swal.fire({
+        icon: "error",
+        title: "작성 실패",
+        text: "글 내용을 작성해주세요",
+      });
+
+
       return
     }
     let form = new FormData();
@@ -90,7 +100,17 @@ function WriteBoard() {
           "Authorization": sessionStorage.getItem("accessToken")
         },
       })
-      .then(navigate("/main"));
+      .then(()=>{
+
+        Swal.fire({
+          icon: "success",
+          title: "추억 등록 완료!",
+          showConfirmButton: false,
+          timer: 1300,
+        });
+        // navigate("/diarylist", { replace: true });
+        navigate("/main", { replace: true});
+      });
   };
 
 
@@ -118,7 +138,7 @@ function WriteBoard() {
           setInterval로 비디오가 로딩된 상태가 될 때까지 계속 확인하면서 기다려준다
         */
         const timer = setInterval(() => {
-          if (videoElement.readyState == 4) {
+          if (videoElement.readyState === 4) {
             if (videoElement.duration > 16) {
               alert("동영상의 길이가 16초보다 길면 안됩니다");
               // src에 넣지 않을 것이므로 미리보기 URL 제거
@@ -237,7 +257,8 @@ function WriteBoard() {
                   style={{ display: "none" }}
                 />
                 <label htmlFor="img">
-                  <div className="find-file-btn">사진 올리기</div>
+                  {/* <div className="find-file-btn">사진 올리기</div> */}
+                  <div class="upload-img-btn btn btn__secondary"><p>사진 올리기</p></div>
                 </label>
               </div>
             </ContentWrapper>
@@ -287,13 +308,12 @@ function WriteBoard() {
                     />
                   )}
                 </div>
-                <div className="upload-button">
-                  <button variant="contained" onClick={() => inputRef.click()}>
+                <div className="upload-button-wrapper">
+                  <button class="find-file-btn btn btn__secondary" onClick={() => inputRef.click()}>
                     영상업로드
                   </button>
                   <button
-                    variant="contained"
-                    color="error"
+                    class="find-file-btn btn btn__secondary"
                     onClick={deleteVideoImage}
                   >
                     삭제
@@ -305,9 +325,20 @@ function WriteBoard() {
         </div>
       </div>
 
-      <div className="complete-btn-wrapper">
+      {/* <div className="complete-btn-wrapper">
         <button onClick={onSaveWriting}>글쓰기 완료</button>
-      </div>
+      </div> */}
+
+      <div className="board-complete-btn-wrapper">
+                <button 
+                  style={{fontFamily:"fontone", fontSize:"23px", width:"7.5vw"}}
+                  className="w-btn w-btn-gra2 w-btn-gra-anim" 
+                  type="button"
+                  onClick={onSaveWriting}
+                  >
+                  추억생성
+                </button>
+                </div>
     </>
   );
 }
