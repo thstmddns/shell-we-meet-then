@@ -4,10 +4,20 @@
   src: url("../../../public/assets/fonts/fontone.ttf")
 }
 
+.main-page, .main-page::before, .main-page::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+
+}
+
 .main-page {
   /* font-family: "fontone"; */
   color: white;
+  overflow: hidden;
+
 }
+  
 
 /* 시계 테스트 */
 :root {
@@ -23,11 +33,7 @@
 }
 
 
-.main-page, .main-page::before, .main-page::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+
 
 /* .main-page .container {
   min-height: 100vh;
@@ -218,17 +224,25 @@
 .main-page .group-name-wrapper {
   position: absolute;
 
+  /* background-color: green; */
+
   width: 30vw;
   height: 8vh;
 
   margin-top: 80vh;
   margin-left: -1vw;
 
-  /* border: 1px solid grey; */
+  border: 1px solid grey;
   /* top: 85%;
   left: 47%; */
   cursor: pointer;
   z-index: 2; 
+}
+
+.agree-btn {
+  width: 10vw;
+  height: 5vh;
+  background-color: red;
 }
 
 .group-name-wrapper > h1 {

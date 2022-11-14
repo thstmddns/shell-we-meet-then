@@ -87,6 +87,9 @@
     height: 30px;
     /* background-color: blanchedalmond; */
     border: 0;
+    color: white; /* input할때 나오는 글자 색깔 */
+    font-family: "fontone";
+    font-size: 22px;
 }
 /* input:focus {outline: 2px solid #d50000;} */
 .clock-input:focus {
