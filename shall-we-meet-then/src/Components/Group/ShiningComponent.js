@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 
+
 export const ShiningContainer = styled.div`
   min-height: 100vh;
   display: flex;
@@ -29,22 +30,22 @@ export const ShiningComponent = styled.div`
   margin-bottom: 50vh;
 `
 
-export const ShiningClock = styled.div`
-    grid-column: 2/3;
-    grid-row: 1/3;
-    width: 32rem;
-    height: 32rem;
-    justify-self: center;
-    box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+// export const ShiningClock = styled.div`
+//     grid-column: 2/3;
+//     grid-row: 1/3;
+//     width: 32rem;
+//     height: 32rem;
+//     justify-self: center;
+//     box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+//     border-radius: 50%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     position: relative;
 
-    align-items: center;
+//     align-items: center;
 
-    margin-top:-5vh;
-    margin-bottom: 60h;
+//     margin-top:-5vh;
+//     margin-bottom: 60h;
 
-`
+// `

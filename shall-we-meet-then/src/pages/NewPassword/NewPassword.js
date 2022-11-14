@@ -17,7 +17,7 @@ function NewPassword() {
     if (password === passwordCheck) {
       axios({
         method: 'put',
-        url: 'https://server.shallwemeetthen.com/members/password',
+        url: 'http://k7d105.p.ssafy.io/members/password',
         headers: {
           'Content-Type': 'application/json',
         },

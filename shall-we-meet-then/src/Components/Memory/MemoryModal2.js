@@ -13,7 +13,7 @@ import {
 import './MemoryModal.css'
 
 export default function Memory2(props) {
-  const baseURL = "https://server.shallwemeetthen.com"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const [article, setArticle] = useState({})
   const [nickName, setNickName] = useState('')
   const outSection = useRef()
