@@ -1,4 +1,4 @@
 #!/bin/bash
-docker stop be-server
+docker ps -f status=running -q | xargs --no-run-if-empty docker container stop
 
-docker rm be-server
+docker ps -f status=running -q | xargs --no-run-if-empty docker container rm
