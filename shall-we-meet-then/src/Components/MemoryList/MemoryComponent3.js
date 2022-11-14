@@ -139,7 +139,7 @@ export default function MemoryComponent3(props) {
               </div>
               {/* Calendar */}
               <div className='statistics-calendar-box'>
-                <div className='calendar-text'>{myArticleCount} contributions in the last year</div>
+                <div className='calendar-text'>그동안 " {myArticleCount} " 개의 글을 작성하셨습니다. </div>
                 <Calendar/>
               </div>
               <div className='statistics-pichar-box'>

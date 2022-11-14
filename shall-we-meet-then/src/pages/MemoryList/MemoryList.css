@@ -193,6 +193,7 @@
 }
 .calendar-text {
   position: relative;
+  margin-top: 16px;
   left: 40px;
   color: white;
 }
