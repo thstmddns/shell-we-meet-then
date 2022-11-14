@@ -18,7 +18,7 @@ hooks:
       timeout: 60
       runas: ubuntu
 
-  ApplicationStop:
+  BeforeInstall:
     - location: scripts/docker_stop.sh
       timeout: 60
       runas: ubuntu
