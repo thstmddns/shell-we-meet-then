@@ -17,7 +17,7 @@ function NewPassword() {
     if (password === passwordCheck) {
       axios({
         method: 'put',
-        url: 'http://k7d105.p.ssafy.io:8080/members/password',
+        url: 'https://server.shallwemeetthen.com/members/password',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -28,6 +28,14 @@ function NewPassword() {
         },
       }).then(r=>{
         console.log(r)
+
+        Swal.fire({
+          icon: "success",
+          title: "비밀번호 수정 완료!",
+          showConfirmButton: false,
+          timer: 1300,
+        });
+        
         navigate('/')
       })
     }
@@ -54,7 +62,7 @@ function NewPassword() {
               onChange={(e) => { setPassword(e.target.value) }} />
             <input type='password' placeholder="check_password" value={passwordCheck}
               onChange={(e) => { setPasswordCheck(e.target.value) }} />
-            <button onClick={passwordUpdate}>비밀번호 찾기</button>
+            <button onClick={passwordUpdate}>비밀번호 수정</button>
           </div>
         </div>
       </div>

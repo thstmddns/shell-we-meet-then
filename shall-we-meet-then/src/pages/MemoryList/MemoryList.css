@@ -8,7 +8,13 @@
   grid-template-columns: 1fr 2fr 100px 25%;
 }
 /*  */
+
+/* body {
+  overflow: visible;
+} */
+
 .memory-main {
+
   align-items: stretch;
   box-sizing: border-box;
   display: flex;
