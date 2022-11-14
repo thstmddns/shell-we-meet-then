@@ -5,7 +5,7 @@ import "./Main.scss";
 import { getGroupsApi, openApi } from "../../api/Main";
 import $ from "jquery";
 import styled from "styled-components";
-
+import Swal from "sweetalert2";
 // import "../../App.css"
 
 import {
@@ -86,7 +86,7 @@ function Main() {
 
     window.onload = clock();
 
-    setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)) -1);
+    setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)) - 1);
   }, [targetTime]);
 
   useEffect(() => {
@@ -166,18 +166,32 @@ function Main() {
     const context = {
       groupSeq: groups[temp].seq,
     };
-    openApi(context).then((r) => console.log(r, groups[temp].seq));
+    openApi(context)
+    .then((r) => {
+      console.log(r, groups[temp].seq);
+      Swal.fire({
+        icon: "success",
+        title: "열람동의가 완료되었습니다.",
+        text: "퀴즈에 참여하고, 게시글을 확인해보세요!",
+        showConfirmButton: false,
+        timer: 1300,
+      });
+
+      // quiz로 이동: /group/quiz/:groupSeq
+      navigate(`/group/quiz/${groups[temp].seq}`)
+
+    });
   };
 
   const onMoveMain = () => {
-    navigate("/main")
-  }
+    navigate("/main");
+  };
 
-  const onLogOutBtn = ()=>{
-    sessionStorage.removeItem("accessToken")
+  const onLogOutBtn = () => {
+    sessionStorage.removeItem("accessToken");
 
-    navigate("/")  
-  }
+    navigate("/");
+  };
 
   return (
     <div className="main-page">
@@ -185,25 +199,17 @@ function Main() {
       <div id="stars2"></div>
       <div id="stars3"></div>
       <div id="title"></div>
-  
-          {/* <div className="rabbit-img-wrapper" >
-            <img alt="" 
-              src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} 
-            />
-          </div> */}
-
 
       <div className="navBar-wrapper">
-        <div 
-          className="nav-home-wrapper" 
-          style={{cursor:"pointer"}}
-          onClick={{onMoveMain}}
+        <div
+          className="nav-home-wrapper"
+          style={{ cursor: "pointer" }}
+          onClick={onMoveMain}
         >
           <a>Home</a>
         </div>
 
         <div className="nav-time-wrapper">
-
           <div className="dropdown">
             <a>흐르는 시간</a>
             <div className="dropdown-content">
@@ -231,11 +237,12 @@ function Main() {
               ))}
             </div>
           </div>
-          
         </div>
 
         <div className="nav-logout-wrapper">
-          <a className="logout-btn" onClick={onLogOutBtn }>로그아웃</a>
+          <a className="logout-btn" onClick={onLogOutBtn}>
+            로그아웃
+          </a>
         </div>
       </div>
       <div style={{ marginTop: "-20vh" }}>
@@ -243,32 +250,29 @@ function Main() {
         {/* <h1>D-day</h1> */}
 
         <div className="pencil-choice">
-          <div className="pencil-img" >
-
-
-          <div class="circle">
-          <span class="circle__btn">
-            <img 
-              style={{width:'8vw'}}
-              alt="" 
-              src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} />
-          {/* <img alt="" src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} /> */}
-          </span>
-          <span class="circle__back-1"></span>
-          <span class="circle__back-2"></span>
-        </div>
-
-
-           
-          </div>
-            <div className="dropdown-content">
-              <a onClick={goWriteBoard}>글쓰러가기</a>
-              <br />
-              <a onClick={goCreateGroup1}>그룹만들기</a>
-              <br />
-              <a onClick={goCreateGroup2}>그룹참여하기</a>
+          <div className="pencil-img">
+            <div class="circle">
+              <span class="circle__btn">
+                <img
+                  style={{ width: "8vw" }}
+                  alt=""
+                  src={
+                    process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"
+                  }
+                />
+                {/* <img alt="" src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} /> */}
+              </span>
+              <span class="circle__back-1"></span>
+              <span class="circle__back-2"></span>
             </div>
-    
+          </div>
+          <div className="dropdown-content">
+            <a onClick={goWriteBoard}>글쓰러가기</a>
+            <br />
+            <a onClick={goCreateGroup1}>그룹만들기</a>
+            <br />
+            <a onClick={goCreateGroup2}>그룹참여하기</a>
+          </div>
         </div>
 
         <img
@@ -298,6 +302,21 @@ function Main() {
               <div className="group-name-wrapper">
                 <h1>{groups[temp].name}</h1>
               </div>
+              <div className="group-name-wrapper">
+                {dDay === 0 ? (
+                  <>
+                    <button
+                      className="agree-btn"
+                      style={{ backgroundColor: "red" }}
+                      onClick={agreeOpen}
+                    >
+                      열람동의
+                    </button>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
             </>
           )}
 
@@ -316,26 +335,41 @@ function Main() {
                 </div>
               </div>
 
-            <div className="rabbit-img-wrapper" >
-              <img alt="" 
-                src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} 
-              />
-            </div>
+              <div className="rabbit-img-wrapper">
+                <img
+                  alt=""
+                  src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
+                />
+              </div>
 
-            <div className="alice-img-wrapper" >
-              <img alt="" 
-                src={process.env.PUBLIC_URL + "/assets/img/alice-character.png"} 
-              />
-            </div>
+              <div className="alice-img-wrapper">
+                <img
+                  alt=""
+                  src={
+                    process.env.PUBLIC_URL + "/assets/img/alice-character.png"
+                  }
+                />
+              </div>
             </ShiningComponent>
-
           </ShiningContainer>
-
-
         </div>
         {/* <div className="group-name-wrapper">
-            <h1>{groups[temp].name}</h1>
-            {dDay === 0 ? <button onClick={agreeOpen}>열람동의</button> : <></>}
+
+            {
+              dDay === 0 
+              ?(
+                <>
+               <button className="agree-btn" style={{backgroundColor:"red"}} onClick={agreeOpen}>
+                열람동의
+              </button>
+                </>
+              ) 
+              :
+              ( 
+                <>
+                </>
+              )
+            }
         </div> */}
       </div>
     </div>

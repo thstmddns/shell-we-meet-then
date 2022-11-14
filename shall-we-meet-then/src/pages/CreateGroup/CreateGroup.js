@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addGroup, addGroupMember } from "../../api/CreateGroupApi";
 import NavBar from "../../Components/NavBar/NavBar";
 import "./CreateGroup.css";
@@ -11,6 +11,7 @@ import {
   ShiningContainer,
 } from "../../Components/Group/Clock";
 export default function CreateGroup() {
+  const navigate = useNavigate()
   // 그룹 생성용 state
   const [groupName, setGroupName] = useState("");
   const [openDate, setOpenDate] = useState("");
@@ -78,9 +79,8 @@ export default function CreateGroup() {
         title: "시계 생성 실패",
         text: "그룹이름을 입력해주세요.",
       });
-
-
       return;
+
     } else if (nickName === "") {
       // alert("사용하실 닉네임을 입력해주세요");
       Swal.fire({
@@ -88,10 +88,8 @@ export default function CreateGroup() {
         title: "시계 생성 실패",
         text: "사용하실 닉네임을 입력해주세요.",
       });
-
-
-
       return;
+      
     } else if (openDate === "") {
       // alert("열람날짜를 입력해주세요");
       Swal.fire({
@@ -99,8 +97,6 @@ export default function CreateGroup() {
         title: "시계 생성 실패",
         text: "열람날짜를 입력해주세요.",
       });
-
-
 
       return;
     } else {
@@ -112,16 +108,26 @@ export default function CreateGroup() {
         .then((r) => {
           console.log(r);
           setInvitationCode(r.data.invitationCode);
+
           const context = {
             nickname: nickName,
             invitationCode: r.data.invitationCode,
           };
-          addGroupMember(context).then((r) => {
-            console.log(r);
-          });
+
+          addGroupMember(context)
+            .then((res) => {
+              console.log("invitationCode:", invitationCode)
+              console.log("생성하자마자 그룹원으로 추가에 대한 then:", res);
+              
+              console.log()
+
+            });
         })
         .then(() => {
-          alert(invitationCode);
+          // console.log("invitationCode:", invitationCode)
+          alert("시계생성 완료! // ", invitationCode);
+          
+          navigate("/main")
         });
     }
   };
