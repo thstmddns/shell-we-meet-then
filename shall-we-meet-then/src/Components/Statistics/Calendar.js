@@ -33,28 +33,31 @@ const Calendarchart = (props) => {
         // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
         <div style={{ width: '900px', height: '200px', margin: '0 auto' }}>
         <ResponsiveCalendar
-          data={calendarChartData}
-          from="2022-01-01"
-          to="2022-12-31"
-          emptyColor="#eeeeee"
-          colors={[ '#61cdbb', '#97e3d5', '#e8c1a0', '#f47560' ]}
-          margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-          yearSpacing={40}
-          monthBorderColor="rgba(0, 0, 0, 0.1)"
-          dayBorderWidth={2}
-          dayBorderColor="#ffffff"
-          legends={[
-              {
-                  anchor: 'bottom-right',
-                  direction: 'row',
-                  translateY: 36,
-                  itemCount: 4,
-                  itemWidth: 42,
-                  itemHeight: 36,
-                  itemsSpacing: 14,
-                  itemDirection: 'right-to-left'
-              }
-          ]}
+            theme= {{
+                textColor: '#ffffffff',
+            }}
+            data={calendarChartData}
+            from="2022-01-01"
+            to="2022-12-31"
+            emptyColor="#eeeeee"
+            colors={[ '#ff99ff', '#ff66ff', '#ff33ff', '#ff00ff' ]}
+            margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
+            yearSpacing={40}
+            monthBorderColor="rgba(0, 0, 0, 0.1)"
+            dayBorderWidth={2}
+            dayBorderColor="#ffffff"
+            legends={[
+                {
+                    anchor: 'bottom-right',
+                    direction: 'row',
+                    translateY: 36,
+                    itemCount: 4,
+                    itemWidth: 42,
+                    itemHeight: 36,
+                    itemsSpacing: 14,
+                    itemDirection: 'right-to-left'
+                }
+            ]}
         />
         </div>
     );

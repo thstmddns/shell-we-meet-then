@@ -62,7 +62,7 @@ function Home() {
       if (signUpPassword === signUpPasswordCheck) {
         axios({
           method: "post",
-          url: "http://k7d105.p.ssafy.io:8080/members/join",
+          url: "http://k7d105.p.ssafy.io/members/join",
           headers: {
             "Content-Type": "application/json",
           },
@@ -102,10 +102,10 @@ function Home() {
 
   // 로그인 함수
   const signIn = () => {
-    // axios.post('http://43.201.82.64:8080/members/login',{email: signInEmail,password: signInPassword,})
+    // axios.post('http://43.201.82.64/members/login',{email: signInEmail,password: signInPassword,})
     axios({
       method: "post",
-      url: "http://k7d105.p.ssafy.io:8080/members/login",
+      url: "http://k7d105.p.ssafy.io/members/login",
       headers: {
         "Content-Type": "application/json",
         // withCredentials: true
@@ -151,7 +151,7 @@ function Home() {
 
     axios({
       method: "get",
-      url: "http://k7d105.p.ssafy.io:8080/members/check-email",
+      url: "http://k7d105.p.ssafy.io/members/check-email",
       params: {
         email: signUpEmail,
       },

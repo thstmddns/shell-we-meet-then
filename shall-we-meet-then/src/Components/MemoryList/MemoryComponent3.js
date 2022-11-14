@@ -113,7 +113,7 @@ export default function MemoryComponent3(props) {
                 {/* groupbox */}
                 <div className='statistics-box'>
                   <div className='statistics-box-content'>
-                    <h3>groupname State</h3>
+                    <h3>Group State</h3>
                     <div className='statistics-problem'>
                       <div>총 게시물 : </div>
                       <div>글을 가장 마지막에 작성한 맴버 : </div>

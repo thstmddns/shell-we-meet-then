@@ -12,7 +12,7 @@ import {
 } from '../../api/QuizApi.js'
 
 export default function Quiz() {
-  const baseURL = "http://k7d105.p.ssafy.io:8080"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const navigate = useNavigate()
   const [pTime, setPTime] = useState(0);
   const [problem, setProblem] = useState({})

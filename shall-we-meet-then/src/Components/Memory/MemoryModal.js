@@ -13,7 +13,7 @@ import {
 import './MemoryModal.css'
 
 export default function Memory(props) {
-  const baseURL = "http://k7d105.p.ssafy.io:8080"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const [article, setArticle] = useState({})
   const [nickName, setNickName] = useState('')
   const outSection = useRef()
@@ -125,6 +125,7 @@ export default function Memory(props) {
                             </div>
                             <div className='Memory-article-text-content'>
                               <div className='a'>
+                                <hr style={{marginTop:'-8px', width:'110%'}}/>
                                 {article.content}
                               </div>
                             </div>

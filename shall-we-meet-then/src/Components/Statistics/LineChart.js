@@ -48,13 +48,16 @@ const MyResponsiveLine = () => {
   return (
     <div style={{ width: '480px', height: '240px'}}>
     <ResponsiveLine
+        theme= {{
+            textColor: '#ffffffff',
+        }}
         data={lineChartData}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
             type: 'linear',
             min: '0',
-            max: 'auto',
+            max: '10',
             stacked: true,
             reverse: false
         }}
@@ -68,7 +71,7 @@ const MyResponsiveLine = () => {
             tickRotation: 0,
             legend: 'date',
             legendOffset: 36,
-            legendPosition: 'middle'
+            legendPosition: 'middle',
         }}
         axisLeft={{
             orient: 'left',
@@ -77,7 +80,7 @@ const MyResponsiveLine = () => {
             tickRotation: 0,
             legend: 'count',
             legendOffset: -40,
-            legendPosition: 'middle'
+            legendPosition: 'middle',
         }}
         pointSize={10}
         pointColor={{ theme: 'background' }}
@@ -86,7 +89,7 @@ const MyResponsiveLine = () => {
         pointLabelYOffset={-12}
         useMesh={true}
         legends={[
-            {
+            {   
                 anchor: 'bottom-right',
                 direction: 'column',
                 justify: false,
@@ -97,6 +100,7 @@ const MyResponsiveLine = () => {
                 itemWidth: 80,
                 itemHeight: 20,
                 itemOpacity: 0.75,
+                itemTextColor: '#ffffffff',
                 symbolSize: 12,
                 symbolShape: 'circle',
                 symbolBorderColor: 'rgba(0, 0, 0, .5)',
