@@ -95,7 +95,7 @@ export default function Quiz() {
         .then(res => {
           Swal.fire({
             icon: "success",
-            title: "퀴즈 스킵 완료!",
+            title: "퀴즈 Skip 완료!",
             text: "당신의 추억을 함께 확인하세요!",
             showConfirmButton: false,
             timer: 1300,
