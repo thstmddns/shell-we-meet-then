@@ -62,7 +62,7 @@ function Home() {
       if (signUpPassword === signUpPasswordCheck) {
         axios({
           method: "post",
-          url: "http://k7d105.p.ssafy.io/members/join",
+          url: "https://server.shallwemeetthen.com/members/join",
           headers: {
             "Content-Type": "application/json",
           },
@@ -105,7 +105,7 @@ function Home() {
     // axios.post('http://43.201.82.64/members/login',{email: signInEmail,password: signInPassword,})
     axios({
       method: "post",
-      url: "http://k7d105.p.ssafy.io/members/login",
+      url: "https://server.shallwemeetthen.com/members/login",
       headers: {
         "Content-Type": "application/json",
         // withCredentials: true
@@ -151,7 +151,7 @@ function Home() {
 
     axios({
       method: "get",
-      url: "http://k7d105.p.ssafy.io/members/check-email",
+      url: "https://server.shallwemeetthen.com/members/check-email",
       params: {
         email: signUpEmail,
       },
