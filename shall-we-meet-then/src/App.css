@@ -8,6 +8,7 @@ body{
   font-family: "fontone";
   /* color: rgb(204, 68, 68); */
   color: white;
+  overflow: hidden;
 }
 
 .App {

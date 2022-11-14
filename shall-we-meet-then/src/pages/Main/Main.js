@@ -8,11 +8,12 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 // import "../../App.css"
 
+import ShiningClock from "../../Components/Group/ShiningClock";
+
 import {
   ShiningComponent,
   ShiningContainer,
-  ShiningClock,
-} from "../../Components/Group/Clock";
+} from "../../Components/Group/ShiningComponent";
 
 function Main() {
   const defaultGroupData = [
@@ -44,48 +45,6 @@ function Main() {
   };
 
   useEffect(() => {
-    /*  clock */
-    const hours = document.querySelector(".hours");
-    const minutes = document.querySelector(".minutes");
-    const seconds = document.querySelector(".seconds");
-
-    /*  play button */
-    const play = document.querySelector(".play");
-    const pause = document.querySelector(".pause");
-    const playBtn = document.querySelector(".circle__btn");
-    const wave1 = document.querySelector(".circle__back-1");
-    const wave2 = document.querySelector(".circle__back-2");
-
-    /*  rate slider */
-    const container = document.querySelector(".slider__box");
-    const btn = document.querySelector(".slider__btn");
-    const color = document.querySelector(".slider__color");
-    const tooltip = document.querySelector(".slider__tooltip");
-
-    const clock = () => {
-      let today = new Date();
-      let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
-      let m = today.getMinutes(); // 0 - 59
-      let s = today.getSeconds(); // 0 - 59
-
-      h *= 30; // 12 * 30 = 360deg
-      m *= 6;
-      s *= 6; // 60 * 6 = 360deg
-
-      // rotation = (target, val) => {
-      //   target.style.transform =  `rotate(${val}deg)`;
-      // }
-
-      rotation(hours, h);
-      rotation(minutes, m);
-      rotation(seconds, s);
-
-      // call every second
-      setTimeout(clock, 500);
-    };
-
-    window.onload = clock();
-
     setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)) - 1);
   }, [targetTime]);
 
@@ -143,8 +102,8 @@ function Main() {
 
   //  길이 넘으면 ...으로 보이게
   const checkSize = (name) => {
-    if (name.length > 6) {
-      return `${name.substr(0, 5)}...`;
+    if (name.length > 8) {
+      return `${name.substr(0, 7)}...`;
     }
     return name;
   };
@@ -166,8 +125,7 @@ function Main() {
     const context = {
       groupSeq: groups[temp].seq,
     };
-    openApi(context)
-    .then((r) => {
+    openApi(context).then((r) => {
       console.log(r, groups[temp].seq);
       Swal.fire({
         icon: "success",
@@ -178,8 +136,7 @@ function Main() {
       });
 
       // quiz로 이동: /group/quiz/:groupSeq
-      navigate(`/group/quiz/${groups[temp].seq}`)
-
+      navigate(`/group/quiz/${groups[temp].seq}`);
     });
   };
 
@@ -212,10 +169,13 @@ function Main() {
         <div className="nav-time-wrapper">
           <div className="dropdown">
             <a>흐르는 시간</a>
-            <div className="dropdown-content">
+            <div className="dropdown-nav-content">
               {flowingList.map((flowing, i) => (
                 <div key={i}>
-                  <a onClick={() => selectGroup(flowing.seq)}>
+                  <a
+                    className="dropdown-group-name"
+                    onClick={() => selectGroup(flowing.seq)}
+                  >
                     {checkSize(flowing.name)}
                   </a>
                   <br></br>
@@ -226,10 +186,13 @@ function Main() {
 
           <div className="dropdown">
             <a>흘러간 시간</a>
-            <div className="dropdown-content">
+            <div className="dropdown-nav-content">
               {flowedList.map((flowed, i) => (
                 <div key={i}>
-                  <a onClick={() => selectGroup(flowed.seq)}>
+                  <a
+                    className="dropdown-group-name"
+                    onClick={() => selectGroup(flowed.seq)}
+                  >
                     {checkSize(flowed.name)}
                   </a>
                   <br></br>
@@ -266,7 +229,7 @@ function Main() {
               <span class="circle__back-2"></span>
             </div>
           </div>
-          <div className="dropdown-content">
+          <div className="dropdown-group-menu">
             <a onClick={goWriteBoard}>글쓰러가기</a>
             <br />
             <a onClick={goCreateGroup1}>그룹만들기</a>
@@ -275,7 +238,7 @@ function Main() {
           </div>
         </div>
 
-        <img
+        {/* <img
           alt=""
           className="downBtn"
           src={process.env.PUBLIC_URL + "/assets/img/left.png"}
@@ -286,91 +249,90 @@ function Main() {
           className="upBtn"
           src={process.env.PUBLIC_URL + "/assets/img/right.png"}
           onClick={plusTemp}
-        />
+        /> */}
 
         <div className="imgDiv">
-          {groups.length === 1 ? (
-            <>
-              <h1 className="dDay">그룹 추가하기</h1>
-            </>
-          ) : (
-            <>
-              <h1 className="remain-d-day">
-                D{dDay >= 0 ? "+" : "-"}
-                {dDay === 0 ? "day" : Math.abs(dDay)}
-              </h1>
-              <div className="group-name-wrapper">
-                <h1>{groups[temp].name}</h1>
-              </div>
-              <div className="group-name-wrapper">
-                {dDay === 0 ? (
-                  <>
-                    <button
-                      className="agree-btn"
-                      style={{ backgroundColor: "red" }}
-                      onClick={agreeOpen}
-                    >
-                      열람동의
-                    </button>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </>
-          )}
-
           <ShiningContainer>
             <ShiningComponent>
-              <div class="clock">
-                <div class="hand hours"></div>
-                <div class="hand minutes"></div>
-                <div class="hand seconds"></div>
-                <div class="point"></div>
-                <div class="marker">
-                  <span class="marker__1"></span>
-                  <span class="marker__2"></span>
-                  <span class="marker__3"></span>
-                  <span class="marker__4"></span>
-                </div>
-              </div>
+              {groups.length === 1 ? (
+                <>
+                  <h1 className="dDay">그룹 추가하기</h1>
+                </>
+              ) : (
+                <>
+                  <h1 className="remain-d-day">
+                    D{dDay >= 0 ? "+" : "-"}
+                    {dDay === 0 ? "day" : Math.abs(dDay)}
+                  </h1>
+                  <div className="group-name-wrapper">
+                    <h1>{groups[temp].name}</h1>
+                  </div>
+                  <div className="group-name-wrapper">
+                    {dDay === 0 ? (
+                      <>
+                        <button
+                          className="agree-btn"
+                          style={{ backgroundColor: "red" }}
+                          onClick={agreeOpen}
+                        >
+                          열람동의
+                        </button>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+
+                  <ShiningClock />
+                  <img
+                    alt=""
+                    className="downBtn"
+                    src={process.env.PUBLIC_URL + "/assets/img/left.png"}
+                    onClick={minusTemp}
+                  />
+                  <img
+                    alt=""
+                    className="upBtn"
+                    src={process.env.PUBLIC_URL + "/assets/img/right.png"}
+                    onClick={plusTemp}
+                  />
+
+                  <div className="rabbit-img-wrapper">
+                    <img
+                      alt=""
+                      src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
+                    />
+                  </div>
+
+                  <div className="alice-img-wrapper">
+                    <img
+                      alt=""
+                      src={
+                        process.env.PUBLIC_URL +
+                        "/assets/img/alice-character.png"
+                      }
+                    />
+                  </div>
+                </>
+              )}
+
+              {/* <ShiningContainer>
+            <ShiningComponent>
+              <ShiningClock />
 
               <div className="rabbit-img-wrapper">
-                <img
-                  alt=""
-                  src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
-                />
+                <img alt="" src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} />
               </div>
 
               <div className="alice-img-wrapper">
-                <img
-                  alt=""
-                  src={
-                    process.env.PUBLIC_URL + "/assets/img/alice-character.png"
-                  }
-                />
+                <img alt="" src={ process.env.PUBLIC_URL + "/assets/img/alice-character.png" } />
               </div>
+
+            </ShiningComponent>
+          </ShiningContainer> */}
             </ShiningComponent>
           </ShiningContainer>
         </div>
-        {/* <div className="group-name-wrapper">
-
-            {
-              dDay === 0 
-              ?(
-                <>
-               <button className="agree-btn" style={{backgroundColor:"red"}} onClick={agreeOpen}>
-                열람동의
-              </button>
-                </>
-              ) 
-              :
-              ( 
-                <>
-                </>
-              )
-            }
-        </div> */}
       </div>
     </div>
   );
