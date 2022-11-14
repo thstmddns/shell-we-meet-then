@@ -1,9 +1,6 @@
 import api from './api'
 
-// 특정 멤버 글 갯수 조회
-const getArticleCountApi = async(groupMemberSeq) => {
-    return await api.get(`/boards/group-members/${groupMemberSeq}/count`)
-}
+
 // 그룹 내 총 게시글 갯수 조회
 const getTotalArticleCountApi = async(groupSeq) => {
   return await api.get(`/groups/${groupSeq}/count`)
@@ -26,7 +23,6 @@ const getQuizKingApi = async(groupSeq) => {
 }
 
 export {
-  getArticleCountApi,
   getTotalArticleCountApi,
   getLastAuthorApi,
   getMostWrittenMemberApi,

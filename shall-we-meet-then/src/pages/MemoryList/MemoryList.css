@@ -20,6 +20,7 @@
   padding: 0;
   position: relative;
   color: white;
+  /* color: red; */
 }
 .memory-list {
   flex-grow: 1;
@@ -133,4 +134,65 @@
 }
 .group-member {
   cursor: pointer;
+}
+
+/* Statistics */
+.statistics-main {
+  position: relative;
+  margin-top: 12px;
+  color: red;
+  font-size: 24px;
+}
+.statistics-box {
+  position: relative;
+  width: 480px;
+  height: 240px;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+}
+.statistics-box-content {
+  margin-left: 24px;
+}
+.statistics-problem {
+  position: absolute;
+}
+.statistics-question {
+  position: absolute;
+  left: 240px;
+}
+.statistics-score {
+  position: absolute;
+  text-align: center;
+  top: 80px;
+  left: 356px;
+}
+.statistics-score-head {
+  font-weight: 700;
+  font-size: 32px;
+}
+.statistics-score-content {
+  font-size: 24px;
+}
+.statistics-calendar-box {
+  margin-top: 20px;
+  border: 1px solid white;
+  border-radius: 20px 20px 0 0;
+}
+.statistics-pichar-box {
+  border: 1px solid white;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+}
+.calendar-text {
+  position: absolute;
+  left: 40px;
+  color: white;
+}
+.piechat-text {
+  position: relative;
+  padding-top: 12px;
+  left: 40px;
+  color: white;
 }

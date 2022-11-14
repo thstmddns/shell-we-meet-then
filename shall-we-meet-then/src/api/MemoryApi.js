@@ -40,7 +40,14 @@ const getGroupMembersApi = async(info) => {
 const getMyInfoApi = async(info) => {
     return await api.get(`/group-members/my-info`, { params : info })
 }
-
+// 로그인한 유저의 날짜별 글 갯수 조회
+const getTotalUserArticleCountApi = async(info) => {
+    return await api.get(`/boards/count-per-day`, { params : info })
+}
+// 멤버별 글 갯수 조회
+const getGroupArticleCountApi = async(info) => {
+    return await api.get(`/boards/member-total-count`, { params : info })
+}
 
 
 
@@ -55,4 +62,6 @@ export {
     getGroupDetailsApi,
     getGroupMembersApi,
     getMyInfoApi,
+    getTotalUserArticleCountApi,
+    getGroupArticleCountApi
   }
