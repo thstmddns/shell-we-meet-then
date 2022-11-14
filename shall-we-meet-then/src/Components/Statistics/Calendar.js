@@ -1,19 +1,46 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams } from "react-router-dom";
 import { ResponsiveCalendar } from '@nivo/calendar'
+import {
+    getTotalUserArticleCountApi,
+    getGroupArticleCountApi 
+} from '../../api/MemoryApi.js'
+import {Cdata} from './Cdata' 
 
-const Piechart = (props) => {
+const Calendarchart = (props) => {
+    const { groupSeq } = useParams()
+    const [calendarChartData, setCalendarChartData] = useState([])
+    useEffect(() => {
+        getTotalUserArticleCountApi({groupSeq})
+            .then(res => {
+                // console.log(res.data);
+                const calendarData = res.data.map(obj => {
+                    const count = obj.count
+                    const createDate = obj.createDate
+                    return {
+                        day : createDate,
+                        value : count
+                    }
+                })
+                // console.log(calendarData);
+                setCalendarChartData(calendarData)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [])
     return (
         // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
-        <div style={{ width: '1200px', height: '500px', margin: '0 auto' }}>
+        <div style={{ width: '900px', height: '200px', margin: '0 auto' }}>
         <ResponsiveCalendar
-          data={props.data}
-          from="2015-03-01"
-          to="2015-07-12"
+          data={calendarChartData}
+          from="2022-01-01"
+          to="2022-12-31"
           emptyColor="#eeeeee"
           colors={[ '#61cdbb', '#97e3d5', '#e8c1a0', '#f47560' ]}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
           yearSpacing={40}
-          monthBorderColor="#ffffff"
+          monthBorderColor="rgba(0, 0, 0, 0.1)"
           dayBorderWidth={2}
           dayBorderColor="#ffffff"
           legends={[
@@ -33,4 +60,4 @@ const Piechart = (props) => {
     );
 };
 
-export default Piechart;
+export default Calendarchart;

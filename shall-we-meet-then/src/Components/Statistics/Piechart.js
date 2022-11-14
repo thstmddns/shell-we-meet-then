@@ -1,5 +1,10 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams } from "react-router-dom";
 import { ResponsivePie } from '@nivo/pie';
+import {
+    getTotalUserArticleCountApi,
+    getGroupArticleCountApi 
+} from '../../api/MemoryApi.js'
 
 const Piechart = (props) => {
     const handle = {
@@ -11,15 +16,35 @@ const Piechart = (props) => {
             console.log(data);
         },
     };
-
+    const { groupSeq } = useParams()
+    const [pieChartData, setPieChartData] = useState([])
+    useEffect(() => {
+        getGroupArticleCountApi({groupSeq})
+            .then(res => {
+                // console.log(res.data);
+                const pieData = res.data.map(obj => {
+                    const member = obj.groupMember.nickname
+                    const count = obj.count
+                    return {
+                        id : member,
+                        value : count
+                    }
+                })
+                // console.log(pieData);
+                setPieChartData(pieData)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [])
     return (
         // chart height이 100%이기 때문이 chart를 덮는 마크업 요소에 height 설정
-        <div style={{ width: '800px', height: '500px', margin: '0 auto' }}>
+        <div style={{ width: '400px', height: '320px', margin: '0 auto' }}>
             <ResponsivePie
                 /**
                  * chart에 사용될 데이터
                  */
-                data={props.data}
+                data={pieChartData}
                 /**
                  * chart margin
                  */
@@ -52,7 +77,7 @@ const Piechart = (props) => {
                 /**
                  * link label 색상
                  */
-                arcLinkLabelsTextColor="#000000"
+                arcLinkLabelsTextColor="#ffffff"
                 /**
                  * link label 연결되는 선 두께
                  */
@@ -81,7 +106,7 @@ const Piechart = (props) => {
                     legends: {
                         text: {
                             fontSize: 12,
-                            fill: '#000000',
+                            fill: '#ffffff',
                         },
                     },
                 }}
