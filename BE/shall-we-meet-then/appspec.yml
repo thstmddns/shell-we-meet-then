@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: ./shall-we-meet-then-0.0.1-SNAPSHOT.jar
-    destination: /home/ubuntu/demo
+    destination: /home/ubuntu/server
     overwrite: yes
 
 permissions:
