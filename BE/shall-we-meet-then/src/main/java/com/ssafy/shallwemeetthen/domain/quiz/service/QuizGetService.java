@@ -39,7 +39,7 @@ public class QuizGetService {
         for(int i = 0 ; i  <findGroupBoardList.size(); i++){
             if(findGroupBoardList.get(i).getThumbnailImageUuidName()==null) findGroupBoardList.remove(i);
         }
-        
+
         int quizNum = 10;
         //게시글 수가 10보다 작다면 게시글 수만큼 넣기
         if(findGroupBoardList.size()<=quizNum) quizNum = findGroupBoardList.size();
