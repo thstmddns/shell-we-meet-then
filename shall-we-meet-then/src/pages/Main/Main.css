@@ -185,8 +185,8 @@
   position: absolute;
 
   /* top: 43%; */
-  margin-top:36vh;
-  margin-left: 13.2vw;
+  margin-top:15vh;
+  margin-left: 33.5vw;
   
   transform: translate(-50%, -50%);
 
@@ -226,8 +226,12 @@
 
 .downBtn {
   position: absolute;
-  top: 43%;
-  left: 19%;
+  /* top: 43%;
+  left: 19%; */
+
+  margin-left: 7vw;
+  margin-top: -5vh;
+
   width: 9vw;
   height: 15vh;
 
@@ -236,8 +240,12 @@
 
 .upBtn {
   position: absolute;
-  top: 45%;
-  left: 68%;
+  /* top: 45%;
+  left: 68%; */
+  margin-left: 50vw;
+
+  margin-top: -0.6vh;
+
   width: 9vw;
   height: 15vh;
 
