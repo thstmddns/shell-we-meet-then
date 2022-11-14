@@ -10,6 +10,7 @@ import {
   quizApi,
   quizAddScoreApi,
 } from '../../api/QuizApi.js'
+import Swal from "sweetalert2";
 
 export default function Quiz() {
   const baseURL = "https://server.shallwemeetthen.com"
@@ -30,6 +31,13 @@ export default function Quiz() {
         quizAddScoreApi(groupSeq, score)
           .then(res => {
             // console.log(res.data);
+            Swal.fire({
+              icon: "success",
+              title: "퀴즈 완료!",
+              text: "당신의 추억을 함께 확인하세요!",
+              showConfirmButton: false,
+              timer: 1300,
+            });
           })
           .catch(err => {
             console.error(err);
@@ -63,6 +71,13 @@ export default function Quiz() {
       quizAddScoreApi(groupSeq, score)
         .then(res => {
           // console.log(res.data);
+          Swal.fire({
+            icon: "success",
+            title: "퀴즈 완료!",
+            text: "당신의 추억을 함께 확인하세요!",
+            showConfirmButton: false,
+            timer: 1300,
+          });
         })
         .catch(err => {
           console.error(err);
@@ -74,11 +89,17 @@ export default function Quiz() {
     setProblem(problems[problemIndex+1])
     setProblemIndex(i => i+1)
   }
-  function goMemoryPage() {
+  const goMemoryPage = () => {
     console.log(score);
       quizAddScoreApi(groupSeq, score)
         .then(res => {
-          // console.log(res.data);
+          Swal.fire({
+            icon: "success",
+            title: "퀴즈 스킵 완료!",
+            text: "당신의 추억을 함께 확인하세요!",
+            showConfirmButton: false,
+            timer: 1300,
+          });
         })
         .catch(err => {
           console.error(err);
@@ -108,7 +129,7 @@ export default function Quiz() {
         </div>
       </div>
       <div className='text-right skip-btn-loc'>
-        <button onClick={() => {goMemoryPage()}} className='skip-btn btn-effect'><span>skip</span></button>
+        <button onClick={goMemoryPage} className='skip-btn btn-effect'><span>skip</span></button>
       </div>
       <div className='quiz-container'>
         <div className='user_quiz_content'>
