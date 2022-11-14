@@ -36,6 +36,10 @@ public class QuizGetService {
         List<QuizResponseDto> quizList = new ArrayList<>();
         List<GroupBoard> findGroupBoardList = groupBoardQueryRepository.findAllAgreeAndNonAgreeBoard(articleSearchCondition);// 모든 그룹의 글
 
+        for(int i = 0 ; i  <findGroupBoardList.size(); i++){
+            if(findGroupBoardList.get(i).getThumbnailImageUuidName()==null) findGroupBoardList.remove(i);
+        }
+
         int quizNum = 10;
         //게시글 수가 10보다 작다면 게시글 수만큼 넣기
         if(findGroupBoardList.size()<=quizNum) quizNum = findGroupBoardList.size();
@@ -48,6 +52,7 @@ public class QuizGetService {
         //랜덤으로 퀴즈 선정
         for(int i = 0 ; i < quizNum ; i++){
             int quizType = random.nextInt(QUIZ_TYPE_NUM);
+
             switch (quizType){
                 case 0 :
                     quizList.add(quizUtils.Question2(findGroupBoardList.get(idxList.get(i)).getSeq()));
