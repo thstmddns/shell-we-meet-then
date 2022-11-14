@@ -105,7 +105,7 @@ function Home() {
     // axios.post('http://43.201.82.64/members/login',{email: signInEmail,password: signInPassword,})
     axios({
       method: "post",
-      url: "http://k7d105.p.ssafy.io:8080/members/login",
+      url: "https://server.shallwemeetthen.com/members/login",
       headers: {
         "Content-Type": "application/json",
         // withCredentials: true

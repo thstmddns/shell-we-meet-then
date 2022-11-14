@@ -1,7 +1,7 @@
 html {
-    height: 100%;
-    background: radial-gradient(ellipse at bottom, #22255A 0%, #805297 100%);
-    // overflow: hidden;
+    height: 100vh;
+    background: radial-gradient( #22255A 0%, #805297 100%);
+    overflow-x: hidden;
   }
   
   #stars {
@@ -14,7 +14,7 @@ html {
   #stars:after {
     content: " ";
     position: absolute;
-    top: 2000px;
+    // top: 2000px;
     width: 1px;
     height: 1px;
     background: transparent;
@@ -31,7 +31,7 @@ html {
   #stars2:after {
     content: " ";
     position: absolute;
-    top: 2000px;
+    // top: 2000px;
     width: 2px;
     height: 2px;
     background: transparent;
@@ -48,7 +48,7 @@ html {
   #stars3:after {
     content: " ";
     position: absolute;
-    top: 2000px;
+    // top: 2000px;
     width: 3px;
     height: 3px;
     background: transparent;

@@ -251,7 +251,7 @@ function Main() {
 
         <div className="pencil-choice">
           <div className="pencil-img">
-            <div class="circle">
+            <hgroup class="circle bubble">
               <span class="circle__btn">
                 <img
                   style={{ width: "8vw" }}
@@ -264,7 +264,7 @@ function Main() {
               </span>
               <span class="circle__back-1"></span>
               <span class="circle__back-2"></span>
-            </div>
+            </hgroup>
           </div>
           <div className="dropdown-content">
             <a onClick={goWriteBoard}>글쓰러가기</a>
@@ -274,7 +274,31 @@ function Main() {
             <a onClick={goCreateGroup2}>그룹참여하기</a>
           </div>
         </div>
-
+        <div className="book-choice">
+          <div className="book-img">
+            <hgroup class="circle bubble">
+              <span class="circle__btn">
+                <img
+                  style={{ width: "8vw" }}
+                  alt=""
+                  src={
+                    process.env.PUBLIC_URL + "/assets/icon-img/memory-book-img.png"
+                  }
+                />
+                {/* <img alt="" src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} /> */}
+              </span>
+              <span class="circle__back-1"></span>
+              <span class="circle__back-2"></span>
+            </hgroup>
+          </div>
+          <div className="dropdown-content">
+            <a onClick={goWriteBoard}>글쓰러가기</a>
+            <br />
+            <a onClick={goCreateGroup1}>그룹만들기</a>
+            <br />
+            <a onClick={goCreateGroup2}>그룹참여하기</a>
+          </div>
+        </div>
         <img
           alt=""
           className="downBtn"
