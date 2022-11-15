@@ -274,7 +274,7 @@ function Main() {
           className="upBtn"
           src={process.env.PUBLIC_URL + "/assets/img/right.png"}
           onClick={plusTemp}
-        /> */}
+        />
 
         <div className="imgDiv">
           <ShiningContainer>
