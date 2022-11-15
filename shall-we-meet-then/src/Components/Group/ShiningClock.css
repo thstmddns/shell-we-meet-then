@@ -1,5 +1,3 @@
-
-
 .clock {
     grid-column: 2/3;
     grid-row: 1/3;
@@ -16,7 +14,8 @@
     align-items: center;
   
     margin-top:-5vh;
-    margin-bottom: 60h;
+    margin-bottom: 60vh;
+    margin-left: 40px;
   }
   
   .clock .hand {
