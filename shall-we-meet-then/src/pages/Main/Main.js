@@ -3,17 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./Main.css";
 import "./Main.scss";
 import { getGroupsApi, openApi } from "../../api/Main";
-import $ from "jquery";
-import styled from "styled-components";
+
 import Swal from "sweetalert2";
-// import "../../App.css"
 
 import ShiningClock from "../../Components/Group/ShiningClock";
 
-import {
-  ShiningComponent,
-  ShiningContainer,
-} from "../../Components/Group/ShiningComponent";
+import { ShiningComponent,ShiningContainer } from "../../Components/Group/ShiningComponent";
 
 function Main() {
   const defaultGroupData = [
@@ -29,20 +24,14 @@ function Main() {
 
   const [groups, setGroups] = useState(defaultGroupData);
   const [dDay, setDDay] = useState(null);
-  // 캐러셀용
-  const [temp, setTemp] = useState(0);
-  // 흐르는 시간 리스트
-  const [flowingList, setFlowingList] = useState([]);
-  // 흘러간 시간 리스트
-  const [flowedList, setFlowedList] = useState([]);
+
+  const [temp, setTemp] = useState(0);   // 캐러셀용
+  const [flowingList, setFlowingList] = useState([]);  // 흐르는 시간 리스트
+  const [flowedList, setFlowedList] = useState([]);   // 흘러간 시간 리스트
 
   const now = new Date();
-  // const testTime = new Date(`${groups[temp].openDateTime} 00:00:00`);
   const targetTime = new Date(groups[temp].openDateTime);
 
-  const rotation = (target, val) => {
-    target.style.transform = `rotate(${val}deg)`;
-  };
 
   useEffect(() => {
     setDDay(Math.ceil((now - targetTime) / (1000 * 60 * 60 * 24)) - 1);
@@ -51,10 +40,12 @@ function Main() {
   useEffect(() => {
     getGroupsApi().then((r) => {
       if (r.data.length !== 0) {
-        console.log("그룹있음:", r.data);
+       
         setGroups(r.data);
+
         const check1 = [];
         const check2 = [];
+
         for (let i = 0; i < r.data.length; i++) {
           const checkTime = new Date(r.data[i].openDateTime);
           const nowTime = new Date();
@@ -125,8 +116,9 @@ function Main() {
     const context = {
       groupSeq: groups[temp].seq,
     };
+
     openApi(context).then((r) => {
-      console.log(r, groups[temp].seq);
+      // console.log(r, groups[temp].seq);
       Swal.fire({
         icon: "success",
         title: "열람동의가 완료되었습니다.",
@@ -255,7 +247,7 @@ function Main() {
             </hgroup>
           </div>
           <div className="dropdown-content">
-            <a onClick={goWriteBoard}>글쓰러가기</a>
+            <a onClick={()=>goWriteBoard}>글쓰러가기</a>
             <br />
             <a onClick={goCreateGroup1}>그룹만들기</a>
             <br />
@@ -274,24 +266,28 @@ function Main() {
           className="upBtn"
           src={process.env.PUBLIC_URL + "/assets/img/right.png"}
           onClick={plusTemp}
-        /> */}
+        /> 
 
         <div className="imgDiv">
           <ShiningContainer>
             <ShiningComponent>
-              {groups.length === 1 ? (
+              {groups.length === 1 
+              ? (
                 <>
                   <h1 className="dDay">그룹 추가하기</h1>
                 </>
-              ) : (
+              ) 
+              : (
                 <>
                   <h1 className="remain-d-day">
-                    D{dDay >= 0 ? "+" : "-"}
+                    D {dDay >= 0 ? "+" : "-"}
                     {dDay === 0 ? "day" : Math.abs(dDay)}
                   </h1>
+
                   <div className="group-name-wrapper">
                     <h1>{groups[temp].name}</h1>
                   </div>
+
                   <div className="group-name-wrapper">
                     {dDay === 0 ? (
                       <>
@@ -308,53 +304,37 @@ function Main() {
                     )}
                   </div>
 
-                  <ShiningClock />
-                  <img
-                    alt=""
-                    className="downBtn"
-                    src={process.env.PUBLIC_URL + "/assets/img/left.png"}
-                    onClick={minusTemp}
-                  />
-                  <img
-                    alt=""
-                    className="upBtn"
-                    src={process.env.PUBLIC_URL + "/assets/img/right.png"}
-                    onClick={plusTemp}
-                  />
-
-                  <div className="rabbit-img-wrapper">
+                  <ShiningClock></ShiningClock>
                     <img
                       alt=""
-                      src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
+                      className="downBtn"
+                      src={process.env.PUBLIC_URL + "/assets/img/left.png"}
+                      onClick={minusTemp}
                     />
-                  </div>
-
-                  <div className="alice-img-wrapper">
                     <img
                       alt=""
-                      src={
-                        process.env.PUBLIC_URL +
-                        "/assets/img/alice-character.png"
-                      }
+                      className="upBtn"
+                      src={process.env.PUBLIC_URL + "/assets/img/right.png"}
+                      onClick={plusTemp}
                     />
-                  </div>
+
+                    <div className="rabbit-img-wrapper">
+                      <img
+                        alt=""
+                        src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
+                      />
+                    </div>
+
+                    <div className="alice-img-wrapper">
+                      <img
+                        alt=""
+                        src={ process.env.PUBLIC_URL + "/assets/img/alice-character.png" }
+                      />
+                    </div>
                 </>
               )}
 
-              {/* <ShiningContainer>
-            <ShiningComponent>
-              <ShiningClock />
 
-              <div className="rabbit-img-wrapper">
-                <img alt="" src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"} />
-              </div>
-
-              <div className="alice-img-wrapper">
-                <img alt="" src={ process.env.PUBLIC_URL + "/assets/img/alice-character.png" } />
-              </div>
-
-            </ShiningComponent>
-          </ShiningContainer> */}
             </ShiningComponent>
           </ShiningContainer>
         </div>
