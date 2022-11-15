@@ -16,16 +16,9 @@
 
     font-size: 30px;
     font-family: "fontone";
-
-    /* margin-bottom: 10vh; */
-    margin-left: 1%;
+    margin: 0 auto;
 
     color: white;
-
-    /* background-color: red; */
-    /* border: 1px solid red; */
-    /* opacity: 0.5; */
-    /* margin-bottom: 30vh; */
   }
 
   .navBar-wrapper .nav-home-wrapper {

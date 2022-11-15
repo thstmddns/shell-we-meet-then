@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Main.css";
+// import "./Main.css";
+import "./Main2.css";
 import "./Main.scss";
 import { getGroupsApi, openApi } from "../../api/Main";
 import $ from "jquery";
@@ -152,11 +153,6 @@ function Main() {
 
   return (
     <div className="main-page">
-      <div id="stars"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-      <div id="title"></div>
-
       <div className="navBar-wrapper">
         <div
           className="nav-home-wrapper"
@@ -208,7 +204,7 @@ function Main() {
           </a>
         </div>
       </div>
-      <div style={{ marginTop: "-20vh" }}>
+      <div className="main-content">
         {/* <button onClick={checkButton}>테스트트트트</button> */}
         {/* <h1>D-day</h1> */}
 
@@ -262,20 +258,6 @@ function Main() {
             <a onClick={goCreateGroup2}>그룹참여하기</a>
           </div>
         </div>
-
-        <img
-          alt=""
-          className="downBtn"
-          src={process.env.PUBLIC_URL + "/assets/img/left.png"}
-          onClick={minusTemp}
-        />
-        <img
-          alt=""
-          className="upBtn"
-          src={process.env.PUBLIC_URL + "/assets/img/right.png"}
-          onClick={plusTemp}
-        /> */}
-
         <div className="imgDiv">
           <ShiningContainer>
             <ShiningComponent>
@@ -289,6 +271,7 @@ function Main() {
                     D{dDay >= 0 ? "+" : "-"}
                     {dDay === 0 ? "day" : Math.abs(dDay)}
                   </h1>
+                  <div>참여코드 : {groups[temp].invitationCode}</div>
                   <div className="group-name-wrapper">
                     <h1>{groups[temp].name}</h1>
                   </div>

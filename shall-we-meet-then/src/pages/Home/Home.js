@@ -196,16 +196,18 @@ function Home() {
       <div className="login-page">
 
 
-        <div style={{ display: "flex", marginLeft:"-7vw", marginTop:"-28vh", marginBottom:"-21vh"}}>
+        <div className="login-text-img">
           <img
             alt=""
             src={process.env.PUBLIC_URL + "/assets/icon-img/logo_4.png"}
           />
-          <img
-            style={{ width: "10vw", height: "12vh", marginTop:"21.5vh", marginLeft:"-5vw"}}
-            alt=""
-            src={process.env.PUBLIC_URL + "/assets/icon-img/then-logo.png"}
-          />
+          <div className="text-then-img">
+            <img
+              style={{ width: "128px", height: "88px"}}
+              alt=""
+              src={process.env.PUBLIC_URL + "/assets/icon-img/then-logo.png"}
+            />
+          </div>
         </div>
 
 
@@ -293,20 +295,11 @@ export default Home;
 
 export const ShiningLoginComponent = styled.div`
   width: 26.5rem;
-  height: 30rem;
+  height: 26rem;
   border-radius: 3rem;
   box-shadow: 0.2rem 0.2rem 1.2rem var(--pink),
     -0.2rem -0.2rem 1.2rem var(--pink);
   padding: 1rem;
-  display: grid;
-  grid-template-columns: 17.6rem 19rem 20.4rem;
-  grid-template-rows: repeat(autofit, -webkit-min-content);
-  grid-template-rows: repeat(autofit, min-content);
-  grid-column-gap: 5rem;
-  grid-row-gap: 2.5rem;
-  align-items: center;
-
-  margin-right: 30vw;
-  margin-top: 6vh;
-  margin-bottom: 50vh;
+  display:flex;
+  margin: 12vh auto 0 auto;
 `;

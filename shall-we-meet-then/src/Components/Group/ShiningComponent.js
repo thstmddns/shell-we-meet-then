@@ -4,12 +4,10 @@ import styled from 'styled-components'
 
 
 export const ShiningContainer = styled.div`
-  min-height: 100vh;
+  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: center;     
   align-items: center;
-
-  margin-top: 9vh;
 `
 
 export const ShiningComponent = styled.div`
@@ -25,9 +23,6 @@ export const ShiningComponent = styled.div`
   grid-column-gap: 5rem;
   grid-row-gap: 2.5rem;
   align-items: center;
-
-  margin-top: 6vh;
-  margin-bottom: 50vh;
 `
 
 // export const ShiningClock = styled.div`
