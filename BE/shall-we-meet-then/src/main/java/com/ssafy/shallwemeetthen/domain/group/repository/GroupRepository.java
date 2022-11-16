@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface GroupRepository extends JpaRepository<Groups, Long> {
     @Query("""
-    select new com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto(g.seq, g.name, g.invitationCode, g.openDateTime, g.headcount, g.createDate, gm.agree)
+    select new com.ssafy.shallwemeetthen.domain.group.dto.GetGroupListResponseDto(g, gm.agree)
     from GroupMember gm
     inner join gm.group g
     where gm.member.seq = :memberSeq

@@ -29,14 +29,14 @@ public class GetGroupListResponseDto {
     private AgreeState groupMemberAgree;
 
 
-    public GetGroupListResponseDto(Groups groups) {
+    public GetGroupListResponseDto(Groups groups, AgreeState groupMemberAgree) {
         this.seq = groups.getSeq();
         this.name = groups.getName();
-        this.invitationCode = groups.getInvitationCode();
+        this.invitationCode = LocalDateTime.now().isAfter(groups.getCreateDate().plusDays(3)) ? "초대 코드가 만료되었습니다." : groups.getInvitationCode();
         this.openDateTime = groups.getOpenDateTime();
         this.headcount = groups.getHeadcount();
         this.createDate = groups.getCreateDate();
-        this.groupMemberAgree = getGroupMemberAgree();
+        this.groupMemberAgree = groupMemberAgree;
     }
 
     @Builder
