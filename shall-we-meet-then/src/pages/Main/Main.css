@@ -1,17 +1,19 @@
 
 /* 지나간 그룹: 게시글 확인하러 가는 memory-book-img */
 .memory-book-img {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .memory-book-img > img {
-  width: 5.5vw;
+  width: 6vw;
 }
 
 .memory-book-content {
    
   top: 40%;
-  left:50%;
+  left: 80%;
 
   display: none;
   position: absolute;
@@ -45,11 +47,14 @@
 
 /* 지나간 그룹: 게시글 확인하러 가는 memory-book-img */
 .write-pencil-img {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .write-pencil-img > img {
-  width: 5.5vw;
+  width: 8vw;
+  margin-top: 8px ;
 }
 
 .write-pencil-content {
@@ -88,6 +93,11 @@
 }
 
 /* 그룹생성 버튼 쪽 */
+.new-clock-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .new-clock-img > img {
   width: 5.5vw;
 }

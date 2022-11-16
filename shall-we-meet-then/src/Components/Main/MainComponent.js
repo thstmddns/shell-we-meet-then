@@ -9,14 +9,13 @@ export function WritePencilBtn ({goWriteBoard})  {
                 <span className="circle__btn">
                 <div className="write-pencil-img">
                   <img
-                    style={{ width: "8vw" }}
                     alt=""
                     src={
                       process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"
                     }
                   />
                   <div className="write-pencil-content">
-                  <a onClick={goWriteBoard}>글쓰러가기</a>
+                  <div onClick={goWriteBoard}>글쓰러가기</div>
   
                   </div>
                 </div>
@@ -36,8 +35,8 @@ export function NewClockBtn ({createNewClock, joinNewClock}){
         <>
           <div>
             <div>
-              <hgroup className="circle bubble">
-                <span className="circle__btn">
+              <hgroup class="circle bubble">
+                <span class="circle__btn">
                   <div className="new-clock-img">
                     <img
                       // className="memory-book-img"

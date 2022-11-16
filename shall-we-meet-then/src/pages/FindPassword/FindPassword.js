@@ -22,7 +22,6 @@ function FindPassword() {
       .then(res => {
         console.log(res)
         if (res.status === 200) {
-          // alert('비밀번호 찾기 이메일이 전송되었습니다.')
           Swal.fire({
             icon: "success",
             title: "이메일이 전송되었습니다",
@@ -56,9 +55,6 @@ function FindPassword() {
         </div>
       </div>
       </ShiningLoginComponent>
-
-
-
     </div>
   )
 }

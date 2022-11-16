@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import "./Main.css";
 import "./Main2.css";
 import "./Main.scss";
+import "../CreateGroup/CreateGroup.css";
 import { getGroupsApi, openApi } from "../../api/Main";
 
 import Swal from "sweetalert2";
@@ -107,6 +108,7 @@ function Main() {
   const createNewClock = () => {
     navigate("/group/create", { state: { temp: 1 } });
   };
+
   // 그룹참여
   const joinNewClock = () => {
     navigate("/group/create", { state: { temp: 2 } });
@@ -116,7 +118,6 @@ function Main() {
     console.log("gogoog")
     navigate(`/group/article/create/${groups[temp].seq}`);
   };
-
 
   const agreeOpen = () => {
     setAgreeState(true)
@@ -133,7 +134,16 @@ function Main() {
       });
 
       navigate(`/group/quiz/${groups[temp].seq}`);
-    });
+    })
+    .catch((err)=>{
+
+      if (err.response.status === 400){
+        Swal.fire({
+          icon: 'error',
+          title: '열람동의 가능 날짜가 지났습니다.',
+        })
+      }
+    })
   };
 
   const onMoveMain = () => {
@@ -265,14 +275,14 @@ function Main() {
                            // 열람동의 여부에 대해서
                           <>
                           <h1 className="remain-d-day">
-                            D + Day
+                            D + Day 
                           </h1>
                           {
-                            agreeState === false
-                            ?(
+                            // agreeState === false
+                            groups[temp].groupMemberAgree === 'N'
+                            ? (
                               <>
-                              <button className="agree-btn"
-                                style={{ backgroundColor: "red" }}
+                              <button className="agree-btn w-btn w-btn-gra2 w-btn-gra-anim"
                                 onClick={agreeOpen}
                               > 열람동의 </button>
                               </>
@@ -280,6 +290,7 @@ function Main() {
                             :(
                               <>  
                                 <MemoryBook goMemoryList={goMemoryList}></MemoryBook>
+                                
                               </>
                             )
                           }
