@@ -225,7 +225,7 @@ function Main() {
                 <>
                   <h1 className="dDay">새로운 시계를 만들어주세요!</h1>
                   <div className="zero-base-clock">
-                  <NewClockBtn 
+                    <NewClockBtn
                       createNewClock={createNewClock} joinNewClock={joinNewClock}>
                     </NewClockBtn>
                   </div>

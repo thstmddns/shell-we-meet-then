@@ -60,6 +60,8 @@
   /* margin-bottom: 20vh; */
   cursor: pointer;
   z-index: 2;
+
+  width: 182px;
 }
 
 .remain-d-day {
@@ -147,6 +149,11 @@
   box-sizing: border-box;
 }
 /* clockImg */
+.zero-base-clock {
+  position: absolute;
+  top: 8rem;
+  left: calc(50% - 70px);
+}
 .new-base-clock {
   position: absolute;
   top: 27rem;
