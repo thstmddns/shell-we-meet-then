@@ -9,7 +9,6 @@ export function WritePencilBtn ({goWriteBoard})  {
                 <span class="circle__btn">
                 <div className="write-pencil-img">
                   <img
-                    style={{ width: "8vw" }}
                     alt=""
                     src={
                       process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"
@@ -34,8 +33,8 @@ export function WritePencilBtn ({goWriteBoard})  {
 export function NewClockBtn ({createNewClock, joinNewClock}){
     return (
         <>
-          <div className="book-choice">
-            <div className="book-img">
+          <div>
+            <div>
               <hgroup class="circle bubble">
                 <span class="circle__btn">
                   <div className="new-clock-img">

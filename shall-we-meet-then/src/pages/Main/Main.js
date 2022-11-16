@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 // import "./Main.css";
 import "./Main2.css";
 import "./Main.scss";
+import "../CreateGroup/CreateGroup.css";
 import { getGroupsApi, openApi } from "../../api/Main";
 
 import Swal from "sweetalert2";
@@ -231,7 +232,7 @@ function Main() {
                   <div className="group-name-wrapper">
                     <h1>{groups[temp].name}</h1>
                   </div>
-                  <div>참여코드 : {groups[temp].invitationCode}</div>
+                  <div className="group-invitation-code">참여코드 : {groups[temp].invitationCode}</div>
                     <img
                       alt=""
                       className="downBtn"
@@ -269,8 +270,7 @@ function Main() {
                             agreeState === false
                             ?(
                               <>
-                              <button className="agree-btn"
-                                style={{ backgroundColor: "red" }}
+                              <button className="agree-btn w-btn w-btn-gra2 w-btn-gra-anim"
                                 onClick={agreeOpen}
                               > 열람동의 </button>
                               </>
