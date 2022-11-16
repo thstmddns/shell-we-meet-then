@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class GroupMemberService {
 
         Groups groups = groupRepository.findByInvitationCode(dto.getInvitationCode()).orElseThrow(() -> new IllegalArgumentException("초대 코드가 일치하는 그룹이 없습니다."));
 
+        if (LocalDateTime.now().isAfter(groups.getCreateDate().plusDays(3))) throw new IllegalStateException("초대 코드가 만료되었습니다.");
+
         if (groupMemberRepository.existsByGroupSeqAndNickname(groups.getSeq(), dto.getNickname())) throw new IllegalArgumentException("닉네임이 중복되었습니다.");
 
         Member tempMember = memberRepository.findById(loginSeq).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 멤버가 없습니다."));
@@ -65,6 +68,12 @@ public class GroupMemberService {
     public boolean open(OpenDto.Request dto) {
 
         Long loginSeq = securityContext.getThreadLocal();
+
+        Groups groups = groupRepository.findById(dto.getGroupSeq()).orElseThrow(() -> new IllegalArgumentException("해당 SEQ의 그룹이 없습니다."));
+
+        if (LocalDateTime.now().isBefore(groups.getOpenDateTime())) throw new IllegalStateException("아직 그룹이 열리지 않았습니다.");
+
+        if (LocalDateTime.now().isAfter(groups.getOpenDateTime().plusDays(3))) throw new IllegalStateException("열람 동의 가능 날짜가 지났습니다.");
 
         GroupMember groupMember = groupMemberRepository.findByGroupSeqAndMemberSeq(dto.getGroupSeq(), loginSeq).orElseThrow(() -> new IllegalArgumentException("해당 그룹의 그룹 멤버가 아닙니다."));
 
