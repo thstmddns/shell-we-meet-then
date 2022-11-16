@@ -231,7 +231,7 @@ function Main() {
                   <div className="group-name-wrapper">
                     <h1>{groups[temp].name}</h1>
                   </div>
-
+                  <div>참여코드 : {groups[temp].invitationCode}</div>
                     <img
                       alt=""
                       className="downBtn"
