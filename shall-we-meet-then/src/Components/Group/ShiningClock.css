@@ -10,27 +10,21 @@
     justify-content: center;
     align-items: center;
     position: relative;
-  
     align-items: center;
-  
-    margin-top:-5vh;
-    margin-bottom: 60vh;
-    margin-left: 40px;
+    margin-left: 3rem;
   }
   
   .clock .hand {
     position: absolute;
     transform-origin: bottom;
-    bottom: 6rem;
+    bottom: 16rem;
     border-radius: 0.2rem;
     z-index: 200;
-  
-    margin-bottom: 22vh;
   }
   
   .clock .hours {
-    width: 0.3rem;
-    height: 3.6rem;
+    width: 0.4rem;
+    height: 3.2rem;
     background: var(--greyLight-3);
   }
   
