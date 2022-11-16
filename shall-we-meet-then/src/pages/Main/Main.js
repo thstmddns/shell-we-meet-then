@@ -107,6 +107,7 @@ function Main() {
   const createNewClock = () => {
     navigate("/group/create", { state: { temp: 1 } });
   };
+
   // 그룹참여
   const joinNewClock = () => {
     navigate("/group/create", { state: { temp: 2 } });
@@ -116,7 +117,6 @@ function Main() {
     console.log("gogoog")
     navigate(`/group/article/create/${groups[temp].seq}`);
   };
-
 
   const agreeOpen = () => {
     setAgreeState(true)
@@ -133,7 +133,16 @@ function Main() {
       });
 
       navigate(`/group/quiz/${groups[temp].seq}`);
-    });
+    })
+    .catch((err)=>{
+
+      if (err.response.status === 400){
+        Swal.fire({
+          icon: 'error',
+          title: '열람동의 가능 날짜가 지났습니다.',
+        })
+      }
+    })
   };
 
   const onMoveMain = () => {
@@ -231,7 +240,11 @@ function Main() {
                   <div className="group-name-wrapper">
                     <h1>{groups[temp].name}</h1>
                   </div>
-                  <div>참여코드 : {groups[temp].invitationCode}</div>
+                  <div>
+                      참여코드 : {groups[temp].invitationCode}
+                      {/* <h3>{groups[temp].openDateTime.slice(0,10)} </h3>
+                      <h3>{now.getFullYear()}-{now.getMonth()}</h3> */}
+                  </div>
                     <img
                       alt=""
                       className="downBtn"
@@ -263,21 +276,25 @@ function Main() {
                            // 열람동의 여부에 대해서
                           <>
                           <h1 className="remain-d-day">
-                            D + Day
+                            D + Day 
                           </h1>
                           {
-                            agreeState === false
-                            ?(
+                            // agreeState === false
+                            groups[temp].groupMemberAgree === 'N'
+                            ? (
                               <>
-                              <button className="agree-btn"
-                                style={{ backgroundColor: "red" }}
-                                onClick={agreeOpen}
-                              > 열람동의 </button>
+                                <button className="agree-btn"
+                                  style={{ backgroundColor: "red", marginLeft:"20vw", cursor:"pointer", zIndex:"20" }}
+                                  onClick={agreeOpen}
+                                > 열람동의 
+                                </button>
+                            
                               </>
                             )
                             :(
                               <>  
                                 <MemoryBook goMemoryList={goMemoryList}></MemoryBook>
+                                
                               </>
                             )
                           }
