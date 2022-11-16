@@ -14,7 +14,9 @@
   color: white;
 }
 .main-content {
-  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  height: calc(98vh - 50px);
 }
 
 /* 시계 테스트 */
@@ -35,7 +37,7 @@
 .imgDiv {
   position: relative;
   width: 30%;
-  margin-left: 35vw;
+  margin: 0 auto;
 }
 
 .watch {
@@ -58,6 +60,8 @@
   /* margin-bottom: 20vh; */
   cursor: pointer;
   z-index: 2;
+
+  width: 182px;
 }
 
 .remain-d-day {
@@ -87,19 +91,31 @@
 
 .agree-btn {
   width: 10vw;
-  height: 5vh;
   background-color: red;
+  position: absolute;
+  font-size: 24px;
+
+  top: 30rem;
+  left: calc(50% + 11rem);
+
+  cursor: pointer;
+
+  z-index: 3;
 }
 
 .group-name-wrapper > h1 {
   text-align: center;
 }
-
+.group-invitation-code {
+  position: absolute;
+  top: 8%;
+}
 .downBtn {
   position: absolute;
 
   width: 80px;
   left: calc(50% - 360px) ;
+  top: 40%;
   z-index: 2;
 }
 
@@ -108,6 +124,7 @@
 
   width: 80px;
   left: calc(50% + 280px);
+  top: 40%;
   z-index: 2;
 }
 
@@ -131,13 +148,28 @@
 * {
   box-sizing: border-box;
 }
-
+/* clockImg */
+.zero-base-clock {
+  position: absolute;
+  top: 8rem;
+  left: calc(50% - 70px);
+}
+.new-base-clock {
+  position: absolute;
+  top: 27rem;
+  left: calc(50% - 19.5rem);
+}
+.new-clock-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
  /* book */
  .book-choice{
   position: absolute;
   
-  width: 10vw;
-  height: 10vh;
+  top: 27rem;
+  left: calc(50% + 11rem);
 
   cursor: pointer;
 
@@ -148,8 +180,8 @@
  .pencil-choice{
   position: absolute;
   
-  width: 10vw;
-  height: 10vh;
+  top: 27rem;
+  left: calc(50% + 11rem);
 
   cursor: pointer;
 
@@ -370,7 +402,7 @@
   color: var(--primary);
   z-index: 300;
   /* background: ; */
-  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem transparent ;
+  /* box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem transparent ; */
   cursor: pointer;
   position: relative;
 }
@@ -402,24 +434,23 @@
   z-index: 100;
 }
 .circle__back-1 {
-  box-shadow: 0.4rem 0.4rem 0.8rem var(--greyLight-2), -0.4rem -0.4rem 0.8rem var(--white);
+  box-shadow: 0.2rem 0.2rem 1.2rem var(--greyLight-2),-0.2rem -0.2rem 1.2rem var(--greyLight-2);
   /* background: linear-gradient(to bottom right, var(--greyLight-2) 0%, var(--white) 100%); */
   -webkit-animation: waves 4s linear infinite;
           animation: waves 4s linear infinite;
 }
-.circle__back-1 .paused {
+/* .circle__back-1 .paused {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
 }
 .circle__back-2 {
-  box-shadow: 0.4rem 0.4rem 0.8rem var(--greyLight-2), -0.4rem -0.4rem 0.8rem var(--white);
   -webkit-animation: waves 4s linear 2s infinite;
           animation: waves 4s linear 2s infinite;
 }
 .circle__back-2 .paused {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
-}
+} */
 
 /* test */
 .bubble { 

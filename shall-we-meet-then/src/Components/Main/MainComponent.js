@@ -5,11 +5,10 @@ export function WritePencilBtn ({goWriteBoard})  {
         <>
           <div className="pencil-choice">
             <div className="pencil-img">
-              <hgroup class="circle bubble">
-                <span class="circle__btn">
+              <hgroup className="circle bubble">
+                <span className="circle__btn">
                 <div className="write-pencil-img">
                   <img
-                    style={{ width: "8vw" }}
                     alt=""
                     src={
                       process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"
@@ -22,8 +21,8 @@ export function WritePencilBtn ({goWriteBoard})  {
                 </div>
                   {/* <img alt="" src={process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"} /> */}
                 </span>
-                <span class="circle__back-1"></span>
-                <span class="circle__back-2"></span>
+                <span className="circle__back-1"></span>
+                <span className="circle__back-2"></span>
               </hgroup>
             </div>
             </div>
@@ -34,10 +33,10 @@ export function WritePencilBtn ({goWriteBoard})  {
 export function NewClockBtn ({createNewClock, joinNewClock}){
     return (
         <>
-          <div className="book-choice">
-            <div className="book-img">
-              <hgroup class="circle bubble">
-                <span class="circle__btn">
+          <div>
+            <div>
+              <hgroup className="circle bubble">
+                <span className="circle__btn">
                   <div className="new-clock-img">
                     <img
                       // className="memory-book-img"
@@ -54,8 +53,8 @@ export function NewClockBtn ({createNewClock, joinNewClock}){
     
                   </div>
                 </span>
-                <span class="circle__back-1"></span>
-                <span class="circle__back-2"></span>
+                <span className="circle__back-1"></span>
+                <span className="circle__back-2"></span>
               </hgroup>
             </div>
           </div>
@@ -69,8 +68,8 @@ export function MemoryBook ({goMemoryList}){
         <>
           <div className="book-choice">
             <div className="book-img">
-              <hgroup class="circle bubble">
-                <span class="circle__btn">
+              <hgroup className="circle bubble">
+                <span className="circle__btn">
                   <div className="memory-book-img">
                   <img alt=""
                     src={
@@ -82,8 +81,8 @@ export function MemoryBook ({goMemoryList}){
                   </div>
                   </div>
                 </span>
-                <span class="circle__back-1"></span>
-                <span class="circle__back-2"></span>
+                <span className="circle__back-1"></span>
+                <span className="circle__back-2"></span>
               </hgroup>
             </div>
           </div>

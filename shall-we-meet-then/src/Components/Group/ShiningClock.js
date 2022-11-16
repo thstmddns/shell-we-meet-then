@@ -13,19 +13,6 @@ function ShiningClock() {
     const minutes = document.querySelector(".minutes");
     const seconds = document.querySelector(".seconds");
 
-    /*  play button */
-    const play = document.querySelector(".play");
-    const pause = document.querySelector(".pause");
-    const playBtn = document.querySelector(".circle__btn");
-    const wave1 = document.querySelector(".circle__back-1");
-    const wave2 = document.querySelector(".circle__back-2");
-
-    /*  rate slider */
-    const container = document.querySelector(".slider__box");
-    const btn = document.querySelector(".slider__btn");
-    const color = document.querySelector(".slider__color");
-    const tooltip = document.querySelector(".slider__tooltip");
-
     const clock = () => {
       let today = new Date();
       let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
@@ -54,16 +41,16 @@ function ShiningClock() {
   
   return (
     <>
-      <div class="clock">
-        <div class="hand hours"></div>
-        <div class="hand minutes"></div>
-        <div class="hand seconds"></div>
-        <div class="point"></div>
-        <div class="marker">
-          <span class="marker__1"></span>
-          <span class="marker__2"></span>
-          <span class="marker__3"></span>
-          <span class="marker__4"></span>
+      <div className="clock">
+        <div className="hand hours"></div>
+        <div className="hand minutes"></div>
+        <div className="hand seconds"></div>
+        <div className="point"></div>
+        <div className="marker">
+          <span className="marker__1"></span>
+          <span className="marker__2"></span>
+          <span className="marker__3"></span>
+          <span className="marker__4"></span>
         </div>
       </div>
     </>

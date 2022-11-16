@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import VideoUploader from './pages/WriteBoard/VideoUploader';
 import "./App.css"
-import { useEffect } from 'react'
+import NotFound from "./pages/NotFound";
 
 import {
 
@@ -42,6 +42,7 @@ function App() {
           <Route path='/group/article/create/:groupSeq' element={<WriteBoard />} />
             
           <Route path='/video' element={<VideoUploader />} />
+          <Route path='/*' element={<NotFound />} />
           
         </Routes>
       </Router>
