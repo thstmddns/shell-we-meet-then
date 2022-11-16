@@ -69,7 +69,9 @@ export default function CreateGroup() {
         .then((r) => {
           console.log(r);
           setInvitationCode(r.data.invitationCode);
+          let inviCode = r.data.invitationCode; 
 
+          console.log("inviCode:", inviCode)
           const context = {
             nickname: nickName,
             invitationCode: r.data.invitationCode,
@@ -79,17 +81,39 @@ export default function CreateGroup() {
             .then((res) => {
               console.log("invitationCode:", invitationCode)
               console.log("생성하자마자 그룹원으로 추가에 대한 then:", res);
-              
-              console.log()
+              console.log("***********************:", inviCode)
+              // alert(`시계생성 완료! 초대코드를 확인하세요 : ${inviCode} `);
+
+              Swal.fire({
+                title: '초대코드로 친구들을 초대하세요! ',
+                text: `${inviCode}`,
+                showClass: {
+                  popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutUp'
+                }
+              })
+
+              // Swal.fire({
+              //   icon: "success",
+              //   title: "초대코드로 친구를 초대하세요! ",
+              //   text: `${inviCode}`,
+              //   showConfirmButton: true,
+              // });
+
+
+              navigate("/main")
+
 
             });
         })
-        .then(() => {
-          // console.log("invitationCode:", invitationCode)
-          alert("시계생성 완료! // ", invitationCode);
+        // .then(() => {
+        //   // console.log("invitationCode:", invitationCode)
+        //   alert("시계생성 완료! // ", inviCode);
           
-          navigate("/main")
-        });
+        //   navigate("/main")
+        // });
     }
   };
 
