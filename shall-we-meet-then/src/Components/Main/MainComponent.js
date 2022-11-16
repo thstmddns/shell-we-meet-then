@@ -1,3 +1,5 @@
+import '../../pages/Main/Main.css'
+
 export function WritePencilBtn ({goWriteBoard})  {
     return (
         <>
@@ -36,20 +38,20 @@ export function NewClockBtn ({createNewClock, joinNewClock}){
             <div className="book-img">
               <hgroup class="circle bubble">
                 <span class="circle__btn">
-                  <div className="memory-book-img">
-                  <img
-                    // className="memory-book-img"
-                    alt=""
-                    src={
-                      process.env.PUBLIC_URL + "/assets/icon-img/mini-clock.png"
-                    }
-                  />
-                  <div className="memory-book-content">
-                    <div onClick={createNewClock}>시계 만들기</div>
-                    <br></br>
-                    <div onClick={joinNewClock}>시계 참여하기</div>
-                  </div>
-  
+                  <div className="new-clock-img">
+                    <img
+                      // className="memory-book-img"
+                      alt=""
+                      src={
+                        process.env.PUBLIC_URL + "/assets/icon-img/mini-clock.png"
+                      }
+                    />
+                    <div className="new-clock-content">
+                      <div onClick={createNewClock}>시계 만들기</div>
+                      <br></br>
+                      <div onClick={joinNewClock}>시계 참여하기</div>
+                    </div>
+    
                   </div>
                 </span>
                 <span class="circle__back-1"></span>

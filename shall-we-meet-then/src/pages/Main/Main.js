@@ -303,7 +303,6 @@ function Main() {
                       src={process.env.PUBLIC_URL + "/assets/img/rabbit.png"}
                     />
                   </div>
-
                   <div className="alice-img-wrapper">
                     <img
                       alt=""
