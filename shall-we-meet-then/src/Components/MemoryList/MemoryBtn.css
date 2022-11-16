@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 
 .w-btn {
-    /* position: relative; */
+    position: relative;
     border: none;
     display: inline-block;
     padding: 12px 20px;
     margin: 20px;
     border-radius: 15px;
-    font-family: "fontone";
+    /* font-family: "paybooc-Light", sans-serif; */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     font-weight: 600;

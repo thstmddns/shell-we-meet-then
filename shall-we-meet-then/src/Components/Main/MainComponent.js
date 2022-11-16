@@ -9,6 +9,7 @@ export function WritePencilBtn ({goWriteBoard})  {
                 <span className="circle__btn">
                 <div className="write-pencil-img">
                   <img
+                    style={{ width: "8vw" }}
                     alt=""
                     src={
                       process.env.PUBLIC_URL + "/assets/icon-img/write-pencil.png"
