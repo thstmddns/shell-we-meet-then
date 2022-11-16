@@ -21,6 +21,8 @@ public class GroupMemberController {
             return new ResponseEntity<>(groupMemberService.addGroupMember(addGroupMemberRequestDto), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
         }
     }
 
