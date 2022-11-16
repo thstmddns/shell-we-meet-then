@@ -15,7 +15,7 @@ export function WritePencilBtn ({goWriteBoard})  {
                     }
                   />
                   <div className="write-pencil-content">
-                  <a onClick={goWriteBoard}>글쓰러가기</a>
+                  <div onClick={goWriteBoard}>글쓰러가기</div>
   
                   </div>
                 </div>

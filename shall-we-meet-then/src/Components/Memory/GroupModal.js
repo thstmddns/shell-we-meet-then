@@ -6,6 +6,7 @@ import './Modal.css'
 export default function GroupModal(props) {
   const [groupMembers, setGroupMembers] = useState([])
   const outSection = useRef()
+  
   useEffect(() => {
     console.log(props.groupMembers);
     const nickName = props.groupMembers.map(a => {
@@ -13,6 +14,8 @@ export default function GroupModal(props) {
     })
     setGroupMembers(nickName)
   }, [])
+
+
   return (
     <div
       className="modal"
