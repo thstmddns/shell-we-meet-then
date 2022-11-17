@@ -214,6 +214,9 @@ function Main() {
           </div>
         </div>
       </div>
+
+
+      
       <div className="main-content">
 
         <div className="imgDiv">
@@ -280,15 +283,17 @@ function Main() {
                           </h1>
                           {
                             // agreeState === false
-                            groups[temp].groupMemberAgree === 'N'
-                            ? (
+                            groups[temp].groupMemberAgree === 'N' 
+                            ? 
+                            (
                               <>
                               <button className="agree-btn w-btn w-btn-gra2 w-btn-gra-anim"
                                 onClick={agreeOpen}
                               > 열람동의 </button>
                               </>
                             )
-                            :(
+                            :
+                            (
                               <>  
                                 <MemoryBook goMemoryList={goMemoryList}></MemoryBook>
                                 

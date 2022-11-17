@@ -35,6 +35,8 @@ function InfoMsg(props) {
 }
 
 function Home() {
+  const navigate = useNavigate();
+
   // 회원가입용 state
   const [signUpEmail, setSignUpEmail] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
@@ -49,14 +51,8 @@ function Home() {
   const[showRegister, setShowRegister] = useState(false)
   const[showFindPassword, setShowFindPassword] = useState(false)
 
-  const navigate = useNavigate();
-
-  const goFindPassword = () => {
-    navigate("/find-password");
-  };
-
   // 회원가입 함수
-  const signup = () => {
+  const signUp = () => {
     if (isDuplicated) {
       // alert('이메일 중복검사를 해주세요');
       Swal.fire({
@@ -169,7 +165,7 @@ function Home() {
       .then((r) => {
         if (r.data === true) {
           setIsDuplicated(true);
-          // alert('이미 존재하는 이메일입니다');
+
           Swal.fire({
             icon: "error",
             title: "가입 실패",
@@ -207,51 +203,6 @@ function Home() {
     e.preventDefault();
     return false;
   };
-
-  // function RegisterForm() {
-  //   return (
-  //     <>
-  //       <form className="register-form" onSubmit={stopEvent}>
-  //         <input
-  //           type="text"
-  //           style={{ margin: "0 0 0 0" }}
-  //           placeholder="email address"
-  //           value={signUpEmail}
-  //           onChange={(e) => {
-  //             setSignUpEmail(e.target.value);
-  //           }}
-  //           onBlur={checkDuplicatedEmail}
-  //         />
-  //         {isDuplicated === null ? <></> : <InfoMsg check={isDuplicated} />}
-
-  //         <input
-  //           type="password"
-  //           style={{ margin: "15px 0 15px 0" }}
-  //           placeholder="password"
-  //           value={signUpPassword}
-  //           onChange={(e) => {
-  //             setSignUpPassword(e.target.value);
-  //           }}
-  //         />
-  //         <input
-  //           type="password"
-  //           placeholder="password check"
-  //           value={signUpPasswordCheck}
-  //           onChange={(e) => {
-  //             setSignUpPasswordCheck(e.target.value);
-  //           }}
-  //         />
-  //         <button onClick={signup}>create</button>
-  //         <p className="message">
-  //           아이디가 있으신가요? &nbsp;&nbsp;&nbsp;
-  //           <a onClick={changeToLoginForm} href="#">
-  //             로그인
-  //           </a>
-  //         </p>
-  //       </form>
-  //     </>
-  //   );
-  // }
 
 
   return (
@@ -295,46 +246,44 @@ function Home() {
             {
               showRegister === true
               ?(
-                <>
-                          <form className="register-form" onSubmit={stopEvent}>
-          <input
-            type="text"
-            style={{ margin: "0 0 0 0" }}
-            placeholder="email address"
-            value={signUpEmail}
-            onChange={(e) => {
-              setSignUpEmail(e.target.value);
-            }}
-            onBlur={checkDuplicatedEmail}
-          />
-          {isDuplicated === null ? <></> : <InfoMsg check={isDuplicated} />}
+                <form className="register-form" onSubmit={stopEvent}>
+                  <input
+                    type="text"
+                    style={{ margin: "0 0 0 0" }}
+                    placeholder="email address"
+                    value={signUpEmail}
+                    onChange={(e) => {
+                      setSignUpEmail(e.target.value);
+                    }}
+                    onBlur={checkDuplicatedEmail}
+                  />
+                  {isDuplicated === null ? <></> : <InfoMsg check={isDuplicated} />}
 
-          <input
-            type="password"
-            style={{ margin: "15px 0 15px 0" }}
-            placeholder="password"
-            value={signUpPassword}
-            onChange={(e) => {
-              setSignUpPassword(e.target.value);
-            }}
-          />
-          <input
-            type="password"
-            placeholder="password check"
-            value={signUpPasswordCheck}
-            onChange={(e) => {
-              setSignUpPasswordCheck(e.target.value);
-            }}
-          />
-          <button onClick={signup}>create</button>
-          <p className="message">
-            아이디가 있으신가요? &nbsp;&nbsp;&nbsp;
-            <a onClick={changeToLoginForm} href="#">
-              로그인
-            </a>
-          </p>
-        </form>
-                </>
+                  <input
+                    type="password"
+                    style={{ margin: "15px 0 15px 0" }}
+                    placeholder="password"
+                    value={signUpPassword}
+                    onChange={(e) => {
+                      setSignUpPassword(e.target.value);
+                    }}
+                  />
+                  <input
+                    type="password"
+                    placeholder="password check"
+                    value={signUpPasswordCheck}
+                    onChange={(e) => {
+                      setSignUpPasswordCheck(e.target.value);
+                    }}
+                  />
+                  <button onClick={signUp}>create</button>
+                  <p className="message">
+                    아이디가 있으신가요? &nbsp;&nbsp;&nbsp;
+                    <a onClick={changeToLoginForm} href="#">
+                      로그인
+                    </a>
+                  </p>
+                </form>
               )
               :(
                 <></>
@@ -343,13 +292,11 @@ function Home() {
             {
               showFindPassword === true
               ? (
-                <>  
                   <FindPassword 
                     stopEvent={stopEvent} 
                     changeToLoginForm={changeToLoginForm}
                     changeToRegisterForm={changeToRegisterForm}
                   />
-                </>
               )
               :(
                 <>
