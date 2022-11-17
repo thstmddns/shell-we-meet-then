@@ -128,7 +128,8 @@ export default function CreateGroup() {
       });
 
       return;
-    } else if (invitationCode === "") {
+    } 
+    else if (invitationCode === "") {
       // alert("초대코드를 입력해주세요");
       
       Swal.fire({
@@ -138,12 +139,26 @@ export default function CreateGroup() {
       });
 
       return;
-    } else {
+    } 
+    else {
       const context = {
         nickname: joinNickname,
         invitationCode: invitationCode,
       };
-      addGroupMember(context);
+      addGroupMember(context)
+      .then((res)=>{
+        // console.log(res.data)
+        Swal.fire({
+          icon: "success",
+          title: "참여 완료되었습니다!",
+          text: "앞으로 함께 추억을 쌓아나가 보세요!",
+          showConfirmButton: false,
+          timer: 1300,
+        });
+      })
+      .catch((err)=>{
+        console.log(err.message)
+      })
     }
   };
 
@@ -288,7 +303,7 @@ export default function CreateGroup() {
                 <button 
                   className="w-btn w-btn-gra2 w-btn-gra-anim" 
                   type="button"
-                  onClick={callAddGroup}
+                  onClick={joinGroup}
                   >
                   시계 ON
                 </button>

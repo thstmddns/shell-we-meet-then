@@ -75,8 +75,12 @@
   text-decoration: none;
 }
 .form .register-form {
-  display: none;
+  /* display: none; */
 
+}
+
+.login-form {
+  width: 40vw;
 }
 .container {
   position: relative;

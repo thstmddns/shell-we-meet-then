@@ -4,11 +4,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { ShiningLoginComponent } from "../Home/Home";
 
-function FindPassword() {
+function FindPassword({stopEvent, changeToLoginForm, changeToRegisterForm}) {
   const [Email, setEmail] = useState('');
 
 
   const sendEmail = () => {
+    console.log("Props email test")
 
     axios({
       method: 'get',
@@ -43,19 +44,32 @@ function FindPassword() {
 
 
   return (
-    <div className="find-password-wrapper" >
-      <ShiningLoginComponent>
-      <div className="find-page">
-        <div className="find-password-form">
-          <div className="login-form">
-            <input type="text" placeholder="E-mail" value={Email}
-              onChange={(e) => { setEmail(e.target.value) }} />
-            <button onClick={sendEmail}>Find Password</button>
-          </div>
-        </div>
-      </div>
-      </ShiningLoginComponent>
-    </div>
+<>
+      {/* <ShiningLoginComponent> */}
+    <form className="register-form" onSubmit={stopEvent}>
+      <input type="text" placeholder="E-mail" value={Email}
+        onChange={(e) => { setEmail(e.target.value) }} 
+      />
+      <button onClick={sendEmail}>Find Password</button>
+
+<div style={{display:"flex", marginLeft:"1.5vw"}}>
+      <p className="message" 
+        style={{marginRight:"2vw", marginLeft:"2vw"}}>
+        <a onClick={changeToLoginForm} href="#">
+          로그인
+        </a>
+      </p>
+
+      <p className="message"  
+        style={{marginRight:"1vw", marginLeft:"2vw"}}>
+        <a onClick={changeToRegisterForm} href="#">
+          회원가입
+        </a>
+    </p>
+  </div>
+    </form>
+
+      </>
   )
 }
 

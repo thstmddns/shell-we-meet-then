@@ -44,7 +44,7 @@ function Main() {
   useEffect(() => {
     getGroupsApi().then((r) => {
       if (r.data.length !== 0) {
-       
+        console.log("groups:", r.data)
         setGroups(r.data);
 
         const check1 = [];
@@ -138,6 +138,7 @@ function Main() {
     .catch((err)=>{
 
       if (err.response.status === 400){
+        console.log(err.response)
         Swal.fire({
           icon: 'error',
           title: '열람동의 가능 날짜가 지났습니다.',
@@ -219,7 +220,7 @@ function Main() {
           <ShiningContainer>
             <ShiningComponent>
             {
-              groups.length === 1 
+              groups.length === 0
               ? 
               (
                 <>
