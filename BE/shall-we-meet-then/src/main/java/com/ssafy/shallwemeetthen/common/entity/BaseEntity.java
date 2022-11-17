@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Getter
 @MappedSuperclass
@@ -23,8 +24,8 @@ public class BaseEntity {
 
     @PrePersist
     public void prePersist() {
-        createDate = LocalDateTime.now();
-        updateDate = LocalDateTime.now();
+        createDate = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        updateDate = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
     }
 
     @PreUpdate
