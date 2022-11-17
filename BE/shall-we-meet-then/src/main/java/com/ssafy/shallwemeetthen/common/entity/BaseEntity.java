@@ -24,8 +24,8 @@ public class BaseEntity {
 
     @PrePersist
     public void prePersist() {
-        createDate = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
-        updateDate = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        createDate = LocalDateTime.now();
+        updateDate = LocalDateTime.now();
     }
 
     @PreUpdate
