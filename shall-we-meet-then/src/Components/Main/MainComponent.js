@@ -35,8 +35,8 @@ export function NewClockBtn ({createNewClock, joinNewClock}){
         <>
           <div>
             <div>
-              <hgroup class="circle bubble">
-                <span class="circle__btn">
+              <hgroup className="circle bubble">
+                <span className="circle__btn">
                   <div className="new-clock-img">
                     <img
                       // className="memory-book-img"
