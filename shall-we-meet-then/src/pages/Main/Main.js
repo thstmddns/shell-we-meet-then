@@ -46,7 +46,7 @@ function Main() {
       if (r.data.length !== 0) {
         console.log("groups:", r.data)
         setGroups(r.data);
-
+        sessionStorage.setItem("group", JSON.stringify(r.data));
         const check1 = [];
         const check2 = [];
 
@@ -121,7 +121,13 @@ function Main() {
 
   const agreeOpen = () => {
     setAgreeState(true)
-
+    const changeGroup = groups.map(data => {
+      if (groups[temp].seq === data.seq) {
+        data.groupMemberAgree = 'Y'
+      }
+      return data
+    })
+    sessionStorage.setItem("group", JSON.stringify(changeGroup));
     openApi(groups[temp].seq)
       .then((r) => {
 

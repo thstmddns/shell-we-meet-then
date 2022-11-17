@@ -55,6 +55,9 @@ export default function Quiz() {
         console.log(res.data);
         setProblems(res.data)
         setProblem(res.data[problemIndex])
+        if (res.data.length === 0) {
+          navigate(`/group/memory/${groupSeq}`)
+        }
       })
       .catch(err => {
         console.error(err);
