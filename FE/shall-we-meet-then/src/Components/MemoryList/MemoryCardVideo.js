@@ -4,8 +4,8 @@ import { getArticlesApi } from '../../api/MemoryApi.js'
 import '../../pages/MemoryList/MemoryList.css'
 import '../../Common.css';
 
-export default function MemoryCard(props) {
-  const baseURL = "http://k7d105.p.ssafy.io"
+export default function MemoryCardVideo(props) {
+  const baseURL = "https://server.shallwemeetthen.com"
   return (
     <>
     <div className='memory-article-img'>
@@ -15,7 +15,7 @@ export default function MemoryCard(props) {
         }}
         className='click-memory'
       >
-        <img className='memory-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
+        <video className='memory-img' width="320" height="240" src={baseURL + `/boards/${props.boardSeq}/video-download`}type="video/quicktime"></video>
       </div>
     </div>
     </>

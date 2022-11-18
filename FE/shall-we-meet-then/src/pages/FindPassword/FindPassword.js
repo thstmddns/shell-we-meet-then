@@ -12,7 +12,7 @@ function FindPassword({ stopEvent, changeToLoginForm, changeToRegisterForm }) {
 
     axios({
       method: "get",
-      url: "http://k7d105.p.ssafy.io/members/password",
+      url: "https://server.shallwemeetthen.com/members/password",
       params: { email: email },
       headers: {
         "Content-Type": "application/json",

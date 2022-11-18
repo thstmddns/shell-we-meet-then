@@ -12,15 +12,14 @@ import {
 } from '../../api/MemoryApi.js'
 import './MemoryModal.css'
 
-export default function Memory2(props) {
-  const baseURL = "http://k7d105.p.ssafy.io"
+export default function Memory(props) {
+  const baseURL = "https://server.shallwemeetthen.com"
   const [article, setArticle] = useState({})
   const [nickName, setNickName] = useState('')
   const outSection = useRef()
   useEffect(() => {
     getArticleApi(props.boardSeq)
       .then(res => {
-        console.log(res.data);
         setNickName(res.data.groupMember.nickname)
         setArticle(res.data)
       })
@@ -28,9 +27,6 @@ export default function Memory2(props) {
         console.error(err);
       })
   }, [props.articleIndex])
-  // useEffect(() => {
-  //   console.log(props.articles);
-  // })
   return (
     <>
     <div className='Memory-modal'>
@@ -59,7 +55,7 @@ export default function Memory2(props) {
                   <div className='Memory-next'>
                     <div className='Memory-next-container'>
                       <div className='Memory-next-container-content'>
-                      <div className='Memory-next-content next-left'>
+                        <div className='Memory-next-content next-left'>
                           {
                             props.articleIndex === 0
                             ? null
@@ -118,8 +114,8 @@ export default function Memory2(props) {
                       <article className='Memory-article'>
                         <div className='Memory-article-content'>
                           <div className='Memory-article-img'>
-                            {/* <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/> */}
-                            <video width="100%" height="100%" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} type="video/quicktime"></video> 
+                            <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
+                            {/* <video width="320" height="240" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} type="video/quicktime"></video>  */}
                           </div>
                           <div className='Memory-article-text'>
                             <div className='Memory-article-text-nickname'>
@@ -129,6 +125,7 @@ export default function Memory2(props) {
                             </div>
                             <div className='Memory-article-text-content'>
                               <div className='a'>
+                                <hr style={{marginTop:'-8px', width:'110%'}}/>
                                 {article.content}
                               </div>
                             </div>
