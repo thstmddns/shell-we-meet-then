@@ -1,0 +1,129 @@
+/* * {
+    box-sizing: border-box;
+  } */
+  
+  @font-face {
+    font-family:"fontone";
+    src: url("../../../public/assets/fonts/fontone.ttf")
+  }
+  
+  .navBar-wrapper {
+    position: relative;
+    display: flex;
+
+    width: 97%;
+    height: 50px;
+
+    font-size: 30px;
+    font-family: "fontone";
+    margin: 0 auto;
+
+    color: white;
+  }
+
+  .navBar-wrapper .nav-home-wrapper {
+    justify-content: start;
+
+    text-align: start;
+
+    width: 20%;
+    cursor: pointer;
+
+    /* border: 1px solid black; */
+  }
+
+  .navBar-wrapper .nav-time-wrapper {
+    justify-content: end;
+
+    width: 75%; 
+
+    text-align: end;
+    cursor: pointer;
+    /* margin-left: 50vw; */
+    /* border: 1px solid blue;   */
+  
+  }
+
+  
+
+  .navBar-wrapper .nav-logout-wrapper {
+    justify-content: end;
+
+    width: 5%; 
+
+    text-align: end;
+    cursor: pointer;
+    margin-left: -0.5vw;
+    /* border: 1px solid green;   */
+  
+  }
+
+  .navBar-wrapper .nav-logout-wrapper .logout-btn {
+
+  }
+
+
+    /* **************************************** */
+  .navBar-wrapper .home-btn-wrapper {
+    cursor: pointer;
+  
+  }
+
+
+
+
+  .nav > a {
+    cursor: pointer;
+  }
+  
+  .nav > .nav-header {
+    display: inline;
+
+  }
+  
+  .nav > .nav-header > .nav-title {
+    display: inline;
+    float: left;
+    font-size: 30px;
+
+    font-family: "fontone";
+    color: white;
+
+
+  }
+  
+  .nav > .nav-header > .nav-title > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    /* color: rgba(0, 0, 0, 1); */
+    /* font-size: 30px; */
+    color: white;
+  }
+
+  .nav > .nav-header > .nav-title > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    /* font-size: 18px; */
+  }
+  
+  .nav > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    /* color: rgba(0, 0, 0, 1); */
+  }
+  
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+
+  /* 로그아웃 btn css */
+  .logout-btn-wrapper {
+    cursor: pointer;
+  }

@@ -1,0 +1,26 @@
+.uploader-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .file-wrapper{
+      // margin: 50px 0 20px 0;
+      img, video{
+        width: 25vw;
+        height: 50vh;
+        // object-fit: contain;
+      }
+    }
+    // .upload-button{
+    //   display: flex;
+    //   // border: 1px solid red;
+
+    //   // margin-left: 11vw;
+    //   // margin-top: 2vh;
+    //   // button{
+    //   //   width: 7vw;
+    //   //   // margin-right: 1vw;
+    //   // }
+    // }
+  }
