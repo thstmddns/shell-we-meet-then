@@ -78,7 +78,7 @@ public class MemberGetService {
         }
 
         String subject = "우리 그때 만나? 의 비밀번호 변경 링크입니다.";
-        String text = "http://localhost:3000/new-password/"+uuid;
+        String text = "https://www.shallwemeetthen.com/new-password/"+uuid;
         mailUtils.sendMail(dto.getEmail(),subject,text);
 
         return true;
