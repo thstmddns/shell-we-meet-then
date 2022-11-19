@@ -30,6 +30,7 @@ public class MemberPutService {
         //레디스에 있다면
         System.out.println(redisUtil.getData(dto.getEmail()));
         if (redisUtil.getData(dto.getEmail())==null) throw new IllegalStateException("해당 유저는 존재하지 않습니다.");
+        if (!redisUtil.getData(dto.getEmail()).equals( dto.getUuid())) throw new IllegalStateException("UUID가 틀렸습니다.");
         dto.setNextPassword(BCrypt.hashpw(dto.getNextPassword(),BCrypt.gensalt()));
         //DB의 비밀번호 정보 바꿈
         Member member = memberRepository.findByEmail(dto.getEmail()).orElseThrow(() -> new IllegalStateException("해당 이메일이 없습니다."));
