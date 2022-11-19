@@ -106,7 +106,7 @@ function Home() {
 
     axios({
       method: "post",
-      url: "https://server.shallwemeetthen.com/members/join",
+      url: "https://server.shallwemeetthen.com/members/login",
       headers: {
         "Content-Type": "application/json",
         // withCredentials: true
@@ -151,7 +151,7 @@ function Home() {
     }
     axios({
       method: 'get',
-      url: "https://server.shallwemeetthen.com/members/join",
+      url: "https://server.shallwemeetthen.com/members/check-email",
       params: {
         email: signUpUser.email,
       },
