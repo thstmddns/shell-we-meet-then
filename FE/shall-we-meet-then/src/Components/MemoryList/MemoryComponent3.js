@@ -2,27 +2,27 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import {
   quizGetScoreApi,
-} from '../../api/QuizApi.js'
+} from '../../api/QuizApi'
 import {
   getArticleCount,
   getTotalUserArticleCountApi,
   getGroupArticleCountApi 
-} from '../../api/MemoryApi.js'
+} from '../../api/MemoryApi'
 import {
   getTotalArticleCountApi,
   getLastAuthorApi,
   getMostWrittenMemberApi,
   getLongestWrittenMemberApi,
   getQuizKingApi
-} from '../../api/StatisticsApi.js'
+} from '../../api/StatisticsApi'
 import '../../pages/MemoryList/MemoryList.css'
 import '../../Common.css'
 import MemoryCard from './MemoryCard'
 import MemoryCardVideo from './MemoryCardVideo'
-import Piechart from '../Statistics/Piechart.js'
-import Calendar from '../Statistics/Calendar.js'
+import Piechart from '../Statistics/Piechart'
+import Calendar from '../Statistics/Calendar'
 import LineChart from '../Statistics/LineChart.js'
-import { Cdata } from '../Statistics/Cdata.js'
+import { Cdata } from '../Statistics/Cdata'
 
 export default function MemoryComponent3(props) {
   const { groupSeq } = useParams()

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
-import { getArticlesApi } from '../../api/MemoryApi.js'
+import { getArticlesApi } from '../../api/MemoryApi'
 import { bList } from './test.js'
 import './MemoryList.css';
-import Modal from '../../Components/Memory/MemoryModal'
+import './Modal.css'
 
 export default function MemoryList() {
   // dumy
@@ -117,6 +117,35 @@ function MonthList(props) {
           props.setboardIdx(props.boardsList.findIndex(e => e.boardSeq === props.data.boardSeq));
         }}
       >{ props.data.content }</div>
+    </div>
+  )
+}
+
+function Modal(props) {
+  const outSection = useRef()
+  return (
+    <div
+      className="modal"
+      style={{ 
+      width:'100vw', 
+      height:'100vh',}}
+      ref={outSection}
+      onClick={(e) => { if (e.target === outSection.current) props.setModalBtn(0);}}
+    >
+      <div style={{ width:'80px', height:'40px', backgroundColor: 'pink' }} onClick={() => props.setModalBtn(0)}>X BUTTON</div>
+      <section>
+        <div
+          style={{ margin:'1px', width:'180px', height:'240px', backgroundColor: 'gray' }}
+        ></div>
+        <div>{ props.boards.boardSeq }</div>
+        <div>{ props.boards.content }</div>
+        <div onClick={() => {
+          props.setboardIdx(boardIdx => { if (boardIdx === 0) {return props.maxBoard - 1}; return boardIdx-1 })
+        }}>왼쪽으로</div>
+        <div onClick={() => {
+          props.setboardIdx(boardIdx => { if (boardIdx === props.maxBoard - 1) {return 0}; return boardIdx+1 })
+        }}>오른쪽으로</div>
+      </section>
     </div>
   )
 }

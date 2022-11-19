@@ -5,8 +5,8 @@ import {
     getMyInfoApi,
     getTotalUserArticleCountApi,
     getGroupArticleCountApi 
-} from '../../api/MemoryApi.js'
-import { Ldata } from './Ldata.js';
+} from '../../api/MemoryApi'
+import { Ldata } from './Ldata';
 
 const MyResponsiveLine = () => {
     const { groupSeq } = useParams()

@@ -9,7 +9,7 @@ import '../../Common.css'
 import {
   quizApi,
   quizAddScoreApi,
-} from '../../api/QuizApi.js'
+} from '../../api/QuizApi'
 import Swal from "sweetalert2";
 
 export default function Quiz() {

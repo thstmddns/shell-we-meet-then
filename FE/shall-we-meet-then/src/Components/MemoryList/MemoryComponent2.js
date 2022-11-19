@@ -8,7 +8,7 @@ import {
   getImageApi,
   getArticleCount,
   getTotalArticleCount,
-} from '../../api/MemoryApi.js'
+} from '../../api/MemoryApi'
 import '../../pages/MemoryList/MemoryList.css'
 import MemoryCard from './MemoryCard'
 import MemoryCardVideo from './MemoryCardVideo'

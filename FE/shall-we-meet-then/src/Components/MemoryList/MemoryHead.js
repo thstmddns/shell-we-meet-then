@@ -11,7 +11,7 @@ import {
   getGroupDetailsApi,
   getGroupMembersApi,
   getMyInfoApi
-} from '../../api/MemoryApi.js'
+} from '../../api/MemoryApi'
 import GroupModal from '../Memory/GroupModal.js'
 import '../../pages/MemoryList/MemoryList.css'
 import '../../Common.css';

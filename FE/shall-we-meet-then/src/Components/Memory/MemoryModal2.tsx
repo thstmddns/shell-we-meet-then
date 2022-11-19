@@ -12,14 +12,23 @@ import {
 } from '../../api/MemoryApi'
 import './MemoryModal.css'
 
-export default function Memory(props) {
+
+export interface DetailArticle {
+  boardSeq: number;
+  groupMember : any;
+  content: string; 
+  imageSeqs: any;
+}
+
+export default function Memory2(props:any) {
   const baseURL = "https://server.shallwemeetthen.com"
-  const [article, setArticle] = useState({})
+  const [article, setArticle] = useState<any>({})
   const [nickName, setNickName] = useState('')
-  const outSection = useRef()
+  const outSection = useRef<any>()
   useEffect(() => {
     getArticleApi(props.boardSeq)
       .then(res => {
+        console.log(res.data);
         setNickName(res.data.groupMember.nickname)
         setArticle(res.data)
       })
@@ -27,6 +36,9 @@ export default function Memory(props) {
         console.error(err);
       })
   }, [props.articleIndex])
+  // useEffect(() => {
+  //   console.log(props.articles);
+  // })
   return (
     <>
     <div className='Memory-modal'>
@@ -55,7 +67,7 @@ export default function Memory(props) {
                   <div className='Memory-next'>
                     <div className='Memory-next-container'>
                       <div className='Memory-next-container-content'>
-                        <div className='Memory-next-content next-left'>
+                      <div className='Memory-next-content next-left'>
                           {
                             props.articleIndex === 0
                             ? null
@@ -66,7 +78,7 @@ export default function Memory(props) {
                                     setNickName(props.articles[nextIndex].groupMember.nickname)
                                     setArticle(props.articles[nextIndex])
                                     props.setBoardSeq(props.articles[nextIndex].boardSeq)
-                                    props.setArticleIndex(i => i-1)
+                                    props.setArticleIndex((i:number) => i-1)
                                   } else {
                                     const nextIndex = props.articles.length-1
                                     setNickName(props.articles[nextIndex].groupMember.nickname)
@@ -86,13 +98,15 @@ export default function Memory(props) {
                               ? null
                               : <button
                                   onClick={() => {
-                                    if (props.articleIndex < props.articles.length-1) {
+                                    if (props.articleIndex < props.articles.length-1) 
+                                    {
                                       const nextIndex = props.articleIndex+1
                                       setNickName(props.articles[nextIndex].groupMember.nickname)
                                       setArticle(props.articles[nextIndex])
                                       props.setBoardSeq(props.articles[nextIndex].boardSeq)
-                                      props.setArticleIndex(i => i+1)
-                                    } else {
+                                      props.setArticleIndex((i:number) => i+1)
+                                    } 
+                                    else {
                                       const nextIndex = 0
                                       console.log(props.articles);
                                       setNickName(props.articles[nextIndex].groupMember.nickname)
@@ -114,8 +128,8 @@ export default function Memory(props) {
                       <article className='Memory-article'>
                         <div className='Memory-article-content'>
                           <div className='Memory-article-img'>
-                            <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/>
-                            {/* <video width="320" height="240" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} type="video/quicktime"></video>  */}
+                            {/* <img className='modal-img' alt="#" src={baseURL + `/boards/${props.boardSeq}/image-download`}/> */}
+                            <video width="100%" height="100%" src={baseURL + `/boards/${props.boardSeq}/video-download`} autoPlay={true} ></video> 
                           </div>
                           <div className='Memory-article-text'>
                             <div className='Memory-article-text-nickname'>
@@ -125,7 +139,6 @@ export default function Memory(props) {
                             </div>
                             <div className='Memory-article-text-content'>
                               <div className='a'>
-                                <hr style={{marginTop:'-8px', width:'110%'}}/>
                                 {article.content}
                               </div>
                             </div>
