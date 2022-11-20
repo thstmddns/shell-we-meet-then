@@ -21,6 +21,8 @@ public class GroupMemberController {
             return new ResponseEntity<>(groupMemberService.addGroupMember(addGroupMemberRequestDto), HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
         }
     }
 
@@ -63,5 +65,14 @@ public class GroupMemberController {
     @GetMapping
     public ResponseEntity<?> getGroupMembers(@ModelAttribute GetGroupMembersDto.Request dto) {
         return new ResponseEntity<>(groupMemberService.getGroupMembers(dto), HttpStatus.OK);
+    }
+
+    @GetMapping("/my-info")
+    public ResponseEntity<?> getMyInfo(@ModelAttribute GetMyInfoDto.Request dto) {
+        try {
+            return new ResponseEntity<>(groupMemberService.getMyInfo(dto), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,0 +1,139 @@
+
+/* 지나간 그룹: 게시글 확인하러 가는 memory-book-img */
+.memory-book-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .memory-book-img > img {
+    width: 6vw;
+  }
+  
+  .memory-book-content {
+     
+    top: 40%;
+    left: 80%;
+  
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    
+    text-align: center;
+    
+    min-width: 8.5vw;
+    min-height: 5vh;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  
+    border-radius: 5%;
+  
+    padding: 12px 16px;
+    z-index: 1;
+    /* height: 20vh; */
+    max-height: 20vh;
+    overflow: auto;
+    -ms-overflow-style: none;
+  
+    font-size: 20px; 
+  }
+  
+  
+  .memory-book-img:hover .memory-book-content {
+    display: block;
+  
+  }
+  
+  
+  /* 지나간 그룹: 게시글 확인하러 가는 memory-book-img */
+  .write-pencil-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .write-pencil-img > img {
+    width: 8vw;
+    margin-top: 8px ;
+  }
+  
+  .write-pencil-content {
+     
+    top: 40%;
+    left:80%;
+  
+  
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    
+    text-align: center;
+    
+    min-width: 8.5vw;
+    min-height: 5vh;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  
+    border-radius: 5%;
+  
+    padding: 12px 16px;
+    z-index: 1;
+    /* height: 20vh; */
+    max-height: 20vh;
+    overflow: auto;
+    -ms-overflow-style: none;
+  
+    font-size: 20px; 
+  }
+  
+  
+  .write-pencil-img:hover .write-pencil-content {
+    display: block;
+  
+  }
+  
+  /* 그룹생성 버튼 쪽 */
+  .new-clock-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .new-clock-img > img {
+    width: 5.5vw;
+  }
+  
+  .new-clock-content {
+     
+    top: 40%;
+    left:80%;
+  
+  
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    
+    text-align: center;
+    
+    min-width: 8.5vw;
+    min-height: 5vh;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  
+    border-radius: 5%;
+  
+    padding: 12px 16px;
+    z-index: 1;
+    /* height: 20vh; */
+    max-height: 20vh;
+    overflow: auto;
+    -ms-overflow-style: none;
+  
+    font-size: 20px; 
+  }
+  
+  
+  .new-clock-img:hover .new-clock-content {
+    display: block;
+  
+  }
+  

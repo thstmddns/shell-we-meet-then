@@ -1,0 +1,208 @@
+.write-board-page {
+    
+}
+
+.write-board-page .group-name-wrapper{
+    /* background-color: grey; */
+    /* border: 1px solid grey;  */
+
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 3vh;
+    margin-bottom: 4vh;
+    
+    /* font-size: 40px; */
+
+}
+
+.group-name-wrapper .group-name {
+    text-align: center;
+    
+
+    font-size: 52px;
+    margin-top: -2vh;
+    /* border: 1px solid grey; */
+}
+
+/* 컨텐츠 영역 시작 */
+.group-content-wrapper {
+    /* background-color: grey; */
+    /* border: 1px solid grey;  */
+
+    display: flex;
+    width: 90vw;
+    height: 74vh;
+
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: -2vh;
+    /* padding-top: 0vh; */
+}
+
+
+.writing-content {
+    box-sizing: border-box;
+    width: 25vw;
+    height: 50vh;
+    border-radius: 5px;
+
+    font-size: 24px;
+
+    margin-left: 0.5vw;
+    margin-top: 2vh;
+
+    font-family: "fontone";
+}
+
+
+
+/* default 이미지 & 미리보기 이미지 */
+.photo-content-input {
+    
+}
+
+.photo-content .photo-default-img {
+    box-sizing: border-box;
+    width: 24vw;
+    height: 48vh;
+    border-radius: 5px;
+
+    font-size: 22px;
+
+    margin-left: 1vw;
+    margin-top: 2vh;
+ 
+}
+
+.photo-preview-wrapper {
+    background-color: antiquewhite;
+
+    width: 24vw;
+    height: 45vh;
+
+    margin-left: 1vw;
+    margin-bottom: 3vh;
+    /* margin-top: 4vh; */
+}
+
+.photo-preview-img {
+    width: 25vw;
+    height: 50vh;
+
+    margin-top: 2vh;
+    margin-left: 0.5vw;
+}
+
+.find-file-btn {
+    background-color:transparent;
+    border-radius: 8px;
+    border: none;
+
+    width: 8vw;
+    height: 4vh;
+
+    margin-top: 2.3vh;
+    margin-left: 2vw;
+
+    text-align: center;
+
+    font-family: 'fontone';
+    font-size: 23px;
+}
+
+.find-file-btn:hover {
+    /* background-color: antiquewhite; */
+}
+
+
+
+/* 영역별 아이콘 */
+.content-header-icon {
+    width: 4vw;
+    height: inherit;
+
+    margin-left: 1vw;
+    
+}
+
+.complete-btn-wrapper {
+    /* border: 1px solid green; */
+
+    position: absolute;
+
+    margin-left: 84vw;
+    /* margin-bottom: -3vh; */
+
+    width: 10vw;
+    height: auto;
+}
+
+
+/*  BUTTONS  */
+.btn {
+  width: 8rem;
+  height: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.3rem rgb(229, 178, 206), -0.1rem -0.1rem 0.3rem rgb(229, 178, 206);
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn__secondary {
+  grid-column: 1/2;
+  grid-row: 5/6;
+  /* color: var(--greyDark); */
+  color: rgb(244, 225, 225);
+}
+.btn__secondary:hover {
+  color: rgb(237, 154, 199);
+}
+.btn__secondary:active {
+  box-shadow: inset 0.1rem 0.1rem 0.3rem rgb(237, 154, 199), inset -0.2rem -0.2rem 0.5rem rgb(237, 154, 199);
+}
+.btn p {
+  font-size: 1.6rem;
+}
+
+
+/* 영상 업로드 버튼 */
+.upload-button-wrapper {
+    display: flex;
+    /* border: 1px solid red;` */
+
+    padding-top: -10vh;
+    margin-left: 4vw;
+
+
+}
+
+.upload-video-btn {
+    /* margin-right: -10vw; */
+}
+
+/* 이미지 업로드 버튼 */
+.upload-img-btn {
+    position: relative;
+
+    margin-left: 18vw;
+    margin-top: 10vh;
+
+    display: flex;
+}
+
+.board-complete-btn-wrapper {
+    position: absolute;
+
+    margin-left: 83.6vw;
+    /* margin-bottom: -3vh; */
+    margin-top: -4vh;
+    width: 10vw;
+    height: auto;
+
+
+}

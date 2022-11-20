@@ -1,9 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.groupboard.controller;
 
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.AddArticleDto;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.ArticleSearchCondition;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetCountDto;
-import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetTotalCountRequestDto;
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.*;
 import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyFileException;
 import com.ssafy.shallwemeetthen.domain.groupboard.exception.EmptyTotalCountException;
 import com.ssafy.shallwemeetthen.domain.groupboard.service.GroupBoardService;
@@ -70,6 +67,11 @@ public class GroupBoardController {
         return new ResponseEntity<>(groupBoardService.getArticleCount(dto), HttpStatus.OK);
     }
 
+    @GetMapping("/count-per-day")
+    public ResponseEntity<?> getArticleCount(@ModelAttribute GetCountDayRequestDto dto) {
+        return new ResponseEntity<>(groupBoardService.getArticleCount(dto), HttpStatus.OK);
+    }
+
     @GetMapping("/total-count")
     public ResponseEntity<?> getTotalCount(@ModelAttribute GetTotalCountRequestDto dto) {
         try {
@@ -77,5 +79,10 @@ public class GroupBoardController {
         } catch (EmptyTotalCountException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/member-total-count")
+    public ResponseEntity<?> getTotalCount(@ModelAttribute GetMemberBoardCountRequestDto dto) {
+        return new ResponseEntity<>(groupBoardService.getTotalCount(dto), HttpStatus.OK);
     }
 }

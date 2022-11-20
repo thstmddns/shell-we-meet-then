@@ -1,5 +1,6 @@
 package com.ssafy.shallwemeetthen.domain.groupboard.repository;
 
+import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetMemberBoardCountResponseDto;
 import com.ssafy.shallwemeetthen.domain.groupboard.dto.GetTotalCountResponseDto;
 import com.ssafy.shallwemeetthen.domain.groupboard.entity.GroupBoard;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,6 +27,15 @@ public interface GroupBoardRepository extends JpaRepository<GroupBoard, Long> {
             where gm.group.seq = :groupSeq 
             """)
     List<GetTotalCountResponseDto> findGetTotalCountDto(@Param("groupSeq") Long groupSeq);
+
+    @Query("""
+            select new com.ssafy.shallwemeetthen.domain.groupboard.dto.GetMemberBoardCountResponseDto(gm, count(gb.seq))
+            from GroupBoard gb
+            inner join gb.groupMember gm
+            where gm.group.seq = :groupSeq
+            group by gm.seq
+            """)
+    List<GetMemberBoardCountResponseDto> findMemberBoardCount(@Param("groupSeq") Long groupSeq);
 
 
     @Query("select count(gb.seq) from GroupBoard gb where gb.groupMember.seq in (select gm.seq from GroupMember gm where gm.group.seq = :groupSeq)")
