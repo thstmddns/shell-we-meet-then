@@ -104,7 +104,7 @@ function WriteBoard() {
 
     axios({
       method: "post",
-      url:"http://k7d105.p.ssafy.io/boards",
+      url:"https://server.shallwemeetthen.com/boards",
       headers:{
         "Content-Type": "multipart/form-data",
         "Authorization": sessionStorage.getItem("accessToken")
