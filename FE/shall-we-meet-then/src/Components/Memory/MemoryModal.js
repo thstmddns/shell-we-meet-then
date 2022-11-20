@@ -18,6 +18,10 @@ export default function Memory(props) {
   const [nickName, setNickName] = useState('')
   const outSection = useRef()
   useEffect(() => {
+
+    console.log(props.article)
+    console.log(props.articleIndex)
+
     getArticleApi(props.boardSeq)
       .then(res => {
         setNickName(res.data.groupMember.nickname)

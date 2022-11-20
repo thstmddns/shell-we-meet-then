@@ -1,8 +1,8 @@
 import api from './api'
 
 // 글 리스트 조회
-export const getArticlesApi = async(groupSeq: number) => {
-    return await api.get(`/boards`, { params: groupSeq})
+export const getArticlesApi = async(groupSeq: any) => {
+    return await api.get(`/boards`, { params:  groupSeq} )
 }
 // 글 상세 조회
 export const getArticleApi = async(boardSeq: number) => {

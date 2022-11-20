@@ -5,7 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
 import "./WriteBoard.css";
 import { writeMemoryApi } from "../../api/WriteBoardApi";
-import imageCompression from 'browser-image-compression';
+
 import Swal from "sweetalert2";
 
 function WriteBoard() {
@@ -52,18 +52,7 @@ function WriteBoard() {
     }
   };
 
-  const compressImage = async (image) => {
-    try{
-      const options = {
-        maxSizeMb: 0.6,
-        maxWidthOrHeight: 1200,
-        useWebWorker: true,
-      }
-      return await imageCompression(image, options);
-    } catch(e){
-      console.log(e);
-    }
-  }
+
   const onSaveWriting = async () => {
     if(content === ''){
       // alert("내용을 입력해주세요")
@@ -81,7 +70,6 @@ function WriteBoard() {
     const imgs = document.getElementById("img").files;
     if (imgs.length !== 0) {
       for (let i = 0; i < imgs.length; i++) {
-        // const compressed = await compressImage(imgs[i])
         form.append("image", imgs[i]);
       }
     }else {
