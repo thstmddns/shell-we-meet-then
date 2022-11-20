@@ -143,7 +143,7 @@ export default function Quiz() {
               </li>
               <li className='float-right'>
                 <div className='quiz-img-content'>
-                  <div className='quiz-img'><img className='quiz-img' alt="#" src={baseURL + `/boards/${problem.boardSeq}/image-download`}/></div>
+                  <div className='quiz-img'><img className='quiz-img' alt="" src={baseURL + `/boards/${problem.boardSeq}/image-download`}/></div>
                 </div>
               </li>
             </ul>
