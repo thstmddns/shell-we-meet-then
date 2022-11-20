@@ -191,7 +191,7 @@ function WriteBoard() {
      
         {/* group-name 부분 */}
         <div className="group-name-wrapper" style={{marginTop:"10vh"}}>
-          <div className="group-name">자율 프로젝트</div>
+          {/* <div className="group-name">자율 프로젝트</div> */}
         </div>
         {/* 글, 사진, 영상 영역 */}
         <div className="group-content-wrapper">
