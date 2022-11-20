@@ -96,7 +96,7 @@ function WriteBoard() {
     form.append("groupSeq", groupSeq);
 
     axios
-      .post("/boards", form, {
+      .post("https://server.shallwemeetthen.com/boards", form, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": sessionStorage.getItem("accessToken")
