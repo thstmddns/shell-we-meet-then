@@ -5,7 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
 import "./WriteBoard.css";
 import { writeMemoryApi } from "../../api/WriteBoardApi";
-
+import imageCompression from 'browser-image-compression';
 import Swal from "sweetalert2";
 
 function WriteBoard() {
@@ -52,8 +52,19 @@ function WriteBoard() {
     }
   };
 
-
-  const onSaveWriting = () => {
+  const compressImage = async (image) => {
+    try{
+      const options = {
+        maxSizeMb: 0.6,
+        maxWidthOrHeight: 1200,
+        useWebWorker: true,
+      }
+      return await imageCompression(image, options);
+    } catch(e){
+      console.log(e);
+    }
+  }
+  const onSaveWriting = async () => {
     if(content === ''){
       // alert("내용을 입력해주세요")
 
@@ -67,21 +78,21 @@ function WriteBoard() {
       return
     }
     let form = new FormData();
-    form.append("content", content);
-
     const imgs = document.getElementById("img").files;
-
     if (imgs.length !== 0) {
       for (let i = 0; i < imgs.length; i++) {
+        // const compressed = await compressImage(imgs[i])
         form.append("image", imgs[i]);
       }
     }else {
       const imgBlob = new File([], '')
       form.append("image", imgBlob)
+
+
     }
     const videoFile = document.getElementById("video").files[0];
     
-
+    form.append("content", content);
     
     
     if (videoFile !== undefined){
@@ -91,7 +102,6 @@ function WriteBoard() {
     else {
       const blob = new File([], '')
       form.append("video", blob)
-      console.log("form.video:", form.get("video"))
     }
     form.append("groupSeq", groupSeq);
 
