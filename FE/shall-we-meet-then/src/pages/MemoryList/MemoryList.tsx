@@ -47,22 +47,28 @@ export default function MemoryList() {
   
   
   useEffect(() => {
-    getArticlesApi(Number(groupSeq))
+
+    getArticlesApi({groupSeq: groupSeq})
       .then(res => {
-        console.log(res.data);
+        console.log("res.data:", res.data);
         const resultImage = res.data.filter((obj:Article) => obj.hasImage);
         const resultVideo = res.data.filter((obj:Article)=> obj.hasVideo);
         setArticlesPhoto(resultImage);
         setArticlesVideo(resultVideo);
+
+        console.log(resultImage)
       })
       .catch(err => {
-        console.error(err);
+
+        console.error(err.message);
       })
   }, [])
 
   useEffect(() =>{
     setArticlePhotoIndex(articlesPhoto.findIndex((i:any) => i.boardSeq === boardSeq))
     setArticleVideoIndex(articlesVideo.findIndex((i:any) => i.boardSeq === boardSeq))
+
+    console.log(articlesPhoto.findIndex((i:any) => i.boardSeq === boardSeq))
   }, [boardSeq])
 
 

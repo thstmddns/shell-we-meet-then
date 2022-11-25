@@ -21,7 +21,7 @@ export interface DetailArticle {
 }
 
 export default function Memory2(props:any) {
-  const baseURL = "https://server.shallwemeetthen.com"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const [article, setArticle] = useState<any>({})
   const [nickName, setNickName] = useState('')
   const outSection = useRef<any>()

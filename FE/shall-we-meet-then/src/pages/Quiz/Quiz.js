@@ -13,7 +13,7 @@ import {
 import Swal from "sweetalert2";
 
 export default function Quiz() {
-  const baseURL = "https://server.shallwemeetthen.com"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const navigate = useNavigate()
   const [pTime, setPTime] = useState(0);
   const [problem, setProblem] = useState({})
@@ -143,7 +143,7 @@ export default function Quiz() {
               </li>
               <li className='float-right'>
                 <div className='quiz-img-content'>
-                  <div className='quiz-img'><img className='quiz-img' alt="#" src={baseURL + `/boards/${problem.boardSeq}/image-download`}/></div>
+                  <div className='quiz-img'><img className='quiz-img' alt="" src={baseURL + `/boards/${problem.boardSeq}/image-download`}/></div>
                 </div>
               </li>
             </ul>

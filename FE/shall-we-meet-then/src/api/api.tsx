@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 
 const api = baseAxios.create({
-    baseURL: "https://server.shallwemeetthen.com",
+    baseURL: "http://k7d105.p.ssafy.io",
 }); 
 
 

@@ -13,11 +13,15 @@ import {
 import './MemoryModal.css'
 
 export default function Memory(props) {
-  const baseURL = "https://server.shallwemeetthen.com"
+  const baseURL = "http://k7d105.p.ssafy.io"
   const [article, setArticle] = useState({})
   const [nickName, setNickName] = useState('')
   const outSection = useRef()
   useEffect(() => {
+
+    console.log(props.article)
+    console.log(props.articleIndex)
+
     getArticleApi(props.boardSeq)
       .then(res => {
         setNickName(res.data.groupMember.nickname)

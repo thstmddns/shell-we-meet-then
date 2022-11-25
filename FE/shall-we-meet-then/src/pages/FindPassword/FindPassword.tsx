@@ -11,7 +11,7 @@ function FindPassword(props: any) {
   const sendEmail = () => {
     axios({
       method: 'get',
-      url: "https://server.shallwemeetthen.com/members/password",
+      url: "http://k7d105.p.ssafy.io/members/password",
       params:{email:email},
       headers: {
         'Content-Type': 'application/json',

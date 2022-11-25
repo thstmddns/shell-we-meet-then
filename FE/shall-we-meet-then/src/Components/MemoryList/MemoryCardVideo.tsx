@@ -5,7 +5,7 @@ import '../../pages/MemoryList/MemoryList.css'
 import '../../Common.css';
 
 export default function MemoryCardVideo(props:any) {
-  const baseURL = "https://server.shallwemeetthen.com"
+  const baseURL = "http://k7d105.p.ssafy.io"
   return (
     <>
     <div className='memory-article-img'>
